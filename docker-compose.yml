@@ -1,0 +1,50 @@
+services:
+  vufind:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/vufind
+    environment:
+      - VUFIND_HOME=/var/www/vufind
+      - VUFIND_LOCAL_DIR=/var/www/vufind/local
+    depends_on:
+      - mysql
+      - solr
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vufind
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  solr:
+    image: solr:8
+    ports:
+      - "8080:8983"
+    volumes:
+      - solr_data:/var/solr
+    command:
+      - solr-precreate
+      - biblio
+      - solr-precreate  
+      - authority
+
+  import:
+    build: .
+    depends_on:
+      - solr
+    volumes:
+      - .:/var/www/vufind
+    command:
+      - ./import-marc.sh biblio.mrc
+      - ./import-marc-auth.sh auth.mrc
+
+volumes:
+  vufind_local:
+  mysql_data:
+  solr_data:

@@ -10,6 +10,8 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://app.vagrantup.com/boxes/search
   config.vm.box = "ubuntu/jammy64"
+  config.vbguest.auto_update = true
+  config.vbguest.iso_path = "c:\\Program Files\\Oracle\\VirtualBox\\VBoxGuestAdditions.iso"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -27,6 +29,7 @@ Vagrant.configure("2") do |config|
   # Network configuration to forward ports.
   config.vm.network :forwarded_port, guest: 80, host: 4567
   config.vm.network :forwarded_port, guest: 8983, host: 4568
+  config.vm.network "private_network", ip: "172.30.41.11"
   config.vm.synced_folder ".", "/vagrant", :owner => 'vagrant'
 
   # Enable provisioning with a shell script. Additional provisioners such as
