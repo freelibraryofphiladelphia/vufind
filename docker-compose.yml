@@ -1,10 +1,10 @@
 services:
-  vufind:
+  web:
     build: .
     ports:
       - "80:80"
     volumes:
-      - .:/var/www/vufind
+      - vufind_source:/var/www/vufind
     environment:
       - VUFIND_HOME=/var/www/vufind
       - VUFIND_LOCAL_DIR=/var/www/vufind/local
@@ -28,23 +28,21 @@ services:
       - "8080:8983"
     volumes:
       - solr_data:/var/solr
-    command:
-      - solr-precreate
-      - biblio
-      - solr-precreate  
-      - authority
+      - vufind_source:/var/www/vufind
 
   import:
-    build: .
+    image: solr:8
+    volumes:
+      - vufind_source:/var/www/vufind
+    environment:
+      - VUFIND_HOME=/var/www/vufind
+      - VUFIND_LOCAL_DIR=/var/www/vufind/local
+      - SOLRCORE=biblio
     depends_on:
       - solr
-    volumes:
-      - .:/var/www/vufind
-    command:
-      - ./import-marc.sh biblio.mrc
-      - ./import-marc-auth.sh auth.mrc
+    command: sh -c "while [ ! -f /var/www/vufind/import-marc.sh ]; do sleep 2; done && /var/www/vufind/import-marc.sh /var/www/vufind/biblio.mrc"
 
 volumes:
-  vufind_local:
+  vufind_source:
   mysql_data:
   solr_data:
