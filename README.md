@@ -23,3 +23,15 @@ The VuFind® community maintains a detailed [wiki](https://vufind.org/wiki) cont
 Contributing
 ------------
 See our [developers handbook](https://vufind.org/wiki/development) for more information.
+
+## Free Library Specific
+
+### Local Vagrant Development
+
+#### Grant Create symbolic links user right
+
+- Press Win+R and run: secpol.msc
+- Navigate to: Local Policies → User Rights Assignment
+- Open Create symbolic links.
+- Select Add User or Group and add your Windows account
+- Sign out of Windows and sign back in.

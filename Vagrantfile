@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://app.vagrantup.com/boxes/search
-  config.vm.box = "hashicorp-education/ubuntu-24-04"
+  config.vm.box = "bento/ubuntu-24.04"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -22,11 +22,21 @@ Vagrant.configure("2") do |config|
     # Customize the amount of resources on the VM:
     vb.cpus = 2
     vb.memory = "2048"
+
+    vb.customize [
+      "setextradata",
+      :id,
+      "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant",
+      "1"
+    ]
+
   end
 
   # Network configuration to forward ports.
-  config.vm.network :forwarded_port, guest: 80, host: 4567
-  config.vm.network :forwarded_port, guest: 8983, host: 4568
+  config.vm.network :forwarded_port, guest: 80, host: 4567, auto_correct: true
+  config.vm.network :forwarded_port, guest: 8983, host: 4568, auto_correct: true
+  config.vm.network "private_network", ip: "172.30.41.65"
+
   config.vm.synced_folder ".", "/vagrant", :owner => 'vagrant'
 
   # Enable provisioning with a shell script. Additional provisioners such as
