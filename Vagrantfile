@@ -17,18 +17,16 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
-    # vb.gui = true
+    vb.gui = true
 
     # Customize the amount of resources on the VM:
     vb.cpus = 2
     vb.memory = "6144"
 
-    vb.customize [
-      "setextradata",
-      :id,
-      "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant",
-      "1"
-    ]
+    # Disable vagrant-vbguest for this VM
+    if Vagrant.has_plugin?("vagrant-vbguest")
+      config.vbguest.auto_update = false
+    end
 
   end
 
