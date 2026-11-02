@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
 
     # Customize the amount of resources on the VM:
     vb.cpus = 2
-    vb.memory = "2048"
+    vb.memory = "6144"
 
     vb.customize [
       "setextradata",
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
   # Network configuration to forward ports.
   config.vm.network :forwarded_port, guest: 80, host: 4567, auto_correct: true
   config.vm.network :forwarded_port, guest: 8983, host: 4568, auto_correct: true
-  config.vm.network "private_network", ip: "172.30.41.65"
+  config.vm.network "private_network", ip: "172.30.41.66"
 
   config.vm.synced_folder ".", "/vagrant", :owner => 'vagrant'
 
