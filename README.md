@@ -37,6 +37,14 @@ See our [developers handbook](https://vufind.org/wiki/development) for more info
 - Start the SOLR instance: `$ ./solr.sh start`
 - Navigate to http://127.0.0.1:4567/vufind/
 
+### Update Windows Host File
+
+- Using a text editor with administrative rights, open `C:\Windows\System32\drivers\etc\hosts`
+- Add the following line: `172.30.41.66  local.catalog.freelibrary.org`
+  - If there is already a line for `local.catalog.freelibrary.org`, remove it
+- Save file
+- Navigate to http://local.catalog.freelibrary.org:4567/vufind/
+
 ### Startup Errors
 
 #### Could not rename '/vagrant/downloads/solr-9.8.1.tgz.partial' to '/vagrant/downloads/solr-9.8.1.tgz'
@@ -45,3 +53,16 @@ See our [developers handbook](https://vufind.org/wiki/development) for more info
 - `$ mv /vagrant/downloads/solr-9.8.1.tgz.partial /vagrant/downloads/solr-9.8.1.tgz`
 - `$ exit`
 - `$ vagrant reload --provision`
+
+## Moving files to Ubuntu VM with WinSCP
+
+- Download [WinSCP](https://winscp.net/eng/index.php) or a similar application (putty, etc)
+- Click on **New Site** and enter these settings:
+  - **File Protocol**: SFTP
+  - **Hostname**: 172.30.41.66
+  - **Port**: 22
+  - **Username**: vagrant
+  - **Password**: vagrant
+- Click Save
+- Set **Site name:** to something that makes sense (ie "Local Catalog VM")
+- Click on the new entry in WinSCP and then click **Login**
