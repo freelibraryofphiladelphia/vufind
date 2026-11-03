@@ -54,7 +54,7 @@ a.navbar-toggle:hover {
   }
 
   .search-field {
-    width: auto;
+    width: 100%;
     margin-bottom: 0;
   }
 }
@@ -69,18 +69,15 @@ a.navbar-toggle:hover {
     border: solid 2px $primary-gray-100;
     border-radius: 50px;
     padding: 10px;
-    width: max-content;
+    width: 75%;
     height: 64px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
     background-color: white;
     margin: 0px 20px;
+    justify-content: space-between;
 
     &:focus-within {
       border: solid 1px $info-300;
-    box-shadow: 0 0 0 .25rem rgba(14, 127, 167, .25);    }
+      box-shadow: 0 0 0 .25rem rgba(14, 127, 167, .25);    }
   }
 
   .searchTypeFilter {
@@ -91,10 +88,13 @@ a.navbar-toggle:hover {
 
     select {
       cursor: pointer;
-      height: 44px;
-      border-radius: 20px;
+      height: 64px;
+      border-radius: 50px 0px 0px 50px;
       border: 0px;
       background-color: #ffffff;
+      border-top: solid $primary-gray-100 2px;
+      border-left: solid $primary-gray-100 2px;
+      border-bottom: solid $primary-gray-100 2px;
       color: $info-300;
       padding: 10px;
       width: 100%;
@@ -105,7 +105,7 @@ a.navbar-toggle:hover {
       &:hover {
         background-color: #fafafa;
         color: $info-400;
-        border-radius: 20px;
+        border-radius: 50px 0px 0px 50px;
         outline: 0px;
       }
     }
@@ -113,6 +113,7 @@ a.navbar-toggle:hover {
 
   .vertical-border {
     width: 1px;
+    margin: 0px 10px;
     background-color: $primary-gray-100;
     height: 100%;
   }
@@ -124,11 +125,13 @@ a.navbar-toggle:hover {
   // Search Input Field
   input {
     border: 0px;
-    width: 380px;
-    height: 44px;
+    width: 300px;
+    background-color: #ffffff;
+    border-top: solid $primary-gray-100 2px;
+    border-bottom: solid $primary-gray-100 2px;
+    height: 64px !important;
     padding-left: 10px;
-    margin-right: 10px;
-    border-radius: 20px;
+    border-radius: 0px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px rgba(255, 255, 255, 1);
 
     &:focus-visible {
@@ -140,13 +143,16 @@ a.navbar-toggle:hover {
     &:focus,
     &:hover {
       color: $info-400;
-      border-radius: 20px;
+      border-radius: 0px;
     }
 
       @media only screen and (max-width: 768px) {
-        width: 300px;
+        // width: 75%;
   }
+
   }
+
+
 
   /* Change Autocomplete styles in Chrome*/
   input:-webkit-autofill,
@@ -163,12 +169,21 @@ a.navbar-toggle:hover {
     transition: background-color 5000s ease-in-out 0s;
   }
 
-  .search-field {
-    // width: 100%;
-    margin-bottom: 0;
-    border-radius: 20px;
-  }
+  #searchForm_controls {
+  height: 64px;
+  width: 25%;
+  background-color: #ffffff;
+  border-radius: 0px 50px 50px 0px;
+  border-top: solid $primary-gray-100 2px;
+  border-right: solid $primary-gray-100 2px;
+  border-bottom: solid $primary-gray-100 2px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
 
+}
   .search-btn {
     margin-left: 5px;
     color: #ffffff !important;
@@ -184,6 +199,8 @@ a.navbar-toggle:hover {
     // Width: 55%;
     // height: 44px;
   }
+
+
 }
 
 // All navbars
@@ -409,22 +426,6 @@ label:has([role="switch"]) {
       &:focus,
       &:hover {
         color: #767676 !important; }
-    }
-  }
-}
-
-.quick-nav {
-
-  a {
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: $primary-gray-100;
-    }
-
-    img {
-      width: 100px;
     }
   }
 }
