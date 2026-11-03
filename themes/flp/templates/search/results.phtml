@@ -7,7 +7,7 @@
 
   // Set up search box:
   $this->layout()->searchbox = $this->context($this)->renderInContext(
-      'search/searchbox-wide.phtml',
+      'search/searchbox.phtml',
       [
         'lookfor' => $lookfor,
         'searchIndex' => $this->params->getSearchHandler(),
