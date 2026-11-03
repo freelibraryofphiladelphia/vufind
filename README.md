@@ -24,9 +24,7 @@ Contributing
 ------------
 See our [developers handbook](https://vufind.org/wiki/development) for more information.
 
-## Free Library Specific
-
-### Local Vagrant Development
+## Running VuFind Locally using Vagrant
 
 1. Start a terminal with administrator privileges (right click + run as administrator)
 2. Run `$ vagrant up` and wait for VM to build and provision
@@ -39,5 +37,11 @@ See our [developers handbook](https://vufind.org/wiki/development) for more info
 - Start the SOLR instance: `$ ./solr.sh start`
 - Navigate to http://127.0.0.1:4567/vufind/
 
-### Issues
+### Startup Errors
 
+#### Could not rename '/vagrant/downloads/solr-9.8.1.tgz.partial' to '/vagrant/downloads/solr-9.8.1.tgz'
+
+- `$ vagrant ssh`
+- `$ mv /vagrant/downloads/solr-9.8.1.tgz.partial /vagrant/downloads/solr-9.8.1.tgz`
+- `$ exit`
+- `$ vagrant reload --provision`
