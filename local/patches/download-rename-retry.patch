@@ -1,0 +1,39 @@
+diff --git a/module/VuFindConsole/src/VuFindConsole/Command/Util/DownloadCommand.php b/module/VuFindConsole/src/VuFindConsole/Command/Util/DownloadCommand.php
+index 8ab30053c5..c54efdb0f0 100644
+--- a/module/VuFindConsole/src/VuFindConsole/Command/Util/DownloadCommand.php
++++ b/module/VuFindConsole/src/VuFindConsole/Command/Util/DownloadCommand.php
+@@ -215,8 +215,32 @@ class DownloadCommand extends Command
+             $output->writeLn("<error>Download failed: '$partialFile' to '$targetFile'</error>");
+             return self::FAILURE;
+         }
+-        if (!rename($partialFile, $targetFile)) {
+-            $output->writeLn("<error>Could not rename '$partialFile' to '$targetFile'</error>");
++
++        $maxRenameAttempts = 5;
++        $renameRetryDelay = 2;
++        $renamed = false;
++
++        for ($attempt = 1; $attempt <= $maxRenameAttempts; $attempt++) {
++            if (@rename($partialFile, $targetFile)) {
++                $renamed = true;
++                break;
++            }
++
++            if ($attempt < $maxRenameAttempts) {
++                if (!$output->isQuiet()) {
++                    $output->writeLn(
++                        "Rename attempt $attempt failed; retrying in $renameRetryDelay seconds..."
++                    );
++                }
++                sleep($renameRetryDelay);
++            }
++        }
++
++        if (!$renamed) {
++            $output->writeLn(
++                "<error>Could not rename '$partialFile' to '$targetFile' after "
++                . "$maxRenameAttempts attempts</error>"
++            );
+             return self::FAILURE;
+         }
+         if (!$output->isQuiet()) {
