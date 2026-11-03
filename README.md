@@ -54,7 +54,9 @@ See our [developers handbook](https://vufind.org/wiki/development) for more info
 - `$ exit`
 - `$ vagrant reload --provision`
 
-## Moving files to Ubuntu VM with WinSCP
+## Moving config files to Ubuntu VM
+
+### Download and Configure WinSCP
 
 - Download [WinSCP](https://winscp.net/eng/index.php) or a similar application (putty, etc)
 - Click on **New Site** and enter these settings:
@@ -66,3 +68,11 @@ See our [developers handbook](https://vufind.org/wiki/development) for more info
 - Click Save
 - Set **Site name:** to something that makes sense (ie "Local Catalog VM")
 - Click on the new entry in WinSCP and then click **Login**
+
+### Move configuration files to the /vufindlocal folder
+
+- From the location selector at the top of the application, select **/ <root>**
+- Navigate to the `/vufindlocal/config/vufind/` folder
+- Copy the following configuration files there:
+  - config.ini
+  - Symphony.ini
