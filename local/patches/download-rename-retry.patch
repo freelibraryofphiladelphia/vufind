@@ -9,8 +9,8 @@ index 8ab30053c5..c54efdb0f0 100644
 -        if (!rename($partialFile, $targetFile)) {
 -            $output->writeLn("<error>Could not rename '$partialFile' to '$targetFile'</error>");
 +
-+        $maxRenameAttempts = 5;
-+        $renameRetryDelay = 2;
++        $maxRenameAttempts = 10;
++        $renameRetryDelay = 5;
 +        $renamed = false;
 +
 +        for ($attempt = 1; $attempt <= $maxRenameAttempts; $attempt++) {
