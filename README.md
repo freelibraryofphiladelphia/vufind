@@ -29,7 +29,6 @@ See our [developers handbook](https://vufind.org/wiki/development) for more info
 ### Local Vagrant Development
 
 1. Start a terminal with administrator privileges (right click + run as administrator)
-   1. If this fails for some reason, run `$ vagrant reload --provision`
 2. Run `$ vagrant up` and wait for VM to build and provision
 3. Once the VM is built and provisioned, run `$ vagrant ssh`
 4. Navigate to the VuFind install directory: `$ cd /vagrant`
@@ -39,3 +38,6 @@ See our [developers handbook](https://vufind.org/wiki/development) for more info
    3. `$ dos2unix import-marc-auth.sh`
 - Start the SOLR instance: `$ ./solr.sh start`
 - Navigate to http://127.0.0.1:4567/vufind/
+
+### Issues
+
