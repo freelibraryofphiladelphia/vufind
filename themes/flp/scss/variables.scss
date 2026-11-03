@@ -1,0 +1,118 @@
+// OLD/EXISTING SYSTEM VARIABLES
+
+$brand-primary: #0e7fa7;
+$brand-success: #528300;
+$brand-info: #0e7fa7;
+$brand-warning: #d14805;
+$brand-danger: #cf102d;
+$brand-utility: #767676;
+$brand-light: #FFFFFF;
+$brand-dark: #000000;
+
+// NEW DESIGN SYSTEM VARIABLES
+
+/**************************************************
+ * TYPE SCALE
+**************************************************/
+
+// Desktop Type Scale
+
+$type-scale-xl-display: 3.75rem; // 60px
+$type-scale-display: 3.125rem; // 50px
+$type-scale-4xl: 2.625rem; // 42px
+$type-scale-3xl: 2.125rem; // 34px
+$type-scale-2xl: 1.75rem; // 28px
+$type-scale-xl: 1.625rem; // 26px
+$type-scale-lg: 1.375rem; // 22px
+$type-scale-md: 1.125rem; // 18px
+$type-scale-base: 1rem; // 16px
+$type-scale-sm: 0.875rem; // 14px
+$type-scale-xs: 0.75rem; // 12px
+
+// Mobile Type Scale
+
+$type-scale-xl-display-m: 3.4375rem; // 55px
+$type-scale-display-m: 2.5rem; // 40px
+$type-scale-4xl-m: 2rem; // 32px
+$type-scale-3xl-m: 1.625rem; // 26px
+$type-scale-2xl-m: 1.5rem; // 24px
+$type-scale-xl-m: 1.375rem; // 22px
+$type-scale-lg-m: 1.25rem; // 20px
+
+/**************************************************
+ * COLORS
+**************************************************/
+
+// Text Colors (only use with text)
+
+$text-heading-dark: #333333;
+$text-body-dark: #171717;
+
+// Primary Colors
+
+$primary-red-400: #CF102D;
+$primary-red-300: #DE2C47;
+$primary-red-200: #F491A0;
+$primary-red-100: #FFF0F2;
+
+$primary-navy-400: #002E6E;
+$primary-navy-300: #1D53A7;
+$primary-navy-200: #2F72DC;
+$primary-navy-100: #F1F7FF;
+
+$primary-gray-400: #454343;
+$primary-gray-300: #717073;
+$primary-gray-200: #949396;
+$primary-gray-100: #EEEEEE;
+
+// Semantic Colors
+
+$warning-400: #554201;
+$warning-300: #8D6F02;
+$warning-200: #FFCD1D;
+$warning-100: #FFF9E5;
+
+$info-400: #00506C;
+$info-300: #0E7FA7;
+$info-200: #A3E7FF;
+$info-100: #DFF7FF;
+
+$danger-400: #990000;
+$danger-300: #DE0628;
+$danger-200: #F491A0;
+$danger-100: #FFF0F2;
+
+$success-400: #185D00;
+$success-300: #258005;
+$success-200: #B5E0A5;
+$success-100: #F6FFF2;
+
+// Secondary Colors
+
+$secondary-magenta: #D61870;
+$secondary-raspberry: #84286B;
+$secondary-yellow: #FFE923;
+$secondary-lime: #CBDB2A;
+$secondary-purple: #64599E;
+
+// Tertiary Colors
+
+$tertiary-teal: #00ADAA;
+$tertiary-bright-blue:#00ADD8;
+$tertiary-orange: #FAA61A;
+$tertiary-green: #00AB54;
+
+// Branded Campaign Colors
+
+$summer-of-wonder-theme: #EA323F;
+
+//== Section
+$section: $brand-danger !default;
+$section-bg: null !default;
+
+//== Footer
+$footer-height: 14.5em;
+
+//== Icon Font Paths
+$icon-font-path: "/assets/fonts/bootstrap/";
+$fa-font-path: "/assets/fonts/font-awesome";

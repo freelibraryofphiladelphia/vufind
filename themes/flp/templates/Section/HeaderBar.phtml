@@ -1,0 +1,272 @@
+<!-- <nav class="banner navbar navbar-expand-md">
+  <div class="container">
+    <a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="<?=$this->imageLink('flp-logo.png'); ?>" width="50px"alt="Free Library of Philadelphia" />Free Library of Philadelphia</a>
+    <?=$this->notices()->renderNoticesForPosition('header')?>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#header-collapse" aria-label="<?=$this->transEscAttr('mobile_toggle_navigation_text')?>">
+      <?=$this->icon('ui-menu') ?>
+    </button>
+    <?php if (!isset($this->layout()->renderingError)): ?>
+      <div class="collapse navbar-collapse justify-content-end" id="header-collapse">
+        <?php foreach ($this->menu ?? [] as $group): ?>
+          <ul class="nav navbar-nav">
+            <?php foreach ($group['MenuItems'] as $item): ?>
+              <?php if (isset($item['template'])): ?>
+                <?php
+                  // Pass section plugin and section context to template.
+                  $context = [
+                    'sectionPlugin' => $this->{\VuFind\View\Helper\Root\Section::SECTION_PLUGIN_KEY},
+                    ...$this->{\VuFind\View\Helper\Root\Section::SECTION_CONTEXT_KEY},
+                    ...$item,
+                  ];
+                ?>
+                <?= $this->render($item['template'], $context) ?>
+              <?php elseif (isset($item['submenuItems'])): ?>
+                <?= $this->component('menu-button', [
+                  'toggleLabel' => $item['label'],
+                  'toggleAttrs' => [
+                    'class' => 'nav-link dropdown-toggle',
+                  ],
+                  'wrapperClass' => 'nav-item ' . ($item['name'] ?? ''),
+                  'wrapperTag' => 'li',
+                  'menuItems' => array_map(
+                      function ($submenuItem) {
+                        $url = isset($submenuItem['route'])
+                          ? $this->url($submenuItem['route'], $submenuItem['routeParams'] ?? [])
+                          : $submenuItem['url'];
+                        return [
+                          'label' => $submenuItem['label'],
+                          'url' => $url,
+                          'description' => $submenuItem['description'] ?? false,
+                          'selected' => $this->requestUri === $url,
+                        ];
+                      },
+                      $item['submenuItems'],
+                  ),
+                ]) ?>
+              <?php else: ?>
+                <?php
+                  $attributes = $this->htmlAttributes($item['attributes'] ?? []);
+                  $attributes['href'] = isset($item['route'])
+                    ? $this->url($item['route'], $item['routeParams'] ?? [])
+                    : $item['url'];
+                  $attributes->add('class', 'nav-link');
+                  if (isset($item['icon'])) {
+                    $attributes->add('class', 'icon-link');
+                  }
+                ?>
+                <li class="nav-item <?=isset($item['name']) ? $this->escAttr($item['name']) : ''?>">
+                  <a<?=$attributes?>>
+                    <?php if ($icon = $item['icon'] ?? false): ?>
+                      <?=$this->icon($icon, 'icon-link__icon') ?>
+                      <span class="icon-link__label">
+                    <?php endif; ?>
+                      <?=$this->transEsc($item['label']) ?>
+                    <?php if ($icon): ?>
+                      </span>
+                    <?php endif; ?>
+                  </a>
+                </li>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </ul>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+  </div>
+</nav> -->
+
+<!-- begin FLP -->
+<div id="wrap">
+
+  <header id="header" class="header hidden-print pt-3">
+      <!--- Display global banner messages --->
+      <!-- #server.udf.displayBanners()# -->
+       <!-- Mobile menu button -->
+
+    <!--- Start First Nav Row --->
+
+
+    <div class="banner pt-3 navbar navbar-expand-md container">
+      <a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="<?=$this->imageLink('flp-logo.png'); ?>" width="50px"alt="Free Library of Philadelphia" /></a>
+      <div class="d-flex gap-2">
+      <a href="#" class="navbar-toggle d-block d-md-none">
+          <span class="visually-hidden">Toggle Locations</span> <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+        </a> 
+        <button type="button" class="navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#search-flp" aria-label="<?=$this->transEscAttr('mobile_toggle_navigation_text')?>">
+          <span class="visually-hidden">Toggle Search</span> <span class="fa fa-search fa-2x" aria-hidden="true"></span>
+        </button> 
+        <button type="button" class="navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#header-collapse-flp" aria-label="<?=$this->transEscAttr('mobile_toggle_navigation_text')?>">
+          <span class="visually-hidden">Toggle Navigation</span> <span class="fa fa-bars fa-2x" aria-hidden="true"></span>
+        </button> 
+      </div>
+      <div id="header-collapse-flp" class="d-flex container collapse navbar-collapse  align-items-baseline justify-content-between">
+
+          <nav class="banner navbar">
+              <ul class="d-flex list-inline">
+                  <li class="nav-item">
+                    <a href="#">
+                        Locations
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#">                                  Events
+                      </a>
+                  </li>
+                  <span class="vertical-border"></span>
+                  <li class="nav-item">
+                    <a href="#">                                  Programs and Services
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#">                                  About
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#">                                  Blog
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#">                                  Support
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+
+          <!--- Donate, Library card and login button --->
+          <div class="d-none d-sm-block justify-content-between">
+              <ul class="list-inline d-flex gap-3 flex-wrap justify-content-end sign-in-area align-items-center">
+                  <li>
+                      <a href="#server.catalogServerPath#/MyResearch/Home" class="btn btn-info">
+                          Log In
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://www.freelibrary.org/donate/" class="btn btn-danger">
+                          Donate <i class="margin-left-05 fa fa-heart" aria-hidden="true"></i>
+                      </a>
+                  </li>
+                  <li  class="get-library-card">
+                      <a href="#server.catalogServerPath#/register">
+                          Get a Library Card
+                      </a>
+                  </li>
+              </ul>
+          </div>
+
+      </div>
+    </div>
+    <!--- Start First Nav Row --->
+          <div class="padding-0 navbar-collapse collapse hidden-md hidden-lg" id="searchbox_mobile">
+              <div class="container-fluid findaskexplore padding-0 hidden-md hidden-lg">
+                  <cfinclude template = "/include/layouts/find.cfm">
+              </div>
+          </div>
+
+
+
+  </header>
+</div>
+
+
+
+<script type="text/javascript">
+
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            // pageLanguage: 'en',
+            includedLanguages: 'ar,en,es,fr,hi,ht,it,km,ko,pl,pt,ru,sq,vi,zh-CN',
+            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+            autoDisplay: false,
+            gaTrack: true,
+            gaId: 'UA-9995830-1'
+        }, 'google_translate_element');
+    }
+
+    function translatePage(lang) {
+        var selectElement = document.querySelector('.goog-te-combo');
+        selectElement.value = lang;
+        console.log(lang)
+        console.log(selectElement.value)
+        if (selectElement) {
+            selectElement.dispatchEvent(new Event('change'));
+        }
+    }
+
+    // Apply an ID to the Google Translate Select HTML tag so that a label can be added
+    function addIdToGoogleTranslate() {
+        const combo = document.querySelector(".goog-te-combo");
+        if (combo) {
+            combo.id = "gt-select-box";
+            return;
+        }
+
+        setTimeout(addIdToGoogleTranslate, 200);
+    }
+
+    addIdToGoogleTranslate();
+
+    // Remove the Google Translate Vote form to avoid WAVE errors
+    function removeGoogleVotingPane() {
+        const pane = document.getElementById("goog-gt-votingHiddenPane");
+        if (pane) {
+            pane.remove();
+            return;
+        }
+        setTimeout(removeGoogleVotingPane, 200);
+    }
+
+    removeGoogleVotingPane();
+
+    $(function() {
+        $('#header .collapse').on('show.bs.collapse', function (e) {
+            var actives = $('#header').find('.in, .collapsing');
+            actives.each(function (index, element) {
+                $(element).collapse('hide');
+            });
+        });
+
+        $('#google_translate_element').on('click', function(e) {
+            e.preventDefault();
+        });
+    });
+
+    // Search Feature Toggle
+    function switchSearch() {
+
+        const searchWeb = document.getElementById("searchme-website");
+        const searchCat = document.getElementById("searchme-catalog");
+        const advancedSearch = document.getElementById("advanced-search");
+        const catSearchFilters = document.getElementById("searchboxHandlers");
+        let searchSubmitText = document.getElementById("submitSearch").innerText;
+        let searchPlaceholder = document.getElementById("keyword").placeholder;
+
+        searchWeb.addEventListener("click", () => {
+
+            if (searchWeb.checked == true) {
+                document.getElementById("keyword").placeholder = "Search for anything on our website...";
+                advancedSearch.classList.add("hidden");
+                catSearchFilters.classList.add("hidden");
+            } else {
+                document.getElementById("keyword").placeholder = "Search for anything on our catalog...";
+                advancedSearch.classList.remove("sr-only");
+
+            }
+
+            return;
+        });
+
+        searchCat.addEventListener("click", () => {
+            if (searchCat.checked == true) {
+                document.getElementById("keyword").placeholder = "Search for anything on our catalog....";
+                advancedSearch.classList.remove("hidden");
+                catSearchFilters.classList.remove("hidden");
+            }
+            return;
+        });
+    };
+
+    switchSearch();
+
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

@@ -1,0 +1,49 @@
+<h1>Search</h1>
+<div class="searchHomeContent">
+  <div class="search-hero" role="search">
+    <?php require(__DIR__ . '/../search/searchbox.phtml'); ?>
+
+    <div class="image-credit">
+      Yosemite Valley. Photo by <a class="name" href="https://unsplash.com/@heytowner">John Towner</a>.
+    </div>
+  </div>
+</div>
+
+<script>
+      // Search Feature Toggle
+    function switchSearch() {
+
+        const searchWeb = document.getElementById("searchme-website");
+        const searchCat = document.getElementById("searchme-catalog");
+        const advancedSearch = document.getElementById("advanced-search");
+        const catSearchFilters = document.getElementById("searchboxHandlers");
+        let searchSubmitText = document.getElementById("submitSearch").innerText;
+        let searchPlaceholder = document.getElementById("keyword").placeholder;
+
+        searchWeb.addEventListener("click", () => {
+
+            if (searchWeb.checked == true) {
+                document.getElementById("keyword").placeholder = "Search for anything on our website...";
+                advancedSearch.classList.add("hidden");
+                catSearchFilters.classList.add("hidden");
+            } else {
+                document.getElementById("keyword").placeholder = "Search for anything on our catalog...";
+                advancedSearch.classList.remove("sr-only");
+
+            }
+
+            return;
+        });
+
+        searchCat.addEventListener("click", () => {
+            if (searchCat.checked == true) {
+                document.getElementById("keyword").placeholder = "Search for anything on our catalog....";
+                advancedSearch.classList.remove("hidden");
+                catSearchFilters.classList.remove("hidden");
+            }
+            return;
+        });
+    };
+
+    switchSearch();
+</script>

@@ -1,0 +1,122 @@
+/* Change variables to change colors and values through-out the theme */
+$image-path: "../../flp/images";
+$primary-red-300: #cf102d;
+/* Bootstrap variables as well */
+$primary: #0e7fa7;
+$navbar-dark-color: white;
+$grid-gutter-width: 20px;
+@import "bootstrap"; /* Include bootstrap theme's scss base */
+
+/* You can organize these styles in separate files and @import them */
+@import "components/advanced-search";
+@import "variables";
+@import "home-page";
+@import "partials/_header";
+@import "partials/_navs";
+@import "partials/_buttons";
+
+
+
+
+/* Change specific styles below */
+html {
+  font-size: 1rem;
+}
+body {
+  font-size: 1rem;
+  color: #333;
+  background-color: #5ab48a;
+}
+header {
+  font-size: 1rem;
+  color: $primary;
+
+  .banner {
+    padding: 0;
+  }
+}
+#content {
+  padding-block: 1px; /* fix margin gap */
+
+  // .container {
+
+  // }
+}
+.container {
+  border-radius: 0;
+}
+
+
+// Start Footer
+footer {
+    background-color: $primary;
+    color: #ffffff;
+    font-size: 1rem;
+    max-width: 100%;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .container {
+      background-color: $primary;
+    }
+}
+
+// .footer {
+
+// }
+
+  .social {
+
+    @extend .list-inline;
+
+    margin: 0.9375rem 0 1.5625rem;
+
+    li {
+
+      padding: 0;
+      margin-bottom: 0;
+
+      a {
+        display: flex;
+        font-size: 2rem;
+        text-decoration: none;
+        padding: 0.125rem 0.25rem 0.1875rem;
+
+        &:focus {
+          outline: 1px dashed #fff;
+        }
+
+        span.fa-envelope {
+          position: relative;
+          top: -1px;
+        }
+      }
+    }
+  }
+
+.alert {
+  padding: 8px;
+}
+
+/* Fix breadcrumbs margins */
+.breadcrumbs {
+  .container {
+    background-color: $breadcrumb-bg;
+  }
+
+  .breadcrumb {
+    margin: 0;
+    padding-inline: 0;
+  }
+}
+
+.searchForm .searchForm-query #searchForm-reset {
+  aspect-ratio: 1;
+  width: 1.7rem;
+  margin-inline-end: 0.125rem;
+  line-height: 1;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.2);
+}

@@ -1,0 +1,127 @@
+<?php
+$config = $this->config()->get('freelibrary');
+?>
+
+
+<div class="container d-flex flex-column flex-lg-row">
+  <?php foreach ($this->menu ?? [] as $name => $group): ?>
+    <div class="footer-column">
+      <?php $this->slot($name)->start(); ?>
+        <h2><?=$this->transEsc($group['label'])?></h2>
+        <ul class="list-inline">
+          <?php foreach ($group['MenuItems'] as $item): ?>
+            <?php
+              $attributes = $this->htmlAttributes($item['attributes'] ?? []);
+              $attributes['href'] = isset($item['route'])
+                ? $this->url($item['route'], $item['routeParams'] ?? [])
+                : $item['url'];
+            ?>
+            <li><a <?=$attributes?>><?=$this->transEsc($item['label'])?></a></li>
+          <?php endforeach; ?>
+        </ul>
+      <?=$this->slot($name)->end(); ?>
+    </div>
+  <?php endforeach; ?>
+</div>
+            <div class="container flex-column flex-lg-row my-4">
+              <div class="row">
+                <div class="col-sm-3">
+                    <ul class="list-unstyled text-center text-sm-start">
+                        <li class="footer-calendar fw-bold">
+
+                            <a href="/calendar/">
+                              <span class="fa fa-calendar" aria-hidden="true"></span>
+                              Calendar of Events</a>
+                        </li>
+                        <li class="footer-blog fw-bold">
+                            <a href="/blog/">
+                              <span class="fa fa-comments" aria-hidden="true"></span>
+                              Blog</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <ul class="list-unstyled margin-bottom-0 text-center text-sm-start">
+                        <li>
+                            <a href="<cfoutput>#server.config.eref.form#</cfoutput>">Contact Us
+                            </a>
+                        </li>
+                        <li><a href="/about/careers/">Careers</a></li>
+                        <li><a href="/support/">Support the Library</a></li>
+                        <li><a href="/spacerental/">Host Your Event at the Library</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <ul class="list-unstyled margin-bottom-0 text-center text-sm-start">
+                        <li><a href="/rss/rssmenu.cfm">RSS</a></li>
+                        <li><a href="/policies/terms-of-use/">Terms of Use</a></li>
+                        <li><a href="/policies/privacy/">Site Privacy</a></li>
+                        <li class="hidden-xs">
+                            <a href="https://freelibraryphilly.sharepoint.com">Employee Intranet</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+
+                    <ul class="social d-flex flex-wrap text-center text-lg-start">
+                        <li>
+                            <a href="https://www.facebook.com/freelibrary" target="_blank" title="Facebook">
+                                <span class="fa fa-facebook-square" aria-hidden="true"></span>
+                                <span class="visually-hidden">Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FreeLibrary" target="_blank" title="Twitter">
+                                <span class="fa fa-twitter-square" aria-hidden="true"></span>
+                                <span class="visually-hidden">Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/freelibrary/" target="_blank" title="Instagram">
+                                <span class="fa fa-instagram" aria-hidden="true"></span>
+                                <span class="visually-hidden">Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/user/freelibraryofphilly" target="_blank" title="YouTube">
+                                <span class="fa fa-youtube-play" aria-hidden="true"></span>
+                                <span class="visually-hidden">YouTube</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/rss/rssmenu.cfm" target="_blank" title="RSS Feed">
+                                <span class="fa fa-rss-square" aria-hidden="true"></span>
+                                <span class="visually-hidden">RSS Feed</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://support.freelibrary.org/site/Survey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=1020" target="_blank" title="Newsletter">
+                                <span class="fa fa-envelope" aria-hidden="true"></span>
+                                <span class="visually-hidden">Newsletter</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="margin-left-05">
+                        <div id="google_translate_element"></div>
+                    </div>
+
+                </div>
+          </div>
+            </div>
+        <div class="d-flex flex-column flex-sm-row text-center gap-2 justify-content-center">
+        ©&nbsp;<?= date('Y') ?> Free Library of Philadelphia 
+        <br class="visible-xs">
+        &nbsp;
+        <span class="hidden-xs">|</span>
+         Phone: <a href="tel:<?= $this->escapeHtml($config->Footer->phoneLink) ?>"><?= $this->escapeHtml($config->Footer->phone) ?></a>        
+        <span class="hidden-xs">|</span>
+        <span class="city-of-philly">
+            <a href="https://www.phila.gov/">
+                <img src="<?=$this->imageLink('city-of-philadelphia.png'); ?>" width="110px" alt="Visit the City of Philadelphia Website">
+            </a>
+        </span>
+    </div>
