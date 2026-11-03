@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
     # Install package dependencies.
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
-    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof \
+    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof dos2unix \
     libapache2-mod-php php-pear php php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml
 
     # Install composer.
