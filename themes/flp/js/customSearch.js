@@ -34,7 +34,7 @@
 
     // Remove the Google Translate Vote form to avoid WAVE errors
     function removeGoogleVotingPane() {
-        const pane = document.getElementById("goog-gt-votingHiddenPane");
+        const pane = document.getElementById("goog-gt-votingd-nonePane");
         if (pane) {
             pane.remove();
             return;
@@ -44,18 +44,18 @@
 
     removeGoogleVotingPane();
 
-    $(function() {
-        $('#header .collapse').on('show.bs.collapse', function (e) {
-            var actives = $('#header').find('.in, .collapsing');
-            actives.each(function (index, element) {
-                $(element).collapse('hide');
-            });
-        });
+    // $(function() {
+    //     $('#header .collapse').on('show.bs.collapse', function (e) {
+    //         var actives = $('#header').find('.in, .collapsing');
+    //         actives.each(function (index, element) {
+    //             $(element).collapse('hide');
+    //         });
+    //     });
 
-        $('#google_translate_element').on('click', function(e) {
-            e.preventDefault();
-        });
-    });
+    //     $('#google_translate_element').on('click', function(e) {
+    //         e.preventDefault();
+    //     });
+    // });
 
     // Search Feature Toggle
     function switchSearch() {
@@ -64,32 +64,30 @@
         const searchCat = document.getElementById("searchme-catalog");
         const advancedSearch = document.getElementById("advanced-search");
         const catSearchFilters = document.getElementById("searchboxHandlers");
-        let searchSubmitText = document.getElementById("submitSearch").innerText;
-        let searchPlaceholder = document.getElementById("keyword").placeholder;
+        // let searchSubmitText = document.getElementById("submitSearch").innerText;
+        // let searchPlaceholder = document.getElementById("searchForm_lookfor").placeholder;
 
-        searchWeb.addEventListener("click", () => {
+        const searchInput = document.getElementById("searchForm_lookfor");
 
-            if (searchWeb.checked == true) {
-                document.getElementById("keyword").placeholder = "Search for anything on our website...";
-                advancedSearch.classList.add("hidden");
-                catSearchFilters.classList.add("hidden");
-            } else {
-                document.getElementById("keyword").placeholder = "Search for anything on our catalog...";
-                advancedSearch.classList.remove("sr-only");
+        searchWeb.addEventListener("change", () => {
+            const webSearch = searchWeb.checked;
 
-            }
+            searchInput.placeholder = webSearch
+                ? "Search for anything on our website..."
+                : "Search for anything on our catalog...";
 
-            return;
+            advancedSearch.classList.toggle("d-none", webSearch);
+            catSearchFilters.classList.toggle("d-none", webSearch);
         });
 
-        searchCat.addEventListener("click", () => {
-            if (searchCat.checked == true) {
-                document.getElementById("keyword").placeholder = "Search for anything on our catalog....";
-                advancedSearch.classList.remove("hidden");
-                catSearchFilters.classList.remove("hidden");
-            }
-            return;
-        });
+        // searchCat.addEventListener("click", () => {
+        //     if (searchCat.checked == true) {
+        //         document.getElementById("searchForm_lookfor").placeholder = "Search for anything on our catalog....";
+        //         advancedSearch.classList.remove("d-none");
+        //         catSearchFilters.classList.remove("d-none");
+        //     }
+        //     return;
+        // });
     };
 
     switchSearch();

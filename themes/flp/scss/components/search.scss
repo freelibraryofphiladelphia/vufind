@@ -1,0 +1,27 @@
+  .searchTypeFilter {
+    width: auto;
+    height: 44px;
+    cursor: pointer;
+    // display: flex;
+
+    select {
+      cursor: pointer;
+      height: 44px;
+      border-radius: 20px;
+      border: 0px;
+      background-color: #ffffff;
+      color: $info-300;
+      padding: 10px;
+      width: 100%;
+
+      &:active,
+      &:focus,
+      &:focus-visible,
+      &:hover {
+        background-color: #fafafa;
+        color: $info-400;
+        border-radius: 20px;
+        outline: 0px;
+      }
+    }
+  }
