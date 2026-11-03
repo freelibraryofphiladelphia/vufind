@@ -63,35 +63,7 @@ Vagrant.configure("2") do |config|
     # Check out and set up VuFind.
     mkdir -p /vufindlocal/cache/cli /vufindlocal/config/vufind
     chown -R vagrant:vagrant /vufindlocal
-
-    cd /vagrant
-
-    # Apply a local VuFind patch to work around intermittent "Text file busy"
-    # errors when VuFind downloads files to the VirtualBox /vagrant shared folder.
-    # On Windows hosts, VirtualBox shared folders may temporarily prevent PHP from
-    # renaming a completed .partial download. The patch adds retry logic around
-    # the rename operation.
-    #
-    # The VuFind core file is intentionally left unchanged in Git. This patch is
-    # stored under local/patches and applied during provisioning so the workaround
-    # remains isolated from upstream VuFind code and can be easily removed or
-    # reevaluated after upgrading VuFind or changing the VM filesystem layout.
-    PATCH_FILE="local/patches/download-rename-retry.patch"
-
-    if git apply --reverse --check "$PATCH_FILE" 2>/dev/null; then
-        echo "VuFind download rename retry patch already applied."
-    else
-        echo "Applying VuFind download rename retry patch..."
-        git apply --check "$PATCH_FILE"
-        git apply "$PATCH_FILE"
-    fi
-
-    su - vagrant -c '
-        cd /vagrant &&
-        composer install &&
-        php install.php --non-interactive --overridedir=/vufindlocal
-    '
-
+    su - vagrant -c 'cd /vagrant && composer install && php install.php --non-interactive --overridedir=/vufindlocal'
     ln -s /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf
     a2enmod rewrite
 
