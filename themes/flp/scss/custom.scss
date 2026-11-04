@@ -11,6 +11,7 @@ $brand-success: #528300;
 $brand-info: #0e7fa7;
 $brand-warning: #d14805;
 $brand-danger: #cf102d;
+$bg-danger: #cf102d;
 $brand-utility: #767676;
 $brand-light: #FFFFFF;
 $brand-dark: #000000;
@@ -29,16 +30,28 @@ a.title.getFull {
     color: $primary;
   }
 
+.bg-primary-red {
+  background-color: $primary-red-300;
+}
+
+.facet,
+.facet-load-indicator,
+.facet-load-failed {
+  border: 0 !important;
+}
+
 @import "partials/_typography"; 
+
 /* You can organize these styles in separate files and @import them */
 @import "bootstrap"; /* Include bootstrap theme's scss base */
+@import "components/sidebar";
 @import "partials/_buttons";
 @import "partials/_header";
 @import "partials/_navs";
 @import "home-page";
 @import "components/search";
 @import "components/advanced-search";
-@import "components/sidebar";
+
 
 
 

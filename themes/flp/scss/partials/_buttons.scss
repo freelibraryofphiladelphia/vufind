@@ -172,6 +172,10 @@
 			@include view-all($brand-info);
 		}
 	}
+
+	&-info {
+		background-color: $primary;
+	}
 }
 
 //********************
@@ -273,6 +277,7 @@ a {
 		&-danger {
 			@include anchor-text-hover($brand-danger);
 		}
+		
 
 		&-gray {
 			@include anchor-text-hover($gray);

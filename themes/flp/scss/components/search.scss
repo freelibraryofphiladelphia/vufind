@@ -26,10 +26,26 @@
     }
   }
 
+
+
+// Hide headline above filter results 
+.sidebar {
+//  border: 2px solid $primary-gray-100;
+ background-color: #fafafa;
+
+  h2 {
+  background-color: $primary;
+  color: white;
+  padding: 10px;
+  font-size: $type-scale-xl !important;
+}
+
+}
+
   // Thumbnail sizes for media items: search results, list entries, record views
-$thumbnail-width-small:   60px !default;
-$thumbnail-width-medium: 100px !default;
-$thumbnail-width-large:  160px !default;
+$thumbnail-width-small:   150px !default;
+$thumbnail-width-medium: 200px !default;
+$thumbnail-width-large:  280px !default;
 
 // Hide browser's own X button in the search field (Safari, Chrome)
 input[type="search"]::-webkit-search-cancel-button,
@@ -353,6 +369,7 @@ header .container.navbar {
 
   .record-checkbox,
   .record-number {
+    font-weight: 700;
     display: none;
   }
 
@@ -561,7 +578,8 @@ header .container.navbar {
     margin-top: -11px;
     margin-bottom: -1px;
     padding: 10px 15px 10px 0.5rem;
-    border: 1px solid #ddd;
+    // border: 1px solid #ddd;
+    border-bottom: 1px solid $primary-gray-100;
 
     &::before {
       content: '\25BC';
@@ -579,7 +597,7 @@ header .container.navbar {
   .long-view {
     margin-left: -.5rem;
     padding: .5rem;
-    border: 1px solid $list-group-border-color;
+    // border: 1px solid $list-group-border-color;
     background-color: #fff;
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
@@ -643,7 +661,7 @@ header .container.navbar {
   h2 {
     display: inline-block;
     margin: 0;
-    font-size: inherit;
+    font-size: $type-scale-md;
     font-weight: bold;
     vertical-align: middle;
   }
@@ -850,6 +868,7 @@ header .container.navbar {
       color: #fff;
       white-space: nowrap;
       text-decoration: none;
+      border-radius: 50px;
       background: $list-group-active-bg;
 
       &:focus {
@@ -945,6 +964,14 @@ header .container.navbar {
   text-decoration-style: dotted;
   cursor: pointer;
 }
+
+  // add hr between items
+li:not(:last-child).result {
+  border-bottom: 1px dotted $primary; 
+  padding-bottom: 10px;          
+  margin-bottom: 10px;           
+}
+
 
 .search-history-table {
   @extend .table;
@@ -1042,6 +1069,7 @@ table.search-history-table {
       width: auto;
       padding: 0;
       margin-bottom: 1rem;
+      
     }
     &:not(.vufind-offcanvas.active) .sidebar {
       width: auto;
@@ -1067,9 +1095,9 @@ table.search-history-table {
     span {
       border: 0;
       padding: 0;
-      color: $body-color;
+      color: $text-body-dark;
       &:hover {
-        color: $body-color;
+        color: $text-body-dark;
         background-color: transparent;
       }
     }

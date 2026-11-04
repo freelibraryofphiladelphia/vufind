@@ -10,10 +10,12 @@
   .collapsing,
   &.full-facet-list .facet {
     position: relative;
-    border-left: 1px solid $list-group-border-color;
-    border-right: 1px solid $list-group-border-color;
+    // border-left: 1px solid $list-group-border-color;
+    // border-right: 1px solid $list-group-border-color;
   }
-  &.full-facet-list :first-child .facet { border-top: 1px solid $list-group-border-color; }
+  &.full-facet-list :first-child .facet { 
+    // border-top: 1px solid $list-group-border-color; 
+  }
 }
 
 .facet__list {
@@ -64,16 +66,14 @@
     }
   }
 }
-.facet-group .facet,
-.facet-load-indicator,
-.facet-load-failed {
+.facet-group {
   border-bottom: 1px solid $list-group-border-color;
 }
 .facet-group .title {
   display: flex;
   width: 100%;
   padding-right: 8px;
-  border: 1px solid $list-group-border-color;
+  border-bottom: 1px solid $primary-gray-100;
   font-weight: bold;
   text-align: inherit;
 }
@@ -103,10 +103,10 @@
 .multi-facet-selection {
   .facet {
     .exclude {
-      border: 2px dotted transparent;
+      // border: 2px dotted transparent;
     }
     .exclude.selected {
-      border: 2px dotted $list-group-active-bg;
+      // border: 2px dotted $primary;
     }
     .exclude {
       .icon {
@@ -135,7 +135,7 @@
   display: flex;
   gap: 0.25rem;
   padding: 0.25rem;
-  border: 1px solid $list-group-border-color;
+  // border: 1px solid $list-group-border-color;
 
   .badge {
     align-self: center;
@@ -152,7 +152,7 @@
   display: flex;
   width: 100%;
   font-weight: bold;
-  color: $body-color;
+  color: $text-body-dark;
 }
 .facet-group > .checkbox,
 .sidebar .facet.checkbox {
@@ -162,7 +162,7 @@
 
 .active-filters .facet,
 .facet-group .facet.active {
-  background-color: $list-group-active-bg;
+  background-color: $primary;
   color: #fff;
 
   a { color: #fff; }
@@ -196,8 +196,8 @@
 
 .full-facets {
   margin: 1rem 0;
-  border-top: 1px solid $list-group-border-color;
-  border-bottom: 1px solid $list-group-border-color;
+  // border-top: 1px solid $list-group-border-color;
+  // border-bottom: 1px solid $list-group-border-color;
 }
 .full-facet-list .active .fa.fa-times {
   float: left;
@@ -280,7 +280,7 @@ h3.facet-title {
   // Note: The horizontal padding is critical for proper alignment with other checkboxes.
   padding: 0.75rem 0.5rem;
   z-index: 40;
-  border-bottom: 1px solid $list-group-border-color;
+  // border-bottom: 1px solid $list-group-border-color;
   box-shadow: 0 5px 5px -4px #000;
 }
 .multi-facet-selection-active {
@@ -291,7 +291,7 @@ h3.facet-title {
 }
 
 .sidebar .datevis-form {
-  border: 1px solid $list-group-border-color;
+  // border: 1px solid $list-group-border-color;
 
   .datevis-controls-container {
     flex-direction: row;
