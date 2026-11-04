@@ -1,21 +1,34 @@
+@use "sass:color";
+@import "variables";
+
 /* Change variables to change colors and values through-out the theme */
 $image-path: "../../flp/images";
 $primary-red-300: #cf102d;
 /* Bootstrap variables as well */
 $primary: #0e7fa7;
+$brand-primary: #0e7fa7;
+$brand-success: #528300;
+$brand-info: #0e7fa7;
+$brand-warning: #d14805;
+$brand-danger: #cf102d;
+$brand-utility: #767676;
+$brand-light: #FFFFFF;
+$brand-dark: #000000;
 $navbar-dark-color: white;
 $grid-gutter-width: 20px;
+// Font Families
+$font-family-sans-serif: Figtree, sans-serif;
+$font-family-serif: Zilla Slab, serif;
+@import "partials/_typography"; 
 @import "bootstrap"; /* Include bootstrap theme's scss base */
 
 /* You can organize these styles in separate files and @import them */
-@import "components/advanced-search";
-@import "variables";
-@import "home-page";
+@import "partials/_buttons";
 @import "partials/_header";
 @import "partials/_navs";
+@import "home-page";
 @import "components/search";
-@import "partials/_buttons";
-
+@import "components/advanced-search";
 
 
 
@@ -23,10 +36,36 @@ $grid-gutter-width: 20px;
 html {
   font-size: 1rem;
 }
+
+h1, h2, h3, h4, h5, h6 {
+font-family: $font-family-serif;
+};
+
+// Basic Header Sizes updated because Zilla Slab is quite small
+  h1,
+  .h1 {
+    font-size: $type-scale-4xl;
+  }
+
+  h2,
+  .h2 {
+    font-size: $type-scale-3xl;
+  }
+
+  h3,
+  .h3 {
+    font-size: $type-scale-2xl;
+  }
+
+  h4,
+  .h4 {
+    font-size: $type-scale-lg;
+  }
 body {
   font-size: 1rem;
   color: #333;
   background-color: #5ab48a;
+  font-family: $font-family-sans-serif;
 }
 header {
   font-size: 1rem;
@@ -39,67 +78,11 @@ header {
 #content {
   padding-block: 1px; /* fix margin gap */
 
-  // .container {
 
-  // }
 }
+
 .container {
   border-radius: 0;
-}
-
-
-// Start Footer
-footer {
-    background-color: $primary;
-    color: #ffffff;
-    font-size: 1rem;
-    max-width: 100%;
-
-    a {
-      color: #ffffff;
-      text-decoration: none;
-    }
-
-    .container {
-      background-color: $primary;
-    }
-}
-
-// .footer {
-
-// }
-
-  .social {
-
-    @extend .list-inline;
-
-    margin: 0.9375rem 0 1.5625rem;
-
-    li {
-
-      padding: 0;
-      margin-bottom: 0;
-
-      a {
-        display: flex;
-        font-size: 2rem;
-        text-decoration: none;
-        padding: 0.125rem 0.25rem 0.1875rem;
-
-        &:focus {
-          outline: 1px dashed #fff;
-        }
-
-        span.fa-envelope {
-          position: relative;
-          top: -1px;
-        }
-      }
-    }
-  }
-
-.alert {
-  padding: 8px;
 }
 
 /* Fix breadcrumbs margins */

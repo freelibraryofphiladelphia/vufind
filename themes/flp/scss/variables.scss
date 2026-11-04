@@ -113,6 +113,19 @@ $section-bg: null !default;
 //== Footer
 $footer-height: 14.5em;
 
+@font-face {
+  font-family: 'Figtree';
+  src: url('../../flp/css/fonts/Figtree-VariableFont_wght.woff2') format('woff2'),
+       url('../../flp/css/fonts/Figtree-VariableFont_wght.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Zilla Slab';
+  src: url('../../flp/css/fonts/ZillaSlab-Bold.woff2') format('woff2'),
+       url('../../flp/css/fonts/ZillaSlab-Bold.woff') format('woff');
+  font-weight: 700;
+}
+
 //== Icon Font Paths
 $icon-font-path: "/assets/fonts/bootstrap/";
 $fa-font-path: "/assets/fonts/font-awesome";

@@ -1,9 +1,536 @@
+@use "sass:color";
+
 @import "custom";
 
 
 body {
     background-color:#fafafa;
 }
+
+
+// Begin styles copied from LIBWWW
+
+//## Font, line-height, and color for body text, headings, and more.
+$font-size-base: 16px;
+$font-size-h1: $type-scale-4xl-m; // 32px
+$font-size-h2: $type-scale-3xl-m; // 26px
+$font-size-h3: $type-scale-2xl-m; // 24px
+$font-size-h4: $type-scale-lg-m;  // 20px
+$font-size-h5: $type-scale-md;    // 18px
+$font-size-h6: $type-scale-base;  // 16px
+
+// ** By default, this inherits from the `<body>`.
+$headings-font-family: $font-family-serif;
+$headings-font-weight: 700;
+$headings-line-height: 1.5;
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+// ** Global background color for active items (e.g., navs or dropdowns).
+$component-active-bg: $brand-primary;
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-default-color: $gray-darker;
+$btn-default-bg: $gray-lighter;
+$btn-default-border: $btn-default-bg;
+$btn-primary-bg: $brand-primary;
+$btn-primary-border: $btn-primary-bg;
+$btn-success-bg: $brand-success;
+$btn-success-border: $btn-success-bg;
+$btn-info-bg: $brand-primary;
+$btn-info-border: $btn-info-bg;
+$btn-warning-bg: $brand-warning;
+$btn-warning-border: $btn-warning-bg;
+$btn-danger-bg: $brand-danger;
+$btn-danger-border: $btn-danger-bg;
+
+//== Dropdowns
+//
+//## Dropdown menu container and contents.
+
+// ** Hover color for dropdown links.
+$dropdown-link-hover-color: #fff;
+$dropdown-link-hover-bg: $brand-primary;
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Large screen / wide desktop
+// ** Deprecated `$screen-lg` as of v3.0.1
+$screen-md: 992px;
+$screen-md-min: $screen-md;
+$screen-lg: 1300px;
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+// Navbar collapse
+// ** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint: $screen-md-min;
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+$navbar-border-radius: 0;
+
+// Inverted navbar
+// Reset inverted navbar basics
+$navbar-inverse-bg:#222;
+
+//== Navs
+//
+//##
+
+//== Pills
+$nav-pills-active-link-hover-bg: $section;
+
+//== Pagination
+//
+//##
+
+$pagination-color: $section;
+$pagination-active-bg: $section;
+$pagination-active-border: $section;
+
+//== Form states and alerts
+//
+//##
+
+$state-success-text: $brand-success;
+$state-info-text: $info-300;
+// $state-warning-text: $brand-warning;
+$state-danger-text: $brand-danger;
+
+//== Tooltips
+//
+//##
+
+// ** Tooltip background color
+$tooltip-bg: $gray-dark;
+
+//== Labels
+//
+//##
+
+//** Success label background color
+$label-success-bg: $brand-success;
+
+//== Alerts
+//
+//##
+
+$alert-link-font-weight: 600;
+
+$alert-success-text: $success-400;
+$alert-success-bg: $success-100;
+$alert-success-border: $success-200;
+
+$alert-info-text: $info-400;
+$alert-info-bg: $info-100;
+$alert-info-border: $info-200;
+
+$alert-warning-text: $warning-400;
+$alert-warning-bg: $warning-100;
+$alert-warning-border: $warning-200;
+
+$alert-danger-text: $danger-400;
+$alert-danger-bg: $danger-100;
+$alert-danger-border: $danger-200;
+
+//== Panels
+//
+//##
+
+$panel-border-radius: 0;
+
+// ** Border color for elements within panels
+$panel-inner-border: #ddd;
+
+$panel-default-border: $gray-lighter;
+$panel-default-heading-bg: $gray-lighter;
+
+$panel-primary-text: #fff;
+$panel-primary-border: $gray-lighter;
+$panel-primary-heading-bg: $brand-primary;
+
+$panel-success-text: #fff;
+$panel-success-border: $gray-lighter;
+$panel-success-heading-bg: $brand-success;
+
+$panel-info-text: #fff;
+$panel-info-border: $gray-lighter;
+$panel-info-heading-bg: $info-300;
+
+$panel-warning-text: #fff;
+$panel-warning-border: $gray-lighter;
+$panel-warning-heading-bg: $brand-warning;
+
+$panel-danger-text: #fff;
+$panel-danger-border: $gray-lighter;
+$panel-danger-heading-bg: $brand-danger;
+
+//== Thumbnails
+//
+//##
+
+// ** Thumbnail border radius
+$thumbnail-border-radius: 0;
+
+//== Badges
+//
+//##
+
+// ** Badge text color in active nav link
+$badge-active-color: $section;
+
+// ** Badge text color in active nav link
+$badge-bg: $primary-gray-300;
+
+//== Breadcrumbs
+//
+//##
+
+// ** Breadcrumb text color
+$breadcrumb-color: #fff;
+// ** Textual separator for between breadcrumb elements
+$breadcrumb-separator: ">";
+
+
+
+// Set up our own margins for headings
+
+// Reset popover-header margins here (N.B. intentionally not using :not() above to avoid specificity issues)
+h3.popover-header {
+  margin: 0;
+}
+
+// Use select field's native caret
+.form-select {
+  appearance: auto;
+}
+
+.alert.alert-info a { text-decoration: underline; }
+
+.alert-default {
+    background-color: $alert-default-bg;
+    border-color: $alert-default-border-color;
+}
+
+// Improve contrast
+.btn.disabled:active,
+.btn.disabled:focus,
+.btn.disabled:hover { color: #000; }
+.list-unstyled {
+  margin: 0;
+  padding-right: 0;
+}
+.icon-bar { background-color: #888; }
+
+// More/less buttons
+.more-btn, .less-btn {
+  &:not(.facet) {
+    @extend .toolbar-btn;
+  }
+}
+
+// Normalize highlighting
+.highlight,
+mark {
+  background: color.adjust(#FF0, $lightness: 20%);
+  padding: .1em .2em;
+}
+
+// Normalize
+img { max-width: 100%; }
+
+// Bootstrap overrides
+.breadcrumb {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+.breadcrumb-item {
+  display: flex;
+  & + .breadcrumb-item::before {
+    padding-inline-end: var(--bs-breadcrumb-item-padding-x);
+  }
+}
+.label { display: inline-block; }
+.popover { width: 250px; }
+.resulthead { @include clearfix(); }
+.sub-breadcrumb {
+  padding: 5px 10px;
+  white-space: nowrap;
+  li {display: inline-block;}
+  li + li:before {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: $breadcrumb-color;
+    content: "#{$breadcrumb-divider}\00a0";
+  }
+}
+.tab-content { padding: 4px; }
+
+/* ------ Layout ------ */
+
+h1 { font-size: 28px; }
+h2 { font-size: 20px; }
+h3 { font-size: 16px; }
+
+@include media-breakpoint-up(sm) {
+  h2 {
+    font-size: 23px;
+    font-weight: normal;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: normal;
+  }
+  .form-control, .form-select {
+    max-width: 400px;
+  }
+  #modal {
+    .form-control, .form-select {
+      max-width: none;
+    }
+  }
+}
+
+/* ------ Layout ------ */
+.hidden {
+  display: none !important;
+}
+
+.sticky {
+  position: fixed;
+  left: 0;
+}
+
+.media-body, .media-left, .media-right {
+  display: table-cell;
+  vertical-align: top;
+}
+.media-body {
+  width: 10000px;
+}
+
+// Ensure that the containers in main content have proper height so that the footer doesn't extend below them
+.main {
+  .container, .container-fluid {
+    @include clearfix();
+  }
+}
+
+footer {
+  @extend .container;
+  padding: 1rem;
+}
+@include media-breakpoint-between(sm, md) {
+  .container {
+    max-width: initial;
+    width: 100%;
+  }
+}
+@include media-breakpoint-up(sm) {
+  .footer-container {
+    display: flex;
+    width: 100%;
+  }
+  .footer-column { flex: 0 1 100%; }
+
+  // Main content and sidebar widths and float
+  .mainbody { width: 75%; }
+  .sidebar { width: 25%; }
+  .mainbody.left,
+  .sidebar.left {
+    float: left;
+  }
+  .mainbody.left {
+    padding-right: 1rem;
+  }
+  .mainbody.right,
+  .sidebar.right {
+    float: right;
+  }
+  .mainbody.right {
+    padding-left: 1rem;
+  }
+  .mainbody.solo {
+    width: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.flex { display: flex; }
+.rtl .flex { flex-direction: row-reverse; }
+.flex-col { flex: 0 1 100%; }
+.flex-none { flex: none; }
+
+.nav.searchbox,
+#searchForm {
+  .nav-tabs {
+    margin-bottom: 1rem;
+  }
+}
+
+body.rtl .dropdown-menu {
+  text-align: right;
+}
+
+/* ------ Navigation ------ */
+.navbar-brand {
+  font-size: 1.4rem;
+  text-decoration: underline;
+}
+
+.nav > li > a, .nav > li > button {
+  @extend .icon-link;
+  text-decoration: none;
+  // Force padding in collapsed menu navbar as well as tabs:
+  padding-right: $nav-link-padding-x;
+  padding-left: $nav-link-padding-x;
+
+  &:hover,
+  &:focus {
+    /* borrowed from a11y accessibility */
+    color: $dropdown-bg;
+    text-decoration: none;
+    background-color: #333;
+    outline: dotted 1px #000;
+  }
+}
+
+/* ------ Browse ------ */
+// Layout
+.browse-container {
+  margin-top: 1rem;
+}
+@include media-breakpoint-up(sm) {
+  .browse-container { display: flex; }
+  .browse-list {
+    flex-basis: 25%;
+    padding-right: 1rem;
+  }
+  .browse-list:last-child { padding-right: 0; }
+}
+@include media-breakpoint-down(sm) {
+  .browse-list.browse-list__hidden-mobile {
+    display: none;
+  }
+}
+// List item styling
+.browse-item {
+  position: relative;
+  display: block;
+  padding: .5rem 1rem;
+  border: 1px solid $list-group-border-color;
+  border-bottom: 0;
+  word-wrap: break-word;
+}
+.browse-item.active {
+  background-color: $primary;
+  color: #fff;
+
+  .badge {
+    background-color: #fff;
+    color: $gray-darker;
+  }
+}
+.browse-item:hover { background-color: $nav-link-hover-bg; }
+.browse-item:last-child { border-bottom: 1px solid $list-group-border-color; }
+
+.browse-item.with-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  &>.browse-item-text {
+    text-decoration: underline;
+  }
+
+  body.rtl & {
+    padding-left: 3rem;
+    padding-right: 1rem;
+    .badge {
+      left: .25rem;
+      right: auto;
+    }
+  }
+}
+.browse-item.view-record {
+  padding: 2px 4px;
+  font-size: 85%;
+  text-align: right;
+  border-top: 0;
+}
+
+#alphaBrowseForm {
+  margin-top: 1rem;
+}
+
+
+// Start Footer
+footer {
+    background-color: $primary;
+    color: #ffffff;
+    font-size: 1rem;
+    max-width: 100%;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .container {
+      background-color: $primary;
+    }
+}
+
+// .footer {
+
+// }
+
+  .social {
+
+    @extend .list-inline;
+
+    margin: 0.9375rem 0 1.5625rem;
+
+    li {
+
+      padding: 0;
+      margin-bottom: 0;
+
+      a {
+        display: flex;
+        font-size: 2rem;
+        text-decoration: none;
+        padding: 0.125rem 0.25rem 0.1875rem;
+
+        &:focus {
+          outline: 1px dashed #fff;
+        }
+
+        span.fa-envelope {
+          position: relative;
+          top: -1px;
+        }
+      }
+    }
+  }
+
+.alert {
+  padding: 8px;
+}
+
 /**
  * This file is where your theme overrides its parent theme.
  *
