@@ -7,7 +7,7 @@ $config = $this->config()->get('freelibrary');
   <?php foreach ($this->menu ?? [] as $name => $group): ?>
     <div class="footer-column">
       <?php $this->slot($name)->start(); ?>
-        <h2><?=$this->transEsc($group['label'])?></h2>
+        <h2 class="text-white h3"><?=$this->transEsc($group['label'])?></h2>
         <ul class="list-inline">
           <?php foreach ($group['MenuItems'] as $item): ?>
             <?php

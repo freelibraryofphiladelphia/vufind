@@ -46,5 +46,5 @@ return [
         ],
     ],
 
-    'header-nav' => parse_ini_file(__DIR__ . '/header-nav.ini', true),
+    'header-nav' => parse_ini_file(__DIR__ . '/templates/header-nav.ini', true),
 ];

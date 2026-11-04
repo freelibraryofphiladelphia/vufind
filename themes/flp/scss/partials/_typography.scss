@@ -80,27 +80,6 @@ $font-weight: (
     }
   }
 }
-
-// Basic Header Sizes updated because Zilla Slab is quite small
-  h1,
-  .h1 {
-    font-size: $type-scale-4xl;
-  }
-
-  h2,
-  .h2 {
-    font-size: $type-scale-3xl;
-  }
-
-  h3,
-  .h3 {
-    font-size: $type-scale-2xl;
-  }
-
-  h4,
-  .h4 {
-    font-size: $type-scale-lg;
-  }
 // line-height classes
 
 .lh {

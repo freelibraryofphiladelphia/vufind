@@ -19,16 +19,26 @@ $grid-gutter-width: 20px;
 // Font Families
 $font-family-sans-serif: Figtree, sans-serif;
 $font-family-serif: Zilla Slab, serif;
-@import "partials/_typography"; 
-@import "bootstrap"; /* Include bootstrap theme's scss base */
 
+a {
+  color: $primary;
+}
+
+a.title.getFull {
+    text-decoration: none !important;
+    color: $primary;
+  }
+
+@import "partials/_typography"; 
 /* You can organize these styles in separate files and @import them */
+@import "bootstrap"; /* Include bootstrap theme's scss base */
 @import "partials/_buttons";
 @import "partials/_header";
 @import "partials/_navs";
 @import "home-page";
 @import "components/search";
 @import "components/advanced-search";
+@import "components/sidebar";
 
 
 
@@ -39,6 +49,7 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
 font-family: $font-family-serif;
+color: $text-heading-dark;
 };
 
 // Basic Header Sizes updated because Zilla Slab is quite small
@@ -60,6 +71,10 @@ font-family: $font-family-serif;
   h4,
   .h4 {
     font-size: $type-scale-lg;
+  }
+    h5,
+  .h5 {
+    font-size: $type-scale-md;
   }
 body {
   font-size: 1rem;

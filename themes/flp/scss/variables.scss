@@ -33,11 +33,21 @@ $type-scale-xs: 0.75rem; // 12px
 
 $type-scale-xl-display-m: 3.4375rem; // 55px
 $type-scale-display-m: 2.5rem; // 40px
-$type-scale-4xl-m: 2rem; // 32px
+$type-scale-4xl-m: 2rem; //2rem; // 32px
 $type-scale-3xl-m: 1.625rem; // 26px
 $type-scale-2xl-m: 1.5rem; // 24px
 $type-scale-xl-m: 1.375rem; // 22px
 $type-scale-lg-m: 1.25rem; // 20px
+
+
+// //## Font, line-height, and color for body text, headings, and more.
+// $font-size-base: 16px;
+// $font-size-h1: $type-scale-4xl-m; // 32px
+// $font-size-h2: $type-scale-3xl-m; // 26px
+// $font-size-h3: $type-scale-2xl-m; // 24px
+// $font-size-h4: $type-scale-lg-m;  // 20px
+// $font-size-h5: $type-scale-md;    // 18px
+// $font-size-h6: $type-scale-base;  // 16px
 
 /**************************************************
  * COLORS
@@ -125,6 +135,61 @@ $footer-height: 14.5em;
        url('../../flp/css/fonts/ZillaSlab-Bold.woff') format('woff');
   font-weight: 700;
 }
+
+@font-face {
+  font-family: 'Zilla Slab';
+  src: url('../../flp/css/fonts/ZillaSlab-SemiBold.woff2') format('woff2'),
+       url('../../flp/css/fonts/ZillaSlab-SemiBold.woff') format('woff');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Zilla Slab';
+  src: url('../../flp/css/fonts/ZillaSlab-Medium.woff2') format('woff2'),
+       url('../../flp/css/fonts/ZillaSlab-Medium.woff') format('woff');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Zilla Slab';
+  src: url('../../flp/css/fonts/ZillaSlab-Regular.woff2') format('woff2'),
+       url('../../flp/css/fonts/ZillaSlab-Regular.woff') format('woff');
+  font-weight: 400;
+}
+
+// italic
+@font-face {
+  font-family: 'Zilla Slab';
+  src: url('../../flp/css/fonts/ZillaSlab-Bold.woff2') format('woff2'),
+       url('../../flp/css/fonts/ZillaSlab-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Zilla Slab';
+  src: url('../../flp/css/fonts/ZillaSlab-SemiBold.woff2') format('woff2'),
+       url('../../flp/css/fonts/ZillaSlab-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Zilla Slab';
+  src: url('../../flp/css/fonts/ZillaSlab-Medium.woff2') format('woff2'),
+       url('../../flp/css/fonts/ZillaSlab-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Zilla Slab';
+  src: url('../../flp/css/fonts/ZillaSlab-Regular.woff2') format('woff2'),
+       url('../../flp/css/fonts/ZillaSlab-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+}
+
 
 //== Icon Font Paths
 $icon-font-path: "/assets/fonts/bootstrap/";
