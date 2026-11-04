@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
     container_name: vufind11_app
     ports:
-      - "8081:80"
+      - "127.0.0.1:8081:80"
     configs:
       - source: vufind_config_ini
         target: /run/vufind-config/config.ini
@@ -30,6 +30,20 @@ services:
       - VUFIND_LOCAL_DIR=/usr/local/vufind/local
       - VUFIND_ENV=production
     restart: unless-stopped
+    develop:
+      watch:
+        - action: sync+exec
+          path: ./module
+          target: /usr/local/vufind/module
+          exec:
+            command: rm -rf /usr/local/vufind/local/cache/*
+        - action: sync+exec
+          path: ./themes
+          target: /usr/local/vufind/themes
+          exec:
+            command: rm -rf /usr/local/vufind/local/cache/*
+        - action: rebuild
+          path: ./composer.json
 
 volumes:
   vufind_local:
