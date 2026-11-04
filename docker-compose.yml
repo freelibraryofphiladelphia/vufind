@@ -1,0 +1,35 @@
+name: vufind11-review-stack
+
+# The app uses the team MySQL and Solr servers (see docker/configs/config.ini),
+# so only the app runs here.
+
+configs:
+  vufind_config_ini:
+    file: ./docker/configs/config.ini
+  vufind_symphony_ini:
+    file: ./docker/configs/Symphony.ini
+
+services:
+  vufind:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vufind11_app
+    ports:
+      - "8081:80"
+    configs:
+      - source: vufind_config_ini
+        target: /run/vufind-config/config.ini
+      - source: vufind_symphony_ini
+        target: /run/vufind-config/Symphony.ini
+    volumes:
+      # Generated local config, logs and cache persist here
+      - vufind_local:/usr/local/vufind/local
+    environment:
+      - VUFIND_HOME=/usr/local/vufind
+      - VUFIND_LOCAL_DIR=/usr/local/vufind/local
+      - VUFIND_ENV=production
+    restart: unless-stopped
+
+volumes:
+  vufind_local:
