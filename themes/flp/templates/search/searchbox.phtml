@@ -143,7 +143,7 @@
                   <span class="segment-indicator"></span>
               </fieldset>
             </div>
-        <div class="d-flex flex-column flex-sm-row gap-4 gap-sm-0">
+        <div class="search-bar-full d-flex flex-column flex-sm-row gap-4 gap-sm-0">
             <label for="searchForm_type" class="visually-hidden">Search Type</label>
             <div class="searchTypeFilter margin-left-1" id="searchboxHandlers">
               <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false" aria-label="<?=$this->transEscAttr('Search type')?>">
@@ -212,7 +212,7 @@
                   </div>
                 <?php endif; ?>
                 <!-- Submit Button -->
-                <button type="submit" id="submitSearch" class="search-btn"><?=$this->icon('search') ?></button>
+                <button type="submit" id="submitSearch" class="search-btn"><span class="visually-hidden">Search</span><?=$this->icon('search') ?></button>
               </div>
             </div>
         </div>
@@ -221,7 +221,7 @@
               $advSearchQuery = $results ? ['sid' => $results->getSearchId()] : $hiddenFilters;
               $advSearchLink = $this->url($advSearch, [], ['query' => $advSearchQuery]);
             ?>
-            <a href="<?=$advSearchLink?>" id="advanced-search" class="advanced-search-link btn btn-link" rel="nofollow"><?=$this->transEsc('Advanced')?></a>
+            <a href="<?=$advSearchLink?>" id="advanced-search" class="<?= $this->layout()->templateName === 'home' ? 'text-info' : 'advanced-search-link' ?>" rel="nofollow"><?=$this->transEsc('Advanced')?></a>
           <?php endif; ?>
           <?php if ($geoUrl = $this->geocoords()->getSearchUrl($options)) : ?>
               <a href="<?=$geoUrl ?>" class="btn btn-link"><?=$this->transEsc('Geographic Search')?></a>
@@ -330,7 +330,7 @@
 
     // Remove the Google Translate Vote form to avoid WAVE errors
     function removeGoogleVotingPane() {
-        const pane = document.getElementById("goog-gt-votingd-nonePane");
+        const pane = document.getElementById("goog-gt-votingHiddenPane");
         if (pane) {
             pane.remove();
             return;

@@ -100,7 +100,7 @@
       <!-- main menu also mobile menu -->
       <div id="header-collapse-flp" class="collapse navbar-collapse d-flex flex-column container-fluid">
         <!-- first desktop menu row -->
-        <div class="container d-flex py-3 align-items-center justify-content-between">
+        <div class="container d-flex  flex-column flex-md-row py-3 align-items-center justify-content-between">
         <!-- main menu items -->
         <div class="d-flex">
             <nav class="banner navbar d-flex container align-items-baseline justify-content-between">
@@ -136,10 +136,10 @@
             </nav>
         </div>
         <!--- Donate, Library card and login button --->
-        <div class="d-none d-sm-block justify-content-between">
+        <div class=" flex-column flex-md-row justify-content-between">
             <ul class="list-inline d-flex gap-3 flex-wrap justify-content-end sign-in-area align-items-center">
                 <li>
-                    <a href="#server.catalogServerPath#/MyResearch/Home" class="btn btn-info">
+                    <a href="<?=$this->url('myresearch-home', [], ['query' => ['redirect' => 0]])?>" class="btn btn-info">
                         Log In
                     </a>
                 </li>
@@ -149,7 +149,7 @@
                     </a>
                 </li>
                 <li  class="get-library-card">
-                    <a href="#server.catalogServerPath#/register">
+                    <a href="https://www.libwww.freelibrary.org/card">
                         Get a Library Card
                     </a>
                 </li>
@@ -174,22 +174,6 @@
         </div>
       </div>
     </div>
-
-      <!-- <div class="bg-primary-red container-fluid py-1">
-        <div class="container text-white d-flex flex-column flex-sm-row justify-content-end">
-          <p>Test</p> -->
-          <!-- Begin Google Translate Section -->
-          <!-- <div class="d-none d-lg-block">
-              <span class="language-selector text-info language-selection-row align-content-end">
-                  <button class="btn text-info gt-button" id="english-selection" onclick="translatePage('en')">English</button> | <button class="btn gt-button text-info " id="spanish-selection" onclick="translatePage('es')" >Espanol</button>
-                  <div id="google_translate_element"></div>
-              </span>
-          </div> -->
-          <!-- End Google Translate Section -->
-        <!-- </div>
-      </div> -->
-
-
 
   </header>
 </div>

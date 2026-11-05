@@ -6,10 +6,10 @@
   @extend .clearfix;
 
   position: relative;
-  padding: 4rem 4rem;
+  padding: 12rem 4rem;
   color: #fff;
   background-color: $primary;
-  // background-image: url('#{$image-path}/yosemite.jpg');
+  background-image: url('#{$image-path}/yosemite.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
