@@ -340,6 +340,22 @@
 
     removeGoogleVotingPane();
 
+    // remove google top header
+    function removeGoogleTopHeader() {
+        const iframe = document.querySelector(".VIpgJd-ZVi9od-ORHb-OEVmcd skiptranslate");
+        if (iframe) {
+            iframe.remove();
+            return;
+        }
+        setTimeout(removeGoogleVotingPane, 200);
+    }
+
+    removeGoogleTopHeader();
+
+    
+
+
+
     $(function() {
         $('#header .collapse').on('show.bs.collapse', function (e) {
             var actives = $('#header').find('.in, .collapsing');

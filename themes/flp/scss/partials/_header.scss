@@ -33,8 +33,7 @@ a.VIpgJd-ZVi9od-l4eHX-hSRGPd {
 
 /* English and Spanish Buttons */
 .gt-button {
-  color: #0e7fa7;
-  background-color: #fefefe;
+  background-color: $primary;
 }
 
 .gt-button:hover {
@@ -82,7 +81,7 @@ select.goog-te-combo {
   appearance: none !important;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url(#{$image-path}/translate-button.svg) no-repeat center;
+  background: url(#{$image-path}/translate-button-white.svg) no-repeat center;
   background-size: 100%;
   text-indent: -9999px;
   height: 55px;
