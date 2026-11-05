@@ -5,9 +5,9 @@ name: vufind11-review-stack
 
 configs:
   vufind_config_ini:
-    file: ./docker/configs/config.ini
+    file: ../configs/config.ini
   vufind_symphony_ini:
-    file: ./docker/configs/Symphony.ini
+    file: ../configs/Symphony.ini
 
 services:
   vufind:
@@ -36,14 +36,19 @@ services:
           path: ./module
           target: /usr/local/vufind/module
           exec:
-            command: rm -rf /usr/local/vufind/local/cache/*
+            command: ["sh", "-c", "rm -rf /usr/local/vufind/local/cache/*"]
         - action: sync+exec
           path: ./themes
           target: /usr/local/vufind/themes
           exec:
-            command: rm -rf /usr/local/vufind/local/cache/*
+            command: ["sh", "-c", "rm -rf /usr/local/vufind/local/cache/*"]
         - action: rebuild
           path: ./composer.json
+        - action: sync+exec
+          path: ./docker/configs
+          target: /usr/local/vufind/local/config/vufind
+          exec:
+            command: ["sh", "-c", "chown www-data:www-data /usr/local/vufind/local/config/vufind/*.ini && rm -rf /usr/local/vufind/local/cache/*"]
 
 volumes:
   vufind_local:
