@@ -104,7 +104,7 @@ a.navbar-toggle:hover {
       border-bottom: solid $primary-gray-100 2px;
       color: $info-300;
       padding: 10px;
-      width: 150px;
+      // width: 150px;
 
       &:active,
       &:focus,
@@ -252,6 +252,25 @@ a.navbar-toggle:hover {
     }
   }
 }
+
+.search-link {
+  border: none !important;
+}
+// secondary nav - testing an active class
+// .search-link.active::after {
+//   content: "";
+//   position: absolute;
+//   left: 14%;
+//   bottom: 0px;
+//   transform: translateX(-100%);
+
+//   width: 0;
+//   height: 0;
+
+//   border-left: 8px solid transparent;
+//   border-right: 8px solid transparent;
+//   border-bottom: 8px solid $brand-light;
+// }
 
 .section-title {
   background: $section $section-bg;
@@ -540,6 +559,17 @@ label:has([role="switch"]) {
 
 @media only screen and (min-width: 768px) {
 
+
+
+
+      select {
+
+      width: 150px;
+
+      }
+
+    }
+
   // Main Desktop Grey Navigation
   .nav-main-container {
     background: $brand-utility;
@@ -675,7 +705,7 @@ label:has([role="switch"]) {
     }
   }
 
-}
+
 
       @media only screen and (max-width: 768px) {
 
@@ -761,5 +791,12 @@ label:has([role="switch"]) {
   padding: 10px;
 }
 
+// select box
+
+    select {
+
+      width: 100%;
 
       }
+
+    }

@@ -143,6 +143,8 @@ select.goog-te-combo {
 
 .get-library-card {
   font-weight: 600;
+  color: $brand-danger !important;
+  text-decoration: none !important;
 }
 
 .nav-item {
@@ -344,15 +346,13 @@ select.goog-te-combo {
     appearance: none !important;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: url(#{$image-path}/translate-button.svg) no-repeat center;
-    background-color: #eeeeee;
+    background: url(#{$image-path}/translate-button-white.svg) no-repeat center;
     background-size: 100%;
     /* text-indent: -9999px; */
     height: 35px;
     font-size: 14px;
     border: none;
     border-radius: 5px;
-    background-color: #fefefe;
     margin: 0px !important;
   }
 

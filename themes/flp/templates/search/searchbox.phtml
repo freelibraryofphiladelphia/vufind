@@ -99,7 +99,7 @@
     </div>
     <form id="searchForm" class="searchForm flip d-flex justify-content-center" method="get" action="<?=$this->url($basicSearch)?>" name="searchForm" autocomplete="off">
       <?= $this->context($this)->renderInContext('search/searchTabs', ['searchTabs' => $tabConfig['tabs'], 'showCounts' => $tabConfig['showCounts']]); ?>
-      <div class="searchForm-inputs d-flex align-items-baseline flex-column justify-content-center flex-md-row">
+      <div class="">
         <?php
           // Note: we need type="text" for autocomplete role="combobox"
           $searchboxAttributes = [
@@ -146,7 +146,7 @@
         <div class="search-bar-full d-flex flex-column flex-sm-row gap-4 gap-sm-0">
             <label for="searchForm_type" class="visually-hidden">Search Type</label>
             <div class="searchTypeFilter margin-left-1" id="searchboxHandlers">
-              <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false" aria-label="<?=$this->transEscAttr('Search type')?>">
+              <select id="searchForm_type" class="searchForm_type form-select w-100" name="type" data-native-menu="false" aria-label="<?=$this->transEscAttr('Search type')?>">
                 <?php $currentGroup = $insideGroup = false; ?>
                 <?php foreach ($handlers as $handler): ?>
                   <?php
@@ -283,8 +283,11 @@
                 'fromSearchMemory' => $fromSearchMemory,
               ]
           );?>
-  </form>
-    </div>  
+    
+    
+  
+  </form>  
+</div>  
 
     </div>
   </div>
