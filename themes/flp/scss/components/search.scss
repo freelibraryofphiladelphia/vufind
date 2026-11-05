@@ -26,7 +26,10 @@
     }
   }
 
-
+.search-bar-full{
+  background-color: #ffffff;
+  border-radius: 50px;
+}
 
 // Hide headline above filter results 
 .sidebar {
@@ -69,6 +72,12 @@ input[type="search"]::-webkit-search-decoration {
   }
 }
 
+    .searchForm-reset {
+      color: $primary-gray-300;
+      background-color: $primary-gray-100;
+      border: 2px solid $primary-gray-100;
+      border-radius: 50px;
+    }
 // record result list ol, ul that contains li.result
 .record-list {
   list-style: none;
@@ -1140,3 +1149,14 @@ table.search-history-table {
  min-width: 48px;
  padding: 2px;
 }
+
+      @media only screen and (max-width: 576px) {
+  .findbox-d input {
+    width: 210px;
+  }
+
+  .search-bar-full{
+  background-color: none;
+  border-radius: 50px;
+}
+      }
