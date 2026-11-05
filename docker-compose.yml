@@ -36,12 +36,12 @@ services:
           path: ./module
           target: /usr/local/vufind/module
           exec:
-            command: rm -rf /usr/local/vufind/local/cache/*
+            command: ["sh", "-c", "rm -rf /usr/local/vufind/local/cache/*"]
         - action: sync+exec
           path: ./themes
           target: /usr/local/vufind/themes
           exec:
-            command: rm -rf /usr/local/vufind/local/cache/*
+            command: ["sh", "-c", "rm -rf /usr/local/vufind/local/cache/*"]
         - action: rebuild
           path: ./composer.json
 
