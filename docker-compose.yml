@@ -44,6 +44,11 @@ services:
             command: ["sh", "-c", "rm -rf /usr/local/vufind/local/cache/*"]
         - action: rebuild
           path: ./composer.json
+        - action: sync+exec
+          path: ./docker/configs
+          target: /usr/local/vufind/local/config/vufind
+          exec:
+            command: ["sh", "-c", "chown www-data:www-data /usr/local/vufind/local/config/vufind/*.ini && rm -rf /usr/local/vufind/local/cache/*"]
 
 volumes:
   vufind_local:
