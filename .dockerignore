@@ -30,4 +30,4 @@ import/index_java/bin
 import/solrmarc.log
 import/solrmarc.log.1
 
-docker/
+docker/*.md

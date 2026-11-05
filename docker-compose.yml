@@ -5,9 +5,9 @@ name: vufind11-review-stack
 
 configs:
   vufind_config_ini:
-    file: ./docker/configs/config.ini
+    file: ../configs/config.ini
   vufind_symphony_ini:
-    file: ./docker/configs/Symphony.ini
+    file: ../configs/Symphony.ini
 
 services:
   vufind:
