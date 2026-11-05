@@ -10,6 +10,11 @@
   // &:hover {} 
 }
 
+// Account and login buttons
+
+#account-home-nav {
+
+}
 /* Google Translate */
 .skiptranslate iframe {
     display: none !important;
@@ -116,6 +121,19 @@ select.goog-te-combo {
   font-weight: 500;
 }
 
+.login-nav-item {
+  padding: 0px 12px;
+  height: 100%;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  font-family: "Figtree", sans-serif !important;
+  font-weight: 500;
+      text-decoration: none;
+    height: 44px;
+    align-content: center;
+}
+
 
 
 .get-library-card {
@@ -133,7 +151,6 @@ select.goog-te-combo {
   a {
     text-decoration: none;
     position: relative;
-    color: $primary-gray-400;
   }
 
   a::after {

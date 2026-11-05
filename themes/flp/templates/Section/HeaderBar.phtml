@@ -1,4 +1,4 @@
-<nav class="banner navbar navbar-expand-md">
+<!-- <nav class="banner navbar navbar-expand-md">
   <div class="container">
     <a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="<?=$this->imageLink('flp-logo.png'); ?>" width="50px"alt="Free Library of Philadelphia" />Free Library of Philadelphia</a>
     <?=$this->notices()->renderNoticesForPosition('header')?>
@@ -73,7 +73,7 @@
       </div>
     <?php endif; ?>
   </div>
-</nav>
+</nav> -->
 
 <!-- begin FLP -->
 <div id="wrap">
@@ -138,22 +138,6 @@
         <!--- Donate, Library card and login button --->
         <div class=" flex-column flex-md-row justify-content-between">
             <ul class="list-inline d-flex gap-3 flex-wrap justify-content-end sign-in-area align-items-center">
-                <li>
-                    <a href="<?=$this->url('myresearch-home', [], ['query' => ['redirect' => 0]])?>" class="btn btn-info">
-                        Log In
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.freelibrary.org/donate/" class="btn btn-danger">
-                        Donate <i class="margin-left-05 fa fa-heart" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <li  class="get-library-card">
-                    <a href="https://www.libwww.freelibrary.org/card">
-                        Get a Library Card
-                    </a>
-                </li>
-            </ul>
             <?php foreach ($group['MenuItems'] as $item): ?>
               <?php if (isset($item['template'])): ?>
                 <?php
@@ -199,7 +183,7 @@
                     $attributes->add('class', 'icon-link');
                   }
                 ?>
-                <li class="nav-item <?=isset($item['name']) ? $this->escAttr($item['name']) : ''?>">
+                <li class="login-nav-item <?=isset($item['name']) ? $this->escAttr($item['name']) : ''?>">
                   <a<?=$attributes?>>
                     <?php if ($icon = $item['icon'] ?? false): ?>
                       <?=$this->icon($icon, 'icon-link__icon') ?>
@@ -213,7 +197,19 @@
                 </li>
               <?php endif; ?>
             <?php endforeach; ?>
-        </div>   
+                    <li>
+                    <a href="https://www.freelibrary.org/donate/" class="btn btn-danger">
+                        Donate <i class="margin-left-05 fa fa-heart" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li  class="get-library-card">
+                    <a href="https://www.libwww.freelibrary.org/card">
+                        Get a Library Card
+                    </a>
+                </li>  
+          
+          </ul>
+          </div>   
       </div>
 
         <!-- google translate and extra buttons -->
