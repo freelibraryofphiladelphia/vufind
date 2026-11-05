@@ -1,30 +1,28 @@
 name: vufind11-review-stack
 
+# Run from the repository root:
+#   docker compose -f docker/docker-compose.yml build
+#   docker compose -f docker/docker-compose.yml up --watch
+#
+# Paths below are relative to this file (docker/). The build context is the
+# repository root so the image gets the whole tree.
+#
 # The app uses the team MySQL and Solr servers (see docker/configs/config.ini),
 # so only the app runs here.
-
-configs:
-  vufind_config_ini:
-    file: ../configs/config.ini
-  vufind_symphony_ini:
-    file: ../configs/Symphony.ini
 
 services:
   vufind:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: vufind11_app
     ports:
       - "127.0.0.1:8081:80"
-    configs:
-      - source: vufind_config_ini
-        target: /run/vufind-config/config.ini
-      - source: vufind_symphony_ini
-        target: /run/vufind-config/Symphony.ini
     volumes:
-      # Generated local config, logs and cache persist here
+      # Generated local state (cache, logs) persists here
       - vufind_local:/usr/local/vufind/local
+      # Host config files, read live by the app (read-only)
+      - ./configs:/usr/local/vufind/local/config/vufind:ro
     environment:
       - VUFIND_HOME=/usr/local/vufind
       - VUFIND_LOCAL_DIR=/usr/local/vufind/local
@@ -33,22 +31,22 @@ services:
     develop:
       watch:
         - action: sync+exec
-          path: ./module
+          path: ../module
           target: /usr/local/vufind/module
           exec:
             command: ["sh", "-c", "rm -rf /usr/local/vufind/local/cache/*"]
         - action: sync+exec
-          path: ./themes
+          path: ../themes
           target: /usr/local/vufind/themes
           exec:
             command: ["sh", "-c", "rm -rf /usr/local/vufind/local/cache/*"]
         - action: rebuild
-          path: ./composer.json
+          path: ../composer.json
         - action: sync+exec
-          path: ./docker/configs
-          target: /usr/local/vufind/local/config/vufind
+          path: ./configs
+          target: /tmp/config-watch
           exec:
-            command: ["sh", "-c", "chown www-data:www-data /usr/local/vufind/local/config/vufind/*.ini && rm -rf /usr/local/vufind/local/cache/*"]
+            command: ["sh", "-c", "rm -rf /usr/local/vufind/local/cache/*"]
 
 volumes:
   vufind_local:
