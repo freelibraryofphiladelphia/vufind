@@ -112,7 +112,7 @@ select.goog-te-combo {
 }
 
 .nav-item {
-  padding: 0px 12px;
+  padding: 0px 8px;
   height: 100%;
   display: inline-flex;
   flex-wrap: nowrap;
@@ -121,8 +121,13 @@ select.goog-te-combo {
   font-weight: 500;
 }
 
+.nav-item:not(:last-child)::after {
+  content: "|";
+  margin-left: 1rem;
+  color: $primary-gray-100;
+}
+
 .login-nav-item {
-  padding: 0px 12px;
   height: 100%;
   display: inline-flex;
   flex-wrap: nowrap;

@@ -9,6 +9,7 @@
   &:focus,
   &:hover {
     text-decoration: none;
+    color: $brand-danger;
   }
 
   &:focus {
@@ -22,6 +23,11 @@ a.navbar-toggle,
 a.navbar-toggle:hover {
   z-index: 1000;
   color: $brand-danger;
+}
+
+// main menu items
+.main-nav a {
+  color: $primary-gray-400 !important;
 }
 
 // Search area shown when user clicks on magnifying glass on mobile screens
@@ -672,6 +678,18 @@ label:has([role="switch"]) {
 }
 
       @media only screen and (max-width: 768px) {
+
+
+    // main menu items
+.main-nav a {
+  padding: 10px;
+  border-top: 1px solid $primary-gray-100;
+  width: 100%;
+
+
+}
+
+
       .findbox-d .searchTypeFilter select {
       cursor: pointer;
       height: 64px;
@@ -717,10 +735,31 @@ label:has([role="switch"]) {
 
 
   }
+
+// for med screens
+      @media only screen and (max-width: 968px) {
+
+// main menu items
+.main-nav a {
+  padding: 10px;
+  border-top: 1px solid $primary-gray-100;
+  width: 100%;
+
+}
+
+
+      }
+
 // for small screens
       @media only screen and (max-width: 576px) {
   .findbox-d input {
     width: 210px;
   }
+
+// main menu items
+.main-nav a {
+  padding: 10px;
+}
+
 
       }
