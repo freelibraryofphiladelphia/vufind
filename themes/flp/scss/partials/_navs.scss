@@ -62,7 +62,7 @@ a.navbar-toggle:hover {
 // Desktop
 
 .findbox-d {
-  border-right: solid 1px #e6e6e6;
+  // border-right: solid 1px #e6e6e6;
   padding-top: 10px 0px;
 
   .input-group {
@@ -97,7 +97,7 @@ a.navbar-toggle:hover {
       border-bottom: solid $primary-gray-100 2px;
       color: $info-300;
       padding: 10px;
-      width: 100%;
+      width: 150px;
 
       &:active,
       &:focus,
@@ -131,7 +131,7 @@ a.navbar-toggle:hover {
     border-bottom: solid $primary-gray-100 2px;
     height: 64px !important;
     padding-left: 10px;
-    border-radius: 0px;
+    // border-radius: 0px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px rgba(255, 255, 255, 1);
 
     &:focus-visible {
@@ -145,10 +145,6 @@ a.navbar-toggle:hover {
       color: $info-400;
       border-radius: 0px;
     }
-
-      @media only screen and (max-width: 768px) {
-        // width: 75%;
-  }
 
   }
 
@@ -300,6 +296,7 @@ label:has([role="switch"]) {
 
 
 @media only screen and (min-width: 768px) {
+
   .logo-container {
     margin-bottom: 2.5rem;
   }
@@ -536,7 +533,6 @@ label:has([role="switch"]) {
 
 @media only screen and (min-width: 768px) {
 
-
   // Main Desktop Grey Navigation
   .nav-main-container {
     background: $brand-utility;
@@ -571,6 +567,12 @@ label:has([role="switch"]) {
       }
     }
   }
+
+      select {
+      cursor: pointer;
+      height: 64px;
+      border-radius: 50px;
+      }
 
   // Find / Explore / Ask Main Title
   .title-container {
@@ -667,3 +669,56 @@ label:has([role="switch"]) {
   }
 
 }
+
+      @media only screen and (max-width: 768px) {
+      .findbox-d .searchTypeFilter select {
+      cursor: pointer;
+      height: 64px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      padding-right: 20px;
+      }
+
+      &:active,
+      &:focus,
+      &:focus-visible,
+      &:hover {
+        background-color: #fafafa;
+        color: $info-400;
+        border-radius: 50px 0px 0px 50px;
+        outline: 0px;
+      }
+
+    // Search Input Field
+  .findbox-d input {
+    width: 300px;
+    background-color: #ffffff;
+    border-top: solid $primary-gray-100 2px;
+    border-left: solid $primary-gray-100 2px;
+    border-bottom: solid $primary-gray-100 2px;
+    height: 64px !important;
+    padding-left: 10px;
+    border-radius: 50px 0px 0px 50px !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px rgba(255, 255, 255, 1);
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: $info-400;
+      border-radius: 0px;
+    }
+
+  }
+
+
+  }
+// for small screens
+      @media only screen and (max-width: 576px) {
+  .findbox-d input {
+    width: 210px;
+  }
+      }

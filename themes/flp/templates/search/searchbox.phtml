@@ -66,9 +66,8 @@
 
           <div class="align-items-center">
 
-              <div class="d-flex container align-items-center justify-content-between google-translate-section">
+  <div class="d-flex container align-items-center justify-content-between google-translate-section">
 
-                  <!--- Begin sub nav form --->
   <div class="">
     <?php $tabs = $this->context($this)->renderInContext('search/searchTabs', ['searchTabs' => $tabConfig['tabs'], 'showCounts' => false]); ?>
     <?php if (!empty($tabs)): ?><?=$tabs ?><div class="tab-content clearfix"><?php endif; ?>
@@ -98,9 +97,9 @@
     <div class="keyboard-box">
       <div class="simple-keyboard"></div>
     </div>
-    <form id="searchForm" class="searchForm flip" method="get" action="<?=$this->url($basicSearch)?>" name="searchForm" autocomplete="off">
+    <form id="searchForm" class="searchForm flip d-flex justify-content-center" method="get" action="<?=$this->url($basicSearch)?>" name="searchForm" autocomplete="off">
       <?= $this->context($this)->renderInContext('search/searchTabs', ['searchTabs' => $tabConfig['tabs'], 'showCounts' => $tabConfig['showCounts']]); ?>
-      <div class="searchForm-inputs">
+      <div class="searchForm-inputs d-flex align-items-baseline flex-column justify-content-center flex-md-row">
         <?php
           // Note: we need type="text" for autocomplete role="combobox"
           $searchboxAttributes = [
@@ -133,7 +132,7 @@
         ?>
         <?php if ($handlerCount > 1): ?>
 
-    <div class="form-group d-flex flex-column flex-sm-row findbox-d margin-x-0 padding-x-0 align-items-center gap-3">
+    <div class="form-group d-flex flex-column flex-sm-row findbox-d margin-x-0 padding-x-0 pt-4 align-items-center justify-content-center gap-3">
             <div class="segmented-control segmented-control--two margin-right-105">
               <fieldset class="d-flex align-items-center" id="searchtype">
                   <legend class="visually-hidden">Search our catalog or our website.</legend>
@@ -144,7 +143,7 @@
                   <span class="segment-indicator"></span>
               </fieldset>
             </div>
-        <div class="d-flex flex-column flex-sm-row">
+        <div class="d-flex flex-column flex-sm-row gap-4 gap-sm-0">
             <label for="searchForm_type" class="visually-hidden">Search Type</label>
             <div class="searchTypeFilter margin-left-1" id="searchboxHandlers">
               <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false" aria-label="<?=$this->transEscAttr('Search type')?>">
@@ -284,23 +283,12 @@
                 'fromSearchMemory' => $fromSearchMemory,
               ]
           );?>
-    </div>  
   </form>
+    </div>  
+
     </div>
-                  <!--- End subnav form --->
-                  <!-- Begin Google Translate Section -->
-                  <div class="d-none d-lg-block">
-                      <span class="language-selector text-info language-selection-row">
-                          <!--- <label for="gt-select-box" class="font-size-s font-serif font-weight-medium margin-right-1 margin-bottom-0">Translate this page</label> --->
-                          <button class="btn text-info gt-button" id="english-selection" onclick="translatePage('en')">English</button> | <button class="btn gt-button text-info " id="spanish-selection" onclick="translatePage('es')" >Espanol</button>
-                          <div id="google_translate_element"></div>
-                      </span>
-                  </div>
-                  <!-- End Google Translate Section -->
-
-              </div>
-
-          </div>
+  </div>
+</div>
 
   
 <?php endif; ?>
@@ -386,13 +374,17 @@
 
             advancedSearch.classList.toggle("d-none", webSearch);
             catSearchFilters.classList.toggle("d-none", webSearch);
-        });
+            searchInput.classList.toggle("rounded-start-5", webSearch);
+
+          });
 
         searchCat.addEventListener("click", () => {
             if (searchCat.checked == true) {
                 document.getElementById("searchForm_lookfor").placeholder = "Search our catalog....";
                 advancedSearch.classList.remove("d-none");
                 catSearchFilters.classList.remove("d-none");
+                searchInput.classList.remove("rounded-start-5");
+
             }
             return;
         });

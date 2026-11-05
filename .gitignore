@@ -40,7 +40,6 @@ module/VuFindSearch/tests/fixtures/solr/response/pivot-facet
 module/VuFindSearch/tests/fixtures/solr/response/facet
 module/VuFind/tests/fixtures/unpaywall/goodresponsepdf
 module/VuFind/tests/fixtures/unpaywall/goodresponseonline
-config/vufind/searches.ini
 themes/bootstrap5/css/compiled.css
 themes/local_theme_example/css/compiled.css
 themes/sandal5/css/compiled.css

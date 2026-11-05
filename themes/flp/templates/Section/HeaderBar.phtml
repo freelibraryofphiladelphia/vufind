@@ -83,81 +83,111 @@
       <!-- #server.udf.displayBanners()# -->
     <!--- Start First Nav Row --->
 
-    <div class="banner pt-3 navbar navbar-expand-md container">
-      <a class="navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="<?=$this->imageLink('flp-logo.png'); ?>" width="50px"alt="Free Library of Philadelphia" /></a>
+    <div class="banner pt-3 navbar navbar-expand-md container-fluid">
+      <a class="d-md-none px-3 navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="<?=$this->imageLink('flp-logo.png'); ?>" width="50px"alt="Free Library of Philadelphia" /></a>
+      <!-- mobile buttons -->
       <div class="d-flex gap-2">
-      <a href="#" class="navbar-toggle d-block d-md-none">
-          <span class="visually-hidden">Toggle Locations</span> <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
-        </a> 
-        <button type="button" class="navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#search-flp" aria-label="<?=$this->transEscAttr('mobile_toggle_navigation_text')?>">
-          <span class="visually-hidden">Toggle Search</span> <span class="fa fa-search fa-2x" aria-hidden="true"></span>
-        </button> 
-        <button type="button" class="navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#header-collapse-flp" aria-label="<?=$this->transEscAttr('mobile_toggle_navigation_text')?>">
-          <span class="visually-hidden">Toggle Navigation</span> <span class="fa fa-bars fa-2x" aria-hidden="true"></span>
-        </button> 
+        <a href="wwww.libwww.freelibrary.org/locations" class="btn navbar-toggle d-block d-md-none">
+            <span class="visually-hidden">Toggle Locations</span> <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+          </a> 
+          <button type="button" class="btn navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#search-flp" aria-label="<?=$this->transEscAttr('mobile_toggle_navigation_text')?>">
+            <span class="visually-hidden">Toggle Search</span> <span class="fa fa-search fa-2x" aria-hidden="true"></span>
+          </button> 
+          <button type="button" class="btn navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#header-collapse-flp" aria-label="<?=$this->transEscAttr('mobile_toggle_navigation_text')?>">
+            <span class="visually-hidden">Toggle Navigation</span> <span class="fa fa-bars fa-2x" aria-hidden="true"></span>
+          </button> 
       </div>
-      <div id="header-collapse-flp" class="d-flex container collapse navbar-collapse  align-items-baseline justify-content-between">
-
-          <nav class="banner navbar">
-              <ul class="d-flex list-inline">
-                  <li class="nav-item">
-                    <a href="#">
-                        Locations
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#">                                  Events
+      <!-- main menu also mobile menu -->
+      <div id="header-collapse-flp" class="collapse navbar-collapse d-flex flex-column container-fluid">
+        <!-- first desktop menu row -->
+        <div class="container d-flex py-3 align-items-center justify-content-between">
+        <!-- main menu items -->
+        <div class="d-flex">
+            <nav class="banner navbar d-flex container align-items-baseline justify-content-between">
+              <a class="d-none d-md-block navbar-brand lang-<?=$this->layout()->userLang ?>" href="<?=$this->url('home')?>"><img src="<?=$this->imageLink('flp-logo.png'); ?>" width="50px"alt="Free Library of Philadelphia" /></a>
+                <ul class="d-flex list-inline flex-column justify-sm-center flex-md-row ">
+                    <li class="nav-item">
+                      <a href="#">
+                          Locations
                       </a>
-                  </li>
-                  <span class="vertical-border"></span>
-                  <li class="nav-item">
-                    <a href="#">                                  Programs and Services
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#">                                  About
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#">                                  Blog
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#">                                  Support
-                      </a>
-                  </li>
-              </ul>
-          </nav>
-
-          <!--- Donate, Library card and login button --->
-          <div class="d-none d-sm-block justify-content-between">
-              <ul class="list-inline d-flex gap-3 flex-wrap justify-content-end sign-in-area align-items-center">
-                  <li>
-                      <a href="#server.catalogServerPath#/MyResearch/Home" class="btn btn-info">
-                          Log In
-                      </a>
-                  </li>
-                  <li>
-                      <a href="https://www.freelibrary.org/donate/" class="btn btn-danger">
-                          Donate <i class="margin-left-05 fa fa-heart" aria-hidden="true"></i>
-                      </a>
-                  </li>
-                  <li  class="get-library-card">
-                      <a href="#server.catalogServerPath#/register">
-                          Get a Library Card
-                      </a>
-                  </li>
-              </ul>
-          </div>
-
-      </div>
-    </div>
-
-      <div class="bg-primary-red py-1">
-        <div class="container-fluid">
-          <p>Test</p>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#">                                  Events
+                        </a>
+                    </li>
+                    <span class="vertical-border"></span>
+                    <li class="nav-item">
+                      <a href="#">                                  Programs and Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#">                                  About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#">                                  Blog
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#">                                  Support
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
+        <!--- Donate, Library card and login button --->
+        <div class="d-none d-sm-block justify-content-between">
+            <ul class="list-inline d-flex gap-3 flex-wrap justify-content-end sign-in-area align-items-center">
+                <li>
+                    <a href="#server.catalogServerPath#/MyResearch/Home" class="btn btn-info">
+                        Log In
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freelibrary.org/donate/" class="btn btn-danger">
+                        Donate <i class="margin-left-05 fa fa-heart" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li  class="get-library-card">
+                    <a href="#server.catalogServerPath#/register">
+                        Get a Library Card
+                    </a>
+                </li>
+            </ul>
+        </div>   
+      </div>
+
+        <!-- google translate and extra buttons -->
+        <div class="bg-primary container-fluid py-1">
+          <div class="container text-white d-flex flex-column flex-sm-row justify-content-end">
+            <p>Test</p>
+            <!-- Begin Google Translate Section -->
+            <div class="d-block">
+                <span class="language-selector text-info language-selection-row align-content-end">
+                    <!--- <label for="gt-select-box" class="font-size-s font-serif font-weight-medium margin-right-1 margin-bottom-0">Translate this page</label> --->
+                    <button class="btn text-info gt-button" id="english-selection" onclick="translatePage('en')">English</button> | <button class="btn gt-button text-info " id="spanish-selection" onclick="translatePage('es')" >Espanol</button>
+                    <div id="google_translate_element"></div>
+                </span>
+            </div>
+            <!-- End Google Translate Section -->
+          </div>
+        </div>
+      </div>
     </div>
+
+      <!-- <div class="bg-primary-red container-fluid py-1">
+        <div class="container text-white d-flex flex-column flex-sm-row justify-content-end">
+          <p>Test</p> -->
+          <!-- Begin Google Translate Section -->
+          <!-- <div class="d-none d-lg-block">
+              <span class="language-selector text-info language-selection-row align-content-end">
+                  <button class="btn text-info gt-button" id="english-selection" onclick="translatePage('en')">English</button> | <button class="btn gt-button text-info " id="spanish-selection" onclick="translatePage('es')" >Espanol</button>
+                  <div id="google_translate_element"></div>
+              </span>
+          </div> -->
+          <!-- End Google Translate Section -->
+        <!-- </div>
+      </div> -->
 
 
 
