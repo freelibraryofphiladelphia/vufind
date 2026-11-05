@@ -54,10 +54,16 @@ a.title.getFull {
 
 
 
-.goog-te-banner-frame.skiptranslate {
-    display: none !important;
-    } 
-    
+/* Remove the top offset Google adds to the page */
+body {
+    top: 0 !important;
+}
+
+/* Sometimes Google applies the offset to html as well */
+html {
+    top: 0 !important;
+}
+
 /* Change specific styles below */
 html {
   font-size: 1rem;

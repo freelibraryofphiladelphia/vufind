@@ -11,6 +11,14 @@
 }
 
 /* Google Translate */
+.skiptranslate iframe {
+    display: none !important;
+}
+
+.goog-te-gadget-icon {
+    display: none !important;
+}
+
 
 /* Hide the google logo */
 div#\:0\.targetLanguage,
