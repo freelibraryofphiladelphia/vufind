@@ -1033,12 +1033,12 @@ table.search-history-table {
       gap: 1ch;
     }
 
-    #searchForm-reset {
+    #searchForm-reset button {
       width: 2em;
       height: 2em;
       border: none;
       border-radius: 50%;
-      background-color: $gray-lighter;
+      background-color: $primary-gray-200;
       margin: 0;
       padding: 2px;
       font-size: 1em;

@@ -147,7 +147,7 @@
         <div class="d-flex flex-column flex-sm-row">
             <label for="searchForm_type" class="visually-hidden">Search Type</label>
             <div class="searchTypeFilter margin-left-1" id="searchboxHandlers">
-              <select id="searchForm_type" class="searchForm_type form-select" name="type" data-native-menu="false" aria-label="<?=$this->transEscAttr('Search type')?>">
+              <select id="searchForm_type" class="searchForm_type form-select gap-4 gap-md-0" name="type" data-native-menu="false" aria-label="<?=$this->transEscAttr('Search type')?>">
                 <?php $currentGroup = $insideGroup = false; ?>
                 <?php foreach ($handlers as $handler): ?>
                   <?php
