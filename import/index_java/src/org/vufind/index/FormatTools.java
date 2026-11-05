@@ -57,9 +57,6 @@ public class FormatTools {
                         if (localCallNumberSubfieldA.contains("overdrive")) {
                             result.add("BookOverDrive");
                             break;
-                        } else if (localCallNumberSubfieldA.contains("hoopla")) {
-                            result.add("BookHoopla");
-                            break;
                         } else if (!localCallNumberSubfieldA.isEmpty() && localCallNumberSubfieldA.charAt(0) == 'j') {
                             result.add("BookChildren");
                             break;
@@ -74,6 +71,7 @@ public class FormatTools {
                         }
                     }
                 } else if (leaderBit07 == 'B' || leaderBit07 == 'I' || leaderBit07 == 'S') {
+
                     if (titleSubfieldH != null && titleSubfieldH.contains("[electronic resource]")) {
                         result.add("ElectronicResource");
                         break;
@@ -111,7 +109,7 @@ public class FormatTools {
 
             case 'G': // Projected medium (Video, Film, DVD)
                 if (localCallNumberSubfieldA != null) {
-                    if (localCallNumberSubfieldA.contains("blu")) { 
+                    if (localCallNumberSubfieldA.contains("blu")) {
                         result.add("ProjectedBluRay");
                         break;
                     }
@@ -125,14 +123,6 @@ public class FormatTools {
                     }
                     else if (localCallNumberSubfieldA.contains("videocassette")) {
                         result.add("ProjectedCassette");
-                        break;
-                    }
-                    else if (localCallNumberSubfieldA.contains("kanopy")) {
-                        result.add("ProjectedVideoKanopy");
-                        break;
-                    }
-                    else if (localCallNumberSubfieldA.contains("hoopla")) {
-                        result.add("ProjectedVideoHoopla");
                         break;
                     }
                 } else if (physicalDescriptionSubfieldA != null) {
@@ -181,10 +171,6 @@ public class FormatTools {
                         result.add("NonMusicalOneClick");
                         break;
                     }
-                    else if (localCallNumberSubfieldA.contains("hoopla")) {
-                        result.add("NonMusicalHoopla");
-                        break;
-                    }
                 } else if (physicalDescriptionSubfieldA != null) {
                     if (physicalDescriptionSubfieldA.contains("disc")) { result.add("NonMusicalDisc");
                         break;
@@ -203,7 +189,7 @@ public class FormatTools {
 
             case 'J': // Musical sound recording
                 if (localCallNumberSubfieldA != null) {
-                    if (localCallNumberSubfieldA.contains("overdrive")) { 
+                    if (localCallNumberSubfieldA.contains("overdrive")) {
                         result.add("MusicalOverDrive");
                         break;
                     }
@@ -217,10 +203,6 @@ public class FormatTools {
                     }
                     else if (localCallNumberSubfieldA.contains("cassette")) {
                         result.add("MusicalCassette");
-                        break;
-                    }
-                    else if (localCallNumberSubfieldA.contains("hoopla")) {
-                        result.add("MusicalHoopla");
                         break;
                     }
                 } else if (physicalDescriptionSubfieldA != null) {
