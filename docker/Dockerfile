@@ -75,7 +75,7 @@ ENV VUFIND_HOME=/usr/local/vufind
 ENV VUFIND_LOCAL_DIR=/usr/local/vufind/local
 ENV VUFIND_ENV=production
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 80

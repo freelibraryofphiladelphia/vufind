@@ -7,19 +7,11 @@ echo "========================================================="
 
 LOCAL_DIR=/usr/local/vufind/local
 
-# 1. Local config: VuFind uses local/config/vufind/*.ini in place of the defaults,
-#    so copy the whole files from the Compose config mount the first time.
-#    The volume persists them, so later starts keep the existing copies.
+# 1. Local config comes from the host bind mount at local/config/vufind (read-only),
+#    so nothing is copied here. Only the writable local state is prepared.
 mkdir -p "$LOCAL_DIR/cache/public" "$LOCAL_DIR/config/vufind" "$LOCAL_DIR/logs"
 touch "$LOCAL_DIR/logs/vufind.log"
-chown -R www-data:www-data "$LOCAL_DIR"
-for f in config.ini Symphony.ini; do
-    if [ ! -s "$LOCAL_DIR/config/vufind/$f" ]; then
-        echo "Installing local $f from /run/vufind-config/..."
-        cp "/run/vufind-config/$f" "$LOCAL_DIR/config/vufind/$f"
-        chown www-data:www-data "$LOCAL_DIR/config/vufind/$f"
-    fi
-done
+chown -R www-data:www-data "$LOCAL_DIR/cache" "$LOCAL_DIR/logs"
 
 echo "========================================================="
 echo " VuFind 11 Review Stack is up."
