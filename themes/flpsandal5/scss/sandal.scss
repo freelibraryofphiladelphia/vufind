@@ -120,7 +120,7 @@ header {
     width: 200px;
     height: 100%;
     margin-top: 5px;
-    @include background-image('flp-logo-white.svg');
+    @include background-image('flp-logo-white.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -128,7 +128,7 @@ header {
     &:active,
     &:hover,
     &:focus { color: $brand-light }
-    &.lang-ar { @include background-image('flp-logo-white.svg'); }
+    &.lang-ar { @include background-image('flp-logo-white.png'); }
   }
 }
 
