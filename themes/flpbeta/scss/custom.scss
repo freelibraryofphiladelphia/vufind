@@ -1,0 +1,151 @@
+@use "sass:color";
+@import "variables";
+
+/* Change variables to change colors and values through-out the theme */
+$image-path: "../../flp/images";
+$primary-red-300: #cf102d;
+/* Bootstrap variables as well */
+$primary: #0e7fa7;
+$brand-primary: #0e7fa7;
+$brand-success: #528300;
+$brand-info: #0e7fa7;
+$brand-warning: #d14805;
+$brand-danger: #cf102d;
+$bg-danger: #cf102d;
+$brand-utility: #767676;
+$brand-light: #FFFFFF;
+$brand-dark: #000000;
+$navbar-dark-color: white;
+$grid-gutter-width: 20px;
+// Font Families
+$font-family-sans-serif: Figtree, sans-serif;
+$font-family-serif: Zilla Slab, serif;
+
+a {
+  color: $primary;
+}
+
+a.title.getFull {
+    text-decoration: none !important;
+    color: $primary;
+  }
+
+.bg-primary-red {
+  background-color: $primary-red-300;
+}
+
+.facet,
+.facet-load-indicator,
+.facet-load-failed {
+  border: 0 !important;
+}
+
+@import "partials/_typography"; 
+
+/* You can organize these styles in separate files and @import them */
+@import "bootstrap"; /* Include bootstrap theme's scss base */
+@import "components/sidebar";
+@import "partials/_buttons";
+@import "partials/_header";
+@import "partials/_navs";
+@import "home-page";
+@import "components/search";
+@import "components/advanced-search";
+
+
+
+/* Remove the top offset Google adds to the page */
+body {
+    top: 0 !important;
+}
+
+/* Sometimes Google applies the offset to html as well */
+html {
+    top: 0 !important;
+}
+
+// Remove the google trasnlate loading spinner
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+  display: none !important;
+}
+/* Change specific styles below */
+html {
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+font-family: $font-family-serif;
+color: $text-heading-dark;
+};
+
+// Basic Header Sizes updated because Zilla Slab is quite small
+  h1,
+  .h1 {
+    font-size: $type-scale-4xl;
+  }
+
+  h2,
+  .h2 {
+    font-size: $type-scale-3xl;
+  }
+
+  h3,
+  .h3 {
+    font-size: $type-scale-2xl;
+  }
+
+  h4,
+  .h4 {
+    font-size: $type-scale-lg;
+  }
+    h5,
+  .h5 {
+    font-size: $type-scale-md;
+  }
+body {
+  font-size: 1rem;
+  color: #333;
+  background-color: #5ab48a;
+  font-family: $font-family-sans-serif;
+}
+header {
+  a.main-nav {
+  font-size: 1rem;
+  color: $primary-gray-300 !important;
+  }
+
+
+  .banner {
+    padding: 0;
+  }
+}
+
+
+.container {
+  border-radius: 0;
+}
+
+/* Fix breadcrumbs margins */
+.breadcrumbs {
+  .container {
+    background-color: $breadcrumb-bg;
+  }
+
+  .breadcrumb {
+    margin: 0;
+    padding-inline: 0;
+  }
+}
+
+.searchForm .searchForm-query #searchForm-reset {
+  aspect-ratio: 1;
+  width: 1.7rem;
+  margin-inline-end: 0.125rem;
+  line-height: 1;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.2);
+}
+
+
+.facet-title {
+  font-size: $type-scale-lg !important;
+}

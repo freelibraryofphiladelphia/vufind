@@ -1,0 +1,33 @@
+# Keep generated and host-only state out of the build context
+.git
+.github
+.vagrant
+.crush
+.vscode
+.idea
+downloads
+local
+vendor
+node_modules
+env.bat
+env.sh
+*.zip
+*.tgz
+*.log
+*.log.*
+
+# Solr runtime data and build output (regenerated, not source)
+solr/vendor
+solr/vufind/*/index
+solr/vufind/*/spellchecker
+solr/vufind/*/spellShingle
+solr/vufind/*/tlog
+solr/vufind/*/snapshot_metadata
+solr/vufind/logs
+
+# SolrMarc build output
+import/index_java/bin
+import/solrmarc.log
+import/solrmarc.log.1
+
+docker/*.md
