@@ -1,3 +1,4 @@
+
 # GNU Emacs temporary files
 \#*
 .\#*
@@ -11,11 +12,15 @@
 .rector
 .vagrant
 .vscode/*
+AGENTS.md
+/cache
 /downloads
 /Gruntfile.local.js
 /solr/vendor
+/solr/.disableAutomaticInstall
 /themes/minktest
 /vendor
+/logs
 ChangeLog
 /TAGS
 composer.phar
@@ -31,3 +36,4 @@ local/DirLocations.ini
 local/config/vufind.bak
 local/config/vufind/*
 !local/config/vufind/README.txt
+*.bak.*
