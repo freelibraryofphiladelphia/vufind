@@ -1,0 +1,392 @@
+//********************
+// Buttons
+//********************
+@use "sass:color";
+
+.big-button {
+	@extend .btn;
+	font-weight: 700;
+	border-radius: 3px;
+	padding: 0.75rem 1.5rem;
+
+	i {
+		padding-left: 0.25rem;
+		position: relative;
+		top: 1px;
+	}
+}
+
+.btn {
+
+	white-space: normal;
+
+	&:active,
+	&:active:focus,
+	&:focus {
+		outline: none;
+	}
+
+	.text-muted {
+		color: $brand-light;
+	}
+
+	&-toggle {
+		color: $brand-dark;
+		background-color: transparent;
+		border-color: $primary-gray-200;
+		border-radius: 3px;
+
+		&:hover {
+			color: $brand-dark;
+			background-color: $primary-gray-200;
+		}
+
+		&.active {
+			color: $brand-light;
+			background-color: $primary-gray-300;
+			border-color: $primary-gray-400;
+		}
+	}
+
+	&-link {
+		cursor: pointer;
+	}
+
+	&-square {
+		border-radius: 0;
+	}
+
+	&-magenta {
+		@include button-variant($brand-light, $secondary-magenta, $secondary-magenta);
+	}
+
+	&-raspberry {
+		@include button-variant($brand-light, $secondary-raspberry, $secondary-raspberry);
+	}
+
+	&-white {
+		@include button-variant($text-body-dark, $brand-light, $primary-gray-400);
+	}
+
+	&-gray {
+		@include button-variant($brand-light, $gray, $gray);
+	}
+
+	&-icon {
+		@extend .btn;
+
+		font-size: 1.25rem;
+		font-weight: 700;
+		position: relative;
+		text-align: left;
+		border-radius: 0;
+		padding: 1.375rem 1.375rem 1.375rem 5.5rem;
+
+		&::before {
+			font-family: "FontAwesome";
+			font-size: 2.75rem;
+			line-height: 1;
+			position: absolute;
+			left: 1.375rem;
+			top: calc(50% - 1.375rem);
+		}
+
+		&-heart {
+			@extend .btn-default;
+
+			font-size: 0.875rem;
+			text-transform: uppercase;
+			padding: 1rem 1rem 1rem 3.5rem;
+
+			&::before {
+				top: 1.075rem;
+				left: 1.25rem;
+				font-size: 1rem;
+				color: $brand-danger;
+				content: "\f004";
+			}
+		}
+
+		&-phone {
+			@extend .text-info;
+
+			border: 1px solid #cccccc;
+
+			&::before {
+				content: "\f098";
+			}
+		}
+	}
+
+	&-loading {
+
+		position: relative;
+		padding-left: 2.5rem;
+
+		&::before {
+			font-family: "FontAwesome";
+			font-size: 1rem;
+			position: absolute;
+			left: 0.875rem;
+			top: calc(50% - 0.75rem);
+			content: "\f110";
+			animation: fa-spin 2s infinite linear;
+		}
+	}
+
+	// view all buttons
+	@mixin view-all($color-class) {
+		@extend .btn;
+		background-color: $brand-light;
+		color: $gray;
+		font-weight: 700;
+		border: 1px solid $gray;
+		border-radius: 360px;
+		padding: 0.6rem 1.25rem;
+
+		&:active,
+		&:focus,
+		&:hover {
+			text-decoration: underline;
+			color: $color-class;
+			border-color: $color-class;
+		}
+
+		&::after {
+			display: inline-block;
+			font-family: "FontAwesome";
+			content: "\f054";
+			font-size: 0.85rem;
+			font-weight: 400;
+			margin-left: 0.625rem;
+		}
+	}
+
+	&-view-all {
+
+		&-danger {
+			@include view-all($brand-danger);
+		}
+
+		&-info {
+			@include view-all($brand-info);
+		}
+	}
+
+	&-info {
+		background-color: $primary;
+	}
+}
+
+//********************
+// Links
+//********************
+
+a {
+
+	&.text-underline {
+		text-decoration: underline;
+	}
+
+	&.no-hover {
+
+		&:active,
+		&:focus,
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	&:not([href]) {
+		@extend .no-hover;
+		color: $text-body-dark;
+	}
+
+	&[rel="external"],
+	&[href$=".pdf"],
+	&[href$=".xls"],
+	&[href$=".xlsx"],
+	&[href$=".doc"],
+	&[href$=".docx"],
+	&[href$=".ppt"],
+	&[href$=".pptx"],
+	&[href$=".pps"],
+	&[href$=".m4a"] {
+
+		position: relative;
+
+		&:after {
+			@extend .fa;
+			font-size: 0.875em;
+			display: inline-block;
+			margin-left: 0.3125em;
+		}
+
+    &.no-icon {
+      &:after {
+        content: "" !important;
+      }
+    }
+	}
+
+	// add external arrow icon to external links
+	&[rel="external"]:after {
+		content: "\f08e";
+	}
+
+	// add PDF icon to PDF links
+	&[href$=".pdf"]:after {
+		content: "\f1c1";
+	}
+
+	&[href$=".xls"]:after,
+	&[href$=".xlsx"]:after {
+		content: "\f1c3";
+	}
+
+	&[href$=".doc"]:after,
+	&[href$=".docx"]:after {
+		content: "\f1c2";
+	}
+
+	&[href$=".ppt"]:after,
+	&[href$=".pptx"]:after,
+	&[href$=".pps"]:after {
+		content: "\f1c4";
+	}
+
+	&[href$=".m4a"]:after {
+		content: "\f1c7";
+	}
+
+	@mixin anchor-text-hover($color-class) {
+
+		&:active,
+		&:focus,
+		&:hover {
+        color: color.adjust($color-class, $lightness: -10%) !important;		
+}
+	}
+
+	&.text {
+
+		&-info {
+			@include anchor-text-hover($brand-info);
+		}
+
+		&-danger {
+			@include anchor-text-hover($brand-danger);
+		}
+		
+
+		&-gray {
+			@include anchor-text-hover($gray);
+		}
+
+		&-body-dark {
+
+			&:active,
+			&:focus,
+			&:hover {
+				color: $brand-dark !important;
+			}
+		}
+	}
+}
+
+//********************
+// Segmented Control
+//********************
+
+.segmented-control {
+  position: relative;
+  display: inline-flex;
+//   gap: 3px;
+  outline: 6px solid $primary-gray-100;
+  border: 2px solid $primary-gray-100;
+  border-radius: 20px;
+  background: $primary-gray-100;
+  height: 44px;
+
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+	width: 50px;
+    margin-left: 10px;
+
+    &:checked + label {
+	background-color: #ffffff;
+    color: $info-300;
+    font-weight: 700;
+	width: fit-content;
+    }
+
+    &:focus-visible + label {
+    border: 2px solid $info-300;
+	// top: 3px;
+	// left: 3px;
+    }
+
+    &:active + label {
+      outline: 2px solid $primary-gray-200;
+    }
+
+    &:hover + label {
+      font-weight: 700;
+    }
+  }
+
+  label {
+    position: relative;
+    z-index: 2;
+	width: 85px;
+  	margin-bottom: 0;
+    flex: 1;
+    padding: 5px 10px;
+	height: 44px;
+	font-weight: 500;
+    text-align: center;
+    border-radius: 20px;
+	width: fit-content;
+    cursor: pointer;
+    color: $primary-gray-400;
+    transition:
+      color 250ms ease,
+      font-weight 250ms ease;
+	  align-content: center;
+
+
+  }
+
+.segment-indicator {
+    position: absolute;
+    z-index: 1;
+    top: 3px;
+    left: 3px;
+    width: calc(50% - 5px);
+    height: calc(100% - 5px);
+    background-color: #fff;
+    border-radius: 20px;
+	border: 1px solid $primary-gray-100;
+    box-shadow: 0 5px 8px 2px rgba(0, 0, 0, 0.1);
+    transition: transform 250ms cubic-bezier(0.22, 1, 0.95, 1);
+  }
+
+  #searchme-website:checked ~ .segment-indicator {
+    transform: translateX(calc(100% + 5px));
+  }
+
+  #searchme-catalog:checked ~ .segment-indicator {
+    transform: translateX(0);
+  }
+
+  #searchme-website-m:checked ~ .segment-indicator {
+    transform: translateX(calc(100% + 5px));
+  }
+
+  #searchme-catalog-m:checked ~ .segment-indicator {
+    transform: translateX(0);
+  }
+}

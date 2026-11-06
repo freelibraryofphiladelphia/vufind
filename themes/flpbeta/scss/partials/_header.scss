@@ -1,0 +1,368 @@
+.logo {
+  display: inline-block;
+  max-width: 500px;
+  // margin: 5px 0;
+
+  &:focus {
+    outline: 2px solid $brand-danger;
+  }
+
+  // &:hover {} 
+}
+
+// Account and login buttons
+
+#account-home-nav {
+
+}
+/* Google Translate */
+.skiptranslate iframe {
+    display: none !important;
+}
+
+.goog-te-gadget-icon {
+    display: none !important;
+}
+
+
+/* Hide the google logo */
+div#\:0\.targetLanguage,
+a.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none;
+}
+
+.goog-logo-link {
+  display: none !important;
+}
+
+.skiptranslate:not(.goog-te-gadget) {
+  color: #eeeeee;
+}
+
+.goog-te-banner-frame.skiptranslate,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+  visibility: hidden !important;
+}
+
+/* English and Spanish Buttons */
+.gt-button {
+  background-color: $primary;
+}
+
+.gt-button:hover {
+  text-decoration: underline;
+  color: #0e7fa7;
+}
+
+.gt-button:active {
+  font-weight: bold;
+}
+
+.gt-button:focus {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.gt-bg {
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  height: 38px;
+  margin: none;
+  color: #333333 !important
+}
+
+/* Google Translate Dropdown Area*/
+.goog-te-gadget {
+  height: 100%;
+  width: 65px;
+  color: transparent !important;
+}
+
+select.goog-te-combo {
+  width: 100% !important;
+  color: #333333 !important;
+  font-family: Open Sans;
+  font-size: 16px;
+}
+
+.goog-te-combo {
+  height: 100% !important;
+  width: 200px;
+  appearance: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url(#{$image-path}/translate-button-white.svg) no-repeat center;
+  background-size: 100%;
+  text-indent: -9999px;
+  height: 55px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  margin: 0px !important;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.goog-te-combo:hover {
+  border-radius: 0px;
+  border: 2px solid #ffffff;
+}
+
+.nav-item {
+  padding: 0px 8px;
+  height: 100%;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  font-family: "Figtree", sans-serif !important;
+  font-weight: 500;
+}
+
+.nav-item:not(:last-child)::after {
+  content: "|";
+  margin-left: 1rem;
+  color: $primary-gray-100;
+}
+
+.login-nav-item {
+  height: 100%;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  font-family: "Figtree", sans-serif !important;
+  font-weight: 500;
+      text-decoration: none;
+    height: 44px;
+    align-content: center;
+}
+
+
+
+.get-library-card {
+  font-weight: 600;
+  color: $brand-danger !important;
+  text-decoration: none !important;
+}
+
+.nav-item {
+
+  li a {
+    text-decoration: none;
+    height: 44px;
+    align-content: center;
+  }
+
+  a {
+    text-decoration: none;
+    position: relative;
+  }
+
+  a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 44px;
+    height: 3px;
+    background-color: $primary-red-400;
+    // color: $primary-gray-400;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  a:hover::after {
+    width: 100%;
+    // color: $primary-red-400;
+    // animation: heartbeat116 1.5s ease-in-out 0.3s;
+  }
+
+  a:hover {
+    color: $primary-red-400;
+    font-weight: 700;
+  }
+
+  li a &:hover {
+    font-weight: 600;
+    color: $primary-red-400;
+  }
+
+  a:focus {
+    background-color: #fafafa;
+    color: $primary-red-400;
+    font-weight: 700;
+    border: 0px;
+    outline: none;
+
+}
+
+  a:focus::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 44px;
+    height: 3px;
+    background-color: $primary-red-400;
+    // color: $primary-gray-400;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  a:focus::after {
+    width: 100%;
+    color: $primary-red-400;
+    // animation: heartbeat116 1.5s ease-in-out 0.3s;
+  }
+}
+
+.desktop-active-nav {
+  font-weight: 700;
+  color: $primary-red-400 !important;
+
+  }
+
+
+  .desktop-active-nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 44px;
+    height: 3px;
+    background-color: $primary-red-400;
+    // color: $primary-gray-400;
+    width: 100% !important;
+    transition: width 0.3s ease;
+  }
+
+
+
+.desktop-nav-style {
+
+  @extend .list-inline;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 0;
+  height: auto;
+
+  ul {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.skiptranslate .goog-te-gadget {
+  display: inline;
+  color: white !important;
+  background-color: #767676 !important;
+}
+
+#google_translate_element {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+#\:0\.targetLanguage {
+  display: inline-block !important;
+  height: 100%;
+}
+
+/* End Google Translate Section */
+
+.google-translate-section {
+  display: flex;
+  flex-direction: row;
+  // justify-content: flex-end;
+  align-content: center;
+  background-color: #fefefe;
+  padding-left: 0px;
+}
+
+.google-translate-bg {
+  background-color: #fefefe;
+  border-top: solid 1px #e6e6e6;
+  // box-shadow: 0 4px 12px 1px rgba(0, 0, 0, 0.20);
+}
+
+.language-selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 44px;
+  overflow: hidden;
+  width: 250px;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .logo {
+    max-width: 55px;
+    margin: 5px 3px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+
+
+  .header .account-links {
+    margin: 20px 0 5px;
+
+    li {
+      padding: 0;
+    }
+  }
+
+}
+
+/* navigation with google translate tablet treatment */
+.gt-nav {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+
+
+@media screen and (max-width: 550px) {
+
+.sign-in-area {
+  width: 200px;
+}
+
+  #google_translate_element {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  select.goog-te-combo {
+    width: 100% !important;
+  }
+
+  .goog-te-combo {
+    height: 100% !important;
+    appearance: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(#{$image-path}/translate-button-white.svg) no-repeat center;
+    background-size: 100%;
+    /* text-indent: -9999px; */
+    height: 35px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    margin: 0px !important;
+  }
+
+}
+
+
+@media screen and (max-width: 996px) {
+
+.sign-in-area {
+  width: 200px;
+}
+
+}
