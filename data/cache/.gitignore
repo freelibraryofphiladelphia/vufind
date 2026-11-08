@@ -1,13 +1,2 @@
-# Ignore everything
 *
-
-# Allow git to see directories
-!*/
-
-# Track the FLP theme
-!themes/
-!themes/flp/
-!themes/flp/**
-
-# Track gitignore itself
 !.gitignore
