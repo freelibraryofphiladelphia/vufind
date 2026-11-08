@@ -18,6 +18,7 @@ AGENTS.md
 /Gruntfile.local.js
 /solr/vendor
 /solr/.disableAutomaticInstall
+/themes/flp
 /themes/minktest
 /vendor
 /logs
