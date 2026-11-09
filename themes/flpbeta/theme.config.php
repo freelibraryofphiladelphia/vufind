@@ -1,10 +1,6 @@
 <?php
 return [
     'extends' => 'bootstrap5',
-
-    'css' => [
-        'custom.css',
-    ],
     'sass' => [
         'custom.scss',
         'footer.scss',
@@ -33,7 +29,6 @@ return [
          * Strings are supported for legacy backwards compatibility reasons. example:
          * - 'example.js' => same as ['file' => 'example.js']
          */
-        ['file' => 'customSearch.js', 'priority' => 100],
     ],
     /**
      * The following is all custom attributes for this theme

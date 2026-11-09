@@ -2,7 +2,7 @@
 @import "variables";
 
 /* Change variables to change colors and values through-out the theme */
-$image-path: "../../flp/images";
+$image-path: "../../flpbeta/images";
 $primary-red-300: #cf102d;
 /* Bootstrap variables as well */
 $primary: #0e7fa7;
@@ -40,7 +40,7 @@ a.title.getFull {
   border: 0 !important;
 }
 
-@import "partials/_typography"; 
+@import "partials/_typography";
 
 /* You can organize these styles in separate files and @import them */
 @import "bootstrap"; /* Include bootstrap theme's scss base */
