@@ -146,6 +146,12 @@ header {
   box-shadow: 0 0 0 1px rgb(0 0 0 / 0.2);
 }
 
+.get-library-card {
+  font-weight: 500;
+  color: $primary-gray-400 !important;
+  text-decoration: none !important;
+}
+
 .face-title {
   font-size: $type-scale-sm !important;
   font-family: $font-family-sans-serif !important;
@@ -153,6 +159,4 @@ header {
 }
 
 
-.get-library-card {
-  color: $primary-gray-400;
-}
+
