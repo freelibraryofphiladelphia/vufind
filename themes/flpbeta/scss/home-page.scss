@@ -10,11 +10,20 @@
   padding: 10rem 2rem;
   color: #fff;
   background-color: $primary;
-  background-image: var(--hero-bg);
+  // background-image: var(--hero-bg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
+  #highlight-link {
+    position: absolute !important;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    text-decoration: none;
+    border-left: 3px solid $primary-red-300;
+    margin-top: 20px;
+}
   a { color: $primary }
 
   .image-credit {
@@ -41,7 +50,7 @@
 @include media-breakpoint-down(sm) {
 .search-hero {
   
-    padding: 2rem 2rem;
+    padding: 2rem 2rem 6rem 2rem;
   
 }
 }
