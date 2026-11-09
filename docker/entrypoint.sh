@@ -2,7 +2,7 @@
 set -e
 
 echo "========================================================="
-echo " Starting VuFind 11 Review Stack..."
+echo " Starting VuFind 11 Stack..."
 echo "========================================================="
 
 LOCAL_DIR=/usr/local/vufind/local
@@ -14,7 +14,7 @@ touch "$LOCAL_DIR/logs/vufind.log"
 chown -R www-data:www-data "$LOCAL_DIR/cache" "$LOCAL_DIR/logs"
 
 echo "========================================================="
-echo " VuFind 11 Review Stack is up."
+echo " VuFind 11 Stack is up."
 echo " "
 echo "   - VuFind Application: http://localhost:8081/"
 echo "   - Database and Solr: as configured in docker/configs/config.ini"

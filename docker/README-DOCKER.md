@@ -1,4 +1,4 @@
-# VuFind 11 Docker Review Stack
+# VuFind 11 Docker Stack
 
 A VuFind 11 web app in a container, built from this repository. The app runs PHP 8.3 with Apache. It uses the team MySQL and Solr servers named in `docker/configs/config.ini`. Nothing is written back into your checkout.
 
@@ -63,7 +63,7 @@ The app is served at the root (`/`), not under `/vufind`.
 
 The stack has only the app container. MySQL and Solr are the team servers configured in `docker/configs/config.ini`, not containers.
 
-The first build takes several minutes (PHP extensions and Composer packages). The log line `VuFind 11 Review Stack is up.` marks the end of startup.
+The first build takes several minutes (PHP extensions and Composer packages). The log line `VuFind 11 Stack is up.` marks the end of startup.
 
 ---
 

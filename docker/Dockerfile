@@ -1,6 +1,6 @@
 FROM php:8.3-apache
 
-WORKDIR /usr/local/vufind
+WORKDIR /var/www/vufind
 
 # Install system dependencies, libraries, netcat, and JRE (for SolrMarc indexing)
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -42,37 +42,37 @@ RUN a2enmod rewrite headers
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Application tree (see .dockerignore for what is excluded)
-COPY . /usr/local/vufind/
+COPY . /var/www/vufind/
 
 # SolrJ for SolrMarc indexing, taken from the Solr image
 
 # PHP dependencies. --no-scripts skips VuFind's phing hook, which tries to download
 # Solr and Swagger into the tree; Solr comes from the Solr image instead.
-RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-interaction --prefer-dist --no-progress --no-scripts --working-dir=/usr/local/vufind
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-interaction --prefer-dist --no-progress --no-scripts --working-dir=/var/www/vufind
 
 # Normalize line endings on shell scripts (checkouts on Windows use CRLF)
-RUN for d in . harvest import util; do sed -i 's/\r$//' /usr/local/vufind/$d/*.sh 2>/dev/null || true; done \
-    && chmod +x /usr/local/vufind/*.sh 2>/dev/null || true
+RUN for d in . harvest import util; do sed -i 's/\r$//' /var/www/vufind/$d/*.sh 2>/dev/null || true; done \
+    && chmod +x /var/www/vufind/*.sh 2>/dev/null || true
 
 # Static asset and cache symlinks, created at build time rather than at startup
-RUN ln -s /usr/local/vufind/themes /usr/local/vufind/public/themes \
-    && ln -s /usr/local/vufind/local/cache/public /usr/local/vufind/public/cache \
-    && mkdir -p /usr/local/vufind/local/cache/public /usr/local/vufind/local/config/vufind \
-    && chown -R www-data:www-data /usr/local/vufind/local
+RUN ln -s /var/www/vufind/themes /var/www/vufind/public/themes \
+    && ln -s /var/www/vufind/local/cache/public /var/www/vufind/public/cache \
+    && mkdir -p /var/www/vufind/local/cache/public /var/www/vufind/local/config/vufind \
+    && chown -R www-data:www-data /var/www/vufind/local
 
 # Apache virtual host: serve public/ at /, keep the internal /vufind rewrites
 COPY config/vufind/httpd-vufind.conf /etc/apache2/conf-available/vufind.conf
-RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /usr/local/vufind/public|' /etc/apache2/sites-available/000-default.conf \
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/vufind/public|' /etc/apache2/sites-available/000-default.conf \
     && sed -i \
         -e 's|^AliasMatch ^/vufind/|AliasMatch ^/|' \
-        -e 's|^Alias /vufind /usr/local/vufind/public|# Alias removed: DocumentRoot serves public/|' \
+        -e 's|^Alias /vufind /var/www/vufind/public|# Alias removed: DocumentRoot serves public/|' \
         -e 's|<Location /vufind>|<Location />|' \
         /etc/apache2/conf-available/vufind.conf \
     && a2enconf vufind
 
 # Environment variables
-ENV VUFIND_HOME=/usr/local/vufind
-ENV VUFIND_LOCAL_DIR=/usr/local/vufind/local
+ENV VUFIND_HOME=/var/www/vufind
+ENV VUFIND_LOCAL_DIR=/var/www/vufind/local
 ENV VUFIND_ENV=production
 
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
