@@ -6,15 +6,18 @@
     <div class="banner pt-3 navbar navbar-expand-md border-bottom-1">
       <a class="d-md-none px-2 navbar-brand" href="<?= $this->url('home') ?>"><img src="<?= $this->imageLink('flp-logo.png'); ?>" width="50px" alt="Free Library of Philadelphia" /></a>
       <!-- mobile buttons -->
-      <div class="d-flex gap-0">
+      <div class="d-flex gap-0 align-items-center">
+        <div class="btn navbar-toggle d-block d-md-none">
+                <?=$this->context($this)->renderInContext('section/HeaderBar/HeaderBar-account-mobile.phtml', ['focusOnLoad' => false])?>
+        </div>
         <a href="wwww.libwww.freelibrary.org/locations" class="btn navbar-toggle d-block d-md-none">
-          <span class="visually-hidden">Toggle Locations</span> <span class="fa fa-map-marker fa-2x" aria-hidden="true"></span>
+          <span class="visually-hidden">Toggle Locations</span> <span class="fa fa-map-marker font-size-2xl" aria-hidden="true"></span>
         </a>
         <a href="<?= $this->url('home') ?>" class="btn navbar-toggle d-md-none <?= $this->layout()->templateName === 'home' ? 'd-none' : 'd-block' ?>">
-          <span class="visually-hidden">Toggle Search</span> <span class="fa fa-search fa-2x" aria-hidden="true"></span>
+          <span class="visually-hidden">Toggle Search</span> <span class="fa fa-search font-size-2xl" aria-hidden="true"></span>
         </a>
         <button type="button" class="btn navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#collapse-flp-menu" aria-label="<?= $this->transEscAttr('mobile_toggle_navigation_text') ?>">
-          <span class="visually-hidden">Toggle Navigation</span> <span class="fa fa-bars fa-2x" aria-hidden="true"></span>
+          <span class="visually-hidden">Toggle Navigation</span> <span class="fa fa-bars font-size-2xl" aria-hidden="true"></span>
         </button>
       </div>
       <!-- main menu also mobile menu -->
@@ -58,76 +61,13 @@
           <!--- Donate, Library card and login button --->
           <div class="flex-column flex-md-row">
             <ul class="list-inline d-flex flex-wrap gap-2">
-            <?= $this->notices()->renderNoticesForPosition('header') ?>
-            <?php if (!isset($this->layout()->renderingError)): ?>
-                <?php foreach ($this->menu ?? [] as $group): ?>
-                    <?php foreach ($group['MenuItems'] as $item): ?>
-                      <?php if (isset($item['template'])): ?>
-                        <?php
-                        // Pass section plugin and section context to template.
-                        $context = [
-                          'sectionPlugin' => $this->{\VuFind\View\Helper\Root\Section::SECTION_PLUGIN_KEY},
-                          ...$this->{\VuFind\View\Helper\Root\Section::SECTION_CONTEXT_KEY},
-                          ...$item,
-                        ];
-                        ?>
-                        <?= $this->render($item['template'], $context) ?>
-                      <?php elseif (isset($item['submenuItems'])): ?>
-                        <?= $this->component('menu-button', [
-                          'toggleLabel' => $item['label'],
-                          'toggleAttrs' => [
-                            'class' => 'nav-link dropdown-toggle',
-                          ],
-                          'wrapperClass' => 'nav-item ' . ($item['name'] ?? ''),
-                          'wrapperTag' => 'li',
-                          'menuItems' => array_map(
-                            function ($submenuItem) {
-                              $url = isset($submenuItem['route'])
-                                ? $this->url($submenuItem['route'], $submenuItem['routeParams'] ?? [])
-                                : $submenuItem['url'];
-                              return [
-                                'label' => $submenuItem['label'],
-                                'url' => $url,
-                                'description' => $submenuItem['description'] ?? false,
-                                'selected' => $this->requestUri === $url,
-                              ];
-                            },
-                            $item['submenuItems'],
-                          ),
-                        ]) ?>
-                      <?php else: ?>
-                        <?php
-                        $attributes = $this->htmlAttributes($item['attributes'] ?? []);
-                        $attributes['href'] = isset($item['route'])
-                          ? $this->url($item['route'], $item['routeParams'] ?? [])
-                          : $item['url'];
-                        $attributes->add('class', 'nav-link');
-                        if (isset($item['icon'])) {
-                          $attributes->add('class', 'icon-link');
-                        }
-                        ?>
-                        <li class="nav-item <?= isset($item['name']) ? $this->escAttr($item['name']) : '' ?>">
-                          <a<?= $attributes ?>>
-                            <?php if ($icon = $item['icon'] ?? false): ?>
-                              <?= $this->icon($icon, 'icon-link__icon') ?>
-                              <span class="icon-link__label">
-                            <?php endif; ?>
-                              <?= $this->transEsc($item['label']) ?>
-                            <?php if ($icon): ?>
-                              </span>
-                            <?php endif; ?>
-                          </a>
-                        </li>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
-                <?php endforeach; ?>
-            <?php endif; ?>
+                    <?=$this->context($this)->renderInContext('section/HeaderBar/HeaderBar-account.phtml', ['focusOnLoad' => false])?>
               <li>
                 <a href="https://www.freelibrary.org/donate/" class="btn btn-danger">
                   Donate <i class="margin-left-05 fa fa-heart" aria-hidden="true"></i>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="">
                 <a href="https://www.libwww.freelibrary.org/card" class="get-library-card">
                   Get a Library Card
                 </a>
