@@ -20,8 +20,8 @@ Vagrant.configure("2") do |config|
     vb.gui = true
 
     # Customize the amount of resources on the VM:
-    vb.cpus = 2
-    vb.memory = "6144"
+    vb.cpus = 4
+    vb.memory = "8192"
 
     # Disable vagrant-vbguest for this VM
     if Vagrant.has_plugin?("vagrant-vbguest")
@@ -50,8 +50,9 @@ Vagrant.configure("2") do |config|
 
     # Install package dependencies.
     export DEBIAN_FRONTEND=noninteractive
-    apt-get update
-    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof dos2unix libapache2-mod-php php-pear php8.3 php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml
+    apt-get update || exit 1
+    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof dos2unix libapache2-mod-php php-pear php php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml || exit 1
+    php -r 'if (!extension_loaded("gd")) { fwrite(STDERR, "PHP GD extension is not enabled for CLI.\n"); exit(1); }' || exit 1
 
     # Install composer.
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
