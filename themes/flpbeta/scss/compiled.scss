@@ -185,7 +185,6 @@ $breadcrumb-separator: ">";
 
 
 // Set up our own margins for headings
-
 // Reset popover-header margins here (N.B. intentionally not using :not() above to avoid specificity issues)
 h3.popover-header {
   margin: 0;

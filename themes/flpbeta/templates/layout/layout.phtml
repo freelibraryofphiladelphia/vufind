@@ -155,7 +155,7 @@
     </header>
     <?=$this->breadcrumbs()->render()?>
     <div role="main" class="main">
-      <div id="content" class="<?= $this->layout()->templateName === 'home' ? 'container-fluid' : 'container' ?>">
+      <div id="content" class="<?= $this->layout()->templateName === 'home' ? '' : 'container' ?>">
         <?php if (!($this->layout()->disableDefaultNotices ?? false)): ?>
           <?=$this->notices()->renderNoticesForPosition('default')?>
         <?php endif; ?>

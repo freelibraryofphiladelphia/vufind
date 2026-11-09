@@ -1,6 +1,7 @@
 .searchHomeContent {
-  margin-left: -$grid-gutter-width;
-  margin-right: -$grid-gutter-width;
+  // margin-left: -$grid-gutter-width;
+  // margin-right: -$grid-gutter-width;
+      max-width: 100%;
 }
 .search-hero {
   @extend .clearfix;
@@ -31,3 +32,16 @@
 
 /* Hide search bar */
 .template-dir-search.template-name-home .search.container { display: none; }
+
+
+
+
+
+
+@include media-breakpoint-down(sm) {
+.search-hero {
+  
+    // padding: 2rem 2rem;
+  
+}
+}
