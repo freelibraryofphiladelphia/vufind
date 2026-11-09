@@ -35,7 +35,8 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 8983, host: 4568, auto_correct: true
   config.vm.network "private_network", ip: "172.30.41.66"
 
-  config.vm.synced_folder ".", "/vagrant", :owner => 'vagrant'
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/var/www/vufind", owner: "vagrant"
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
@@ -50,8 +51,7 @@ Vagrant.configure("2") do |config|
     # Install package dependencies.
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
-    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof dos2unix \
-    libapache2-mod-php php-pear php php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml
+    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof dos2unix libapache2-mod-php php-pear php8.3 php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml
 
     # Install composer.
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -63,9 +63,17 @@ Vagrant.configure("2") do |config|
     # Check out and set up VuFind.
     mkdir -p /vufindlocal/cache/cli /vufindlocal/config/vufind
     chown -R vagrant:vagrant /vufindlocal
-    su - vagrant -c 'cd /vagrant && composer install && php install.php --non-interactive --overridedir=/vufindlocal'
-    ln -s /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf
-    a2enmod rewrite
+    su - vagrant -c 'cd /var/www/vufind && composer install && php install.php --non-interactive --overridedir=/vufindlocal --basepath=/' || exit 1
+    ln -sfn /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf || exit 1
+    printf '%s\n' '<VirtualHost *:80>' \
+      '    DocumentRoot /var/www/vufind/public' \
+      '    ErrorLog ${APACHE_LOG_DIR}/error.log' \
+      '    CustomLog ${APACHE_LOG_DIR}/access.log combined' \
+      '</VirtualHost>' > /etc/apache2/sites-available/vufind.conf || exit 1
+    a2dissite 000-default || exit 1
+    a2ensite vufind || exit 1
+    a2enmod rewrite headers || exit 1
+    apache2ctl configtest || exit 1
 
     # Restart Apache (and MySQL to be sure it's running).
     if [[ -d /run/systemd/system ]]; then
@@ -81,7 +89,7 @@ Vagrant.configure("2") do |config|
     chmod 777 /vufindlocal/cache/cli
 
     # Set up profile for command line.
-    echo export VUFIND_HOME=/vagrant > /etc/profile.d/vufind.sh
+    echo export VUFIND_HOME=/var/www/vufind > /etc/profile.d/vufind.sh
     echo export VUFIND_LOCAL_DIR=/vufindlocal >> /etc/profile.d/vufind.sh
   SHELL
 end
