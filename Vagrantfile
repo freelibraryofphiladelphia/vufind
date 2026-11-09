@@ -50,9 +50,8 @@ Vagrant.configure("2") do |config|
 
     # Install package dependencies.
     export DEBIAN_FRONTEND=noninteractive
-    apt-get update || exit 1
-    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof dos2unix libapache2-mod-php php-pear php php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml || exit 1
-    php -r 'if (!extension_loaded("gd")) { fwrite(STDERR, "PHP GD extension is not enabled for CLI.\n"); exit(1); }' || exit 1
+    apt-get update 
+    apt-get install -y git zip unzip apache2 default-jdk lsof dos2unix libapache2-mod-php php-pear php php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml 
 
     # Install composer.
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -64,25 +63,23 @@ Vagrant.configure("2") do |config|
     # Check out and set up VuFind.
     mkdir -p /vufindlocal/cache/cli /vufindlocal/config/vufind
     chown -R vagrant:vagrant /vufindlocal
-    su - vagrant -c 'cd /var/www/vufind && composer install && php install.php --non-interactive --overridedir=/vufindlocal --basepath=/' || exit 1
-    ln -sfn /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf || exit 1
+    su - vagrant -c 'cd /var/www/vufind && composer install && php install.php --non-interactive --overridedir=/vufindlocal --basepath=/' 
+    ln -sfn /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf 
     printf '%s\n' '<VirtualHost *:80>' \
       '    DocumentRoot /var/www/vufind/public' \
       '    ErrorLog ${APACHE_LOG_DIR}/error.log' \
       '    CustomLog ${APACHE_LOG_DIR}/access.log combined' \
-      '</VirtualHost>' > /etc/apache2/sites-available/vufind.conf || exit 1
-    a2dissite 000-default || exit 1
-    a2ensite vufind || exit 1
-    a2enmod rewrite headers || exit 1
-    apache2ctl configtest || exit 1
+      '</VirtualHost>' > /etc/apache2/sites-available/vufind.conf 
+    a2dissite 000-default 
+    a2ensite vufind 
+    a2enmod rewrite headers
+    apache2ctl configtest 
 
     # Restart Apache (and MySQL to be sure it's running).
     if [[ -d /run/systemd/system ]]; then
       systemctl restart apache2
-      systemctl restart mysql
     else
       service apache2 restart
-      service mysql restart
     fi
 
     # Set up cache and config permissions.
