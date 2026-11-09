@@ -4,7 +4,7 @@
   <header id="header" class="header hidden-print">
 
     <div class="banner pt-3 navbar navbar-expand-md border-bottom-1">
-      <a class="d-md-none px-2 navbar-brand" href="<?= $this->url('home') ?>"><img src="<?= $this->imageLink('flp-logo.png'); ?>" width="50px" alt="Free Library of Philadelphia" /></a>
+      <a class="d-md-none px-2 navbar-brand" href="https://freelibrary.org"><img src="<?= $this->imageLink('flp-logo.png'); ?>" width="50px" alt="Free Library of Philadelphia" /></a>
       <!-- mobile buttons -->
       <div class="d-flex gap-0 align-items-center">
         <div class="btn navbar-toggle d-block d-md-none">
@@ -13,7 +13,7 @@
         <a href="wwww.libwww.freelibrary.org/locations" class="btn navbar-toggle d-block d-md-none">
           <span class="visually-hidden">Toggle Locations</span> <span class="fa fa-map-marker font-size-2xl" aria-hidden="true"></span>
         </a>
-        <a href="https://freelibrary.org">" class="btn navbar-toggle d-md-none <?= $this->layout()->templateName === 'home' ? 'd-none' : 'd-block' ?>">
+        <a href="<?= $this->url('home') ?>"  class="btn navbar-toggle d-md-none <?= $this->layout()->templateName === 'home' ? 'd-none' : 'd-block' ?>">
           <span class="visually-hidden">Toggle Search</span> <span class="fa fa-search font-size-2xl" aria-hidden="true"></span>
         </a>
         <button type="button" class="btn navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#collapse-flp-menu" aria-label="<?= $this->transEscAttr('mobile_toggle_navigation_text') ?>">
