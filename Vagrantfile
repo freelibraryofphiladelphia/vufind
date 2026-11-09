@@ -43,11 +43,6 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
 
-    # Configure mysql-server package credential values.
-    # NOTE: Please don't use these default values in any situation where security is a concern.
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-
     # Install package dependencies.
     export DEBIAN_FRONTEND=noninteractive
     apt-get update 
@@ -75,7 +70,7 @@ Vagrant.configure("2") do |config|
     a2enmod rewrite headers
     apache2ctl configtest 
 
-    # Restart Apache (and MySQL to be sure it's running).
+    # Restart Apache
     if [[ -d /run/systemd/system ]]; then
       systemctl restart apache2
     else
