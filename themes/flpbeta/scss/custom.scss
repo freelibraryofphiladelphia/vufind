@@ -139,10 +139,10 @@ header {
 }
 
 .searchForm .searchForm-query #searchForm-reset {
-  aspect-ratio: 1;
-  width: 1.7rem;
-  margin-inline-end: 0.125rem;
+  // aspect-ratio: 1;
+  // margin-inline-end: 0.125rem;
   line-height: 1;
+margin-bottom: 10px !important;
 }
 
 #searchForm_lookfor {
@@ -153,7 +153,6 @@ margin-bottom: 10px !important;
 #searchForm_type {
 margin-bottom: 10px !important;
 }
-
 
 .get-library-card {
   font-weight: 500;
