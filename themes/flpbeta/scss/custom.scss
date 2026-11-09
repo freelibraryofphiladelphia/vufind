@@ -107,6 +107,9 @@ body {
   color: #333;
   background-color: #5ab48a;
   font-family: $font-family-sans-serif;
+  a #content {
+    color: $primary !important;
+  }
 }
 header {
   a.main-nav {

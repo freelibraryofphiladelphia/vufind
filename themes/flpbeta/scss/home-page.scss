@@ -10,7 +10,7 @@
   padding: 10rem 2rem;
   color: #fff;
   background-color: $primary;
-  background-image: url('#{$image-path}/yosemite.jpg');
+  background-image: var(--hero-bg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

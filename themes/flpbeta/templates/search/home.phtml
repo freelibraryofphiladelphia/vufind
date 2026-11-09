@@ -24,3 +24,23 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  const images = [
+    "<?= $this->imageLink('hiphopcard.jpg'); ?>",
+    "<?= $this->imageLink('music.jpg'); ?>",
+    "<?= $this->imageLink('kid-reading.jpg'); ?>",
+    "<?= $this->imageLink('clc.jpg'); ?>",
+    "<?= $this->imageLink('childrens.jpg'); ?>",
+    "<?= $this->imageLink('bg-library.jpg'); ?>"
+  ];
+
+const random = images[Math.floor(Math.random() * images.length)];
+
+document.documentElement.style.setProperty(
+    '--hero-bg',
+    `url('${random}')`
+);
+
+</script>

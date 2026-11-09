@@ -400,6 +400,8 @@ header .container.navbar {
   .title {
     font-weight: bold;
     font-size: $type-scale-xl;
+    color: $primary;
+    text-decoration: none !important;
   }
 
   .authors{
