@@ -1,0 +1,75 @@
+<?php
+  // Set page title.
+  $this->headTitle($this->translate('Search Home'));
+
+  // Disable top search box and notices -- this page has a special layout.
+  $this->layout()->searchbox = false;
+  $this->layout()->disableDefaultNotices = true;
+
+  // Set default value if necessary:
+  if (!isset($this->searchClassId)) {
+    $config = $this->config()->get('config');
+    $this->searchClassId = $config->Site->defaultSearchBackend ?? 'Solr';
+  }
+
+  $this->breadcrumbs()->disable();
+
+  // set randomizer for highlighted background images
+
+$backgrounds = [
+    [
+        'image' => $this->imageLink('childrens.jpg'),
+        'caption' => 'Parkway Central Children Department',
+        'url' => 'https://libwww.freelibrary.org/locations/departments/childrens-department'
+    ],
+    [
+        'image' => $this->imageLink('kid-reading.jpg'),
+        'caption' => 'Cecil B.Moore Library Reading Nook',
+        'url' => 'https://libwww.freelibrary.org/locations/cecil-b-moore-library'
+    ],
+    [
+        'image' => $this->imageLink('clc.jpg'),
+        'caption' => 'Culinary Literacy Program',
+        'url' => 'https://libwww.freelibrary.org/programs/culinary/'
+    ],
+    [
+        'image' => $this->imageLink('teen.jpg'),
+        'caption' => 'Field Teen Center',
+        'url' => 'https://libwww.freelibrary.org/locations/departments/field-teen-center'
+    ],
+    [
+        'image' => $this->imageLink('music.jpg'),
+        'caption' => 'Fleisher Collection',
+        'url' => 'https://libwww.freelibrary.org/locations/departments/fleisher-collection'
+    ],
+    [
+        'image' => $this->imageLink('rbd.jpg'),
+        'caption' => 'Rare Books Department',
+        'url' => 'https://libwww.freelibrary.org/programs/rarebooks/'
+    ],
+    [
+        'image' => $this->imageLink('storytime.jpg'),
+        'caption' => 'Storytime at a Library Branch',
+        'url' => 'https://libwww.freelibrary.org/calendar/?q=&date_range=&type=&series=storytimes&location_code=&age=&having=all'
+    ]
+];
+
+$bg = $backgrounds[array_rand($backgrounds)];
+
+?>
+
+<div class="searchHomeContent">
+
+  <div class="search-hero d-flex align-items-center flex-column" style="background-image:url('<?= $this->imageLink($bg['image']); ?>');" role="search">
+    <div class="d-flex flex-column align-content-center bg-white text-primary text-info rounded-5 py-3 py-md-4 px-3 px-md-5">
+      <h1 class="text-center text-info">Search</h1>
+      <?=$this->context($this)->renderInContext('search/searchbox.phtml', ['focusOnLoad' => true])?>
+    </div>
+          <span class="hero-caption">
+          
+        <a id="highlight-link" href="<?= $this->escapeHtmlAttr($bg['url']); ?>" class="bg-white text-danger" target="_blank">
+            <?= $this->escapeHtml($bg['caption']); ?> <span class="fa fa-external-link font-size-sm" aria-label="opens in a new tab"></span> 
+        </a>
+      </span>
+  </div>
+</div>

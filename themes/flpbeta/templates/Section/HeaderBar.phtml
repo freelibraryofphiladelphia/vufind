@@ -1,0 +1,178 @@
+<!-- begin FLP -->
+<div id="wrap">
+
+  <header id="header" class="header hidden-print">
+
+    <div class="banner pt-3 navbar navbar-expand-md border-bottom-1">
+      <a class="d-md-none px-2 navbar-brand" href="https://freelibrary.org"><img src="<?= $this->imageLink('flp-logo.png'); ?>" width="50px" alt="Free Library of Philadelphia" /></a>
+      <!-- mobile buttons -->
+      <div class="d-flex gap-0 align-items-center">
+        <div class="btn navbar-toggle d-block d-md-none">
+                <?=$this->context($this)->renderInContext('Section/HeaderBar/HeaderBar-account-mobile.phtml', ['focusOnLoad' => false])?>
+        </div>
+        <a href="wwww.libwww.freelibrary.org/locations" class="btn navbar-toggle d-block d-md-none">
+          <span class="visually-hidden">Toggle Locations</span> <span class="fa fa-map-marker font-size-2xl" aria-hidden="true"></span>
+        </a>
+        <a href="<?= $this->url('home') ?>" class="btn navbar-toggle d-md-none <?= $this->layout()->templateName === 'home' ? 'd-none' : 'd-block' ?>">
+          <span class="visually-hidden">Toggle Search</span> <span class="fa fa-search font-size-2xl" aria-hidden="true"></span>
+        </a>
+        <button type="button" class="btn navbar-toggle d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#collapse-flp-menu" aria-label="<?= $this->transEscAttr('mobile_toggle_navigation_text') ?>">
+          <span class="visually-hidden">Toggle Navigation</span> <span class="fa fa-bars font-size-2xl" aria-hidden="true"></span>
+        </button>
+      </div>
+      <!-- main menu also mobile menu -->
+      <div id="collapse-flp-menu" class="collapse navbar-collapse d-flex flex-column">
+        <!-- first desktop menu row -->
+        <div class="container d-flex  flex-column flex-md-row pt-3 justify-content-between">
+          <!-- main menu items -->
+          <div class="d-flex w-100">
+            <nav class="d-flex align-items-baseline justify-content-between w-100">
+              <a class="d-none d-md-block navbar-brand" href="https://freelibrary.org"><img src="<?= $this->imageLink('flp-logo.png'); ?>" width="50px" alt="Free Library of Philadelphia" /></a>
+              <ul class="w-100 main-nav d-flex list-inline flex-column flex-md-row align-content-flex-start">
+                <li class="nav-item">
+                  <a href="https://libwww.freelibrary.org/locations/">
+                    Locations
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://libwww.freelibrary.org/calendar/"> Events
+                  </a>
+                </li>
+                <span class="vertical-border"></span>
+                <li class="nav-item">
+                  <a href="https://libwww.freelibrary.org/programs/"> Programs and Services
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://libwww.freelibrary.org/about/"> About
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://libwww.freelibrary.org/blog/"> Blog
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://libwww.freelibrary.org/support/"> Support
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!--- Donate, Library card and login button --->
+          <div class="flex-column flex-md-row">
+            <ul class="list-inline d-flex flex-wrap gap-2">
+                    <?=$this->context($this)->renderInContext('Section/HeaderBar/HeaderBar-account.phtml', ['focusOnLoad' => false])?>
+              <li>
+                <a href="https://www.freelibrary.org/donate/" class="btn btn-danger">
+                  Donate <i class="margin-left-05 fa fa-heart" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="">
+                <a href="https://www.libwww.freelibrary.org/card" class="get-library-card">
+                  Get a Library Card
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+        <!-- google translate and extra buttons -->
+        <div class="bg-primary container-fluid py-1">
+          <div class="container text-white d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="search-highlight">
+              <a href="/" class="btn text-white font-weight-bold search-link active gt-button">Catalog</a>
+              <a href="https://libwww.freelibrary.org/databases/" class="btn text-white gt-button">Databases</a>
+              <a href="https://libwww.freelibrary.org/digital/" class="btn text-white gt-button">Digital Collections</a>
+            </div>
+
+            <!-- Begin Google Translate Section -->
+            <div class="d-block">
+              <span class="language-selector text-white language-selection-row align-content-end">
+                <!--- <label for="gt-select-box" class="font-size-s font-serif font-weight-medium margin-right-1 margin-bottom-0">Translate this page</label> --->
+                <button class="btn text-white gt-button" id="english-selection" onclick="translatePage('en')">English</button> | <button class="btn gt-button text-white" id="spanish-selection" onclick="translatePage('es')">Espanol</button>
+                <div id="google_translate_element"></div>
+              </span>
+            </div>
+            <!-- End Google Translate Section -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+</div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      // pageLanguage: 'en',
+      includedLanguages: 'ar,en,es,fr,hi,ht,it,km,ko,pl,pt,ru,sq,vi,zh-CN',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+      autoDisplay: false,
+      gaTrack: true,
+      gaId: 'UA-9995830-1'
+    }, 'google_translate_element');
+  }
+
+  function translatePage(lang) {
+    var selectElement = document.querySelector('.goog-te-combo');
+    selectElement.value = lang;
+    console.log(lang)
+    console.log(selectElement.value)
+    if (selectElement) {
+      selectElement.dispatchEvent(new Event('change'));
+    }
+  }
+
+  // Apply an ID to the Google Translate Select HTML tag so that a label can be added
+  function addIdToGoogleTranslate() {
+    const combo = document.querySelector(".goog-te-combo");
+    if (combo) {
+      combo.id = "gt-select-box";
+      return;
+    }
+
+    setTimeout(addIdToGoogleTranslate, 200);
+  }
+
+  addIdToGoogleTranslate();
+
+  // Remove the Google Translate Vote form to avoid WAVE errors
+  function removeGoogleVotingPane() {
+    const pane = document.getElementById("goog-gt-votingHiddenPane");
+    if (pane) {
+      pane.remove();
+      return;
+    }
+    setTimeout(removeGoogleVotingPane, 200);
+  }
+
+  removeGoogleVotingPane();
+
+  // remove google top header
+  function removeGoogleTopHeader() {
+    const iframe = document.querySelector(".VIpgJd-ZVi9od-ORHb-OEVmcd skiptranslate");
+    if (iframe) {
+      iframe.remove();
+      return;
+    }
+    setTimeout(removeGoogleVotingPane, 200);
+  }
+
+  removeGoogleTopHeader();
+
+  $(function() {
+    $('#header .collapse').on('show.bs.collapse', function(e) {
+      var actives = $('#header').find('.in, .collapsing');
+      actives.each(function(index, element) {
+        $(element).collapse('hide');
+      });
+    });
+
+    $('#google_translate_element').on('click', function(e) {
+      e.preventDefault();
+    });
+  });
+
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
