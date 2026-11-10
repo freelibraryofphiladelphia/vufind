@@ -64,6 +64,7 @@ RUN ln -s /var/www/vufind/themes /var/www/vufind/public/themes \
 COPY config/vufind/httpd-vufind.conf /etc/apache2/conf-available/vufind.conf
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/vufind/public|' /etc/apache2/sites-available/000-default.conf \
     && sed -i \
+        -e 's|/usr/local/vufind|/var/www/vufind|g' \
         -e 's|^AliasMatch ^/vufind/|AliasMatch ^/|' \
         -e 's|^Alias /vufind /var/www/vufind/public|# Alias removed: DocumentRoot serves public/|' \
         -e 's|<Location /vufind>|<Location />|' \
