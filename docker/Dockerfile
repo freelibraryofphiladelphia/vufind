@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.5-apache
 
 WORKDIR /var/www/vufind
 
@@ -31,8 +31,6 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         zip \
         soap \
         ldap \
-        opcache \
-        xml \
         xsl
 
 # Enable Apache modules

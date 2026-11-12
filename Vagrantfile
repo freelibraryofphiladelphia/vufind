@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://app.vagrantup.com/boxes/search
-  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.box = "bento/ubuntu-26.04"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
