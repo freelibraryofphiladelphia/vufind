@@ -1,7 +1,7 @@
 <?php
   $this->metadata()->generateMetatags($this->driver);
 ?>
-<div class="media"<?=$this->schemaOrg()->getAttributes(['vocab' => 'http://schema.org/', 'resource' => '#record', 'typeof' => $this->schemaOrg()->getRecordTypes($this->driver)])?>>
+<div class="media flex-column flex-md-row"<?=$this->schemaOrg()->getAttributes(['vocab' => 'http://schema.org/', 'resource' => '#record', 'typeof' => $this->schemaOrg()->getRecordTypes($this->driver)])?>>
   <?php
     $recordHelper = $this->record($this->driver);
     $QRCode = $recordHelper->getQRCode('core');
@@ -20,12 +20,12 @@
         <?=$cover?>
       <?php endif; ?>
 
-      <!-- Display hold button on result detail page -->
+      <!-- Display hold button on record detail page -->
       <?php $holdingTitleHold = $this->driver->tryMethod('getRealTimeTitleHold'); ?>
       <?php if (!empty($holdingTitleHold)): ?>
-        <a class="btn btn-info text-center  mt-2 placehold icon-link hidden-print" data-lightbox title="<?=$this->transEscAttr('request_place_text')?>" href="<?=$this->escapeHtmlAttr($this->recordLinker()->getRequestUrl($holdingTitleHold))?>">
+        <a class="btn btn-info text-center  mt-2 placehold hidden-print" data-lightbox title="<?=$this->transEscAttr('request_place_text')?>" href="<?=$this->escapeHtmlAttr($this->recordLinker()->getRequestUrl($holdingTitleHold))?>">
           <?=$this->icon('place-hold', 'icon-link__icon') ?>
-          <span class="icon-link__label text-decoration-none"><?=$this->transEsc('title_hold_place')?></span>
+          <span><?=$this->transEsc('title_hold_place')?></span>
         </a>
       <?php endif; ?>
 

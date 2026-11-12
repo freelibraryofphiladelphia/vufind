@@ -204,9 +204,9 @@
       <!-- Add hold button below save -->
       <?php $holdingTitleHold = $this->driver->tryMethod('getRealTimeTitleHold'); ?>
       <?php if (!empty($holdingTitleHold)): ?>
-        <a class="btn btn-info text-center  my-2 placehold icon-link hidden-print" data-lightbox title="<?=$this->transEscAttr('request_place_text')?>" href="<?=$this->escapeHtmlAttr($this->recordLinker()->getRequestUrl($holdingTitleHold))?>">
+        <a class="btn btn-info text-center my-2 placehold icon-link hidden-print" data-lightbox title="<?=$this->transEscAttr('request_place_text')?>" href="<?=$this->escapeHtmlAttr($this->recordLinker()->getRequestUrl($holdingTitleHold))?>">
           <?=$this->icon('place-hold', 'icon-link__icon') ?>
-          <span class="icon-link__label text-decoration-none"><?=$this->transEsc('title_hold_place')?></span>
+          <span><?=$this->transEsc('title_hold_place')?></span>
         </a>
       <?php endif; ?>
 
