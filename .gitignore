@@ -11,11 +11,10 @@
 .rector
 .vagrant
 .vscode/*
+/docker/configs/*
 /downloads
 /Gruntfile.local.js
 /solr/vendor
-/themes/flp
-/themes/minktest
 /vendor
 /TAGS
 AGENTS.md
