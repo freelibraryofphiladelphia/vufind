@@ -111,6 +111,11 @@ body {
     color: $primary !important;
   }
 }
+
+// adjust height of content to fit any screen and account for the height of the footer and header combined
+#content {
+  min-height: calc(100vh - 350px);
+}
 header {
   a.main-nav {
   font-size: 1rem;
