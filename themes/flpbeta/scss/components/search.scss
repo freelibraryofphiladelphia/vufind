@@ -469,6 +469,7 @@ header .container.navbar {
       max-width: 100%;
       text-align: center;
       white-space: nowrap;
+      text-decoration: none;
     }
     .rating-summary a {
       white-space: normal;
@@ -1068,6 +1069,27 @@ table.search-history-table {
   .show-keyboard, .simple-keyboard {
     display: none;
   }
+
+.record,
+.result {
+  .media {
+    display: flex;
+    flex: 1;
+    margin: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    overflow: visible;
+  }
+  .media-left,
+  .media-right {
+    flex: none;
+    max-width: 100%;
+    text-align: center;
+
+}
+
+}
+
 }
 
 /* Break early to prevent table overflow */
