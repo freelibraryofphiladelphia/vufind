@@ -1,0 +1,40 @@
+<?php
+  $this->headTitle($this->translate('Page not found.'));
+?>
+<style>
+  body:has(.flp-404) nav.breadcrumbs {
+    display: none !important;
+  }
+</style>
+
+<div class="error-page py-5">
+  <div class="row justify-content-center text-center">
+
+  
+    <div class="flp-404">
+        <img
+            src="<?=$this->imageLink('404-error.png')?>"
+        class="img-responsive"
+    
+    </div>
+
+      
+    
+        <h1 class="font-weight-bold font-serif font-size-2xl">
+          <?=$this->transEsc('Sorry, this page isn’t available.')?>
+        </h1>
+
+        <p class="font-weight-regular font-serif font-size-lg">
+          <?=$this->transEsc('If you need further assistance, please use our')?>
+          <a href="https://libwww.freelibrary.org/contact/">
+            <?=$this->transEsc('contact a librarian form.')?>
+          </a>
+        </p>
+
+      
+
+    
+  </div>
+</div>
+
+<?php if (isset($this->reason) && $this->reason): ?><b><?=$this->transEsc('Message')?>:</b> <?=$this->transEsc($this->reason)?><?php endif; ?>
