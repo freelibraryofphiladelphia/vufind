@@ -19,6 +19,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Flp\\": ["module/Flp/src/Flp", "module/Flp"],
             "VuFind\\": ["module/VuFind/src/VuFind", "module/VuFind"],
             "VuFindAdmin\\": ["module/VuFindAdmin/src/VuFindAdmin", "module/VuFindAdmin"],
             "VuFindApi\\": ["module/VuFindApi/src/VuFindApi", "module/VuFindApi"],
