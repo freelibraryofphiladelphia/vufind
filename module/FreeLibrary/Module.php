@@ -27,7 +27,7 @@
  * @link     https://vufind.org/wiki/development
  */
 
-namespace Flp;
+namespace FreeLibrary;
 
 use Laminas\ModuleManager\ModuleManager;
 use Laminas\Mvc\MvcEvent;
