@@ -452,6 +452,7 @@ header .container.navbar {
 .result {
   .media {
     display: flex;
+    flex-direction: row;
     flex: 1;
     margin: 0;
     padding-right: 10px;
@@ -460,7 +461,8 @@ header .container.navbar {
   }
   .media-left,
   .media-right {
-    flex: none;
+    display: flex;
+    align-items: center;
     max-width: 25%;
     text-align: center;
 
@@ -1061,7 +1063,7 @@ table.search-history-table {
 }
 
 /* Hide virtual keyboard on narrow screens */
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .keyboard-selection {
     display: none;
   }
@@ -1074,6 +1076,7 @@ table.search-history-table {
 .result {
   .media {
     display: flex;
+    flex-direction: column;
     flex: 1;
     margin: 0;
     padding-right: 10px;
@@ -1082,9 +1085,11 @@ table.search-history-table {
   }
   .media-left,
   .media-right {
-    flex: none;
     max-width: 100%;
-    text-align: center;
+
+    a {
+      width:fit-content;
+    }
 
 }
 
