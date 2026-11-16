@@ -18,8 +18,10 @@
 
 <form class="form-record-hold" method="post" name="placeHold" data-clear-account-cache="holds">
   <?=$this->flashmessages()?>
-  <label class="form-label"><?=$this->transEsc('Title')?>:</label>
-  <p class="form-control-static"><?=$this->escapeHtml($this->driver->getBreadcrumb() . $enumchron) ?></p>
+  <div class="d-flex flex-row align-items-center align-content-center font-size-md gap-2">
+    <label class="form-label font-weight-semibold p-0 m-0"><?=$this->transEsc('Title')?>:</label>
+    <p class="form-control-static p-0 m-0"><?=$this->escapeHtml($this->driver->getBreadcrumb() . $enumchron) ?></p>
+  </div>
   <?php if (in_array('comments', $this->extraHoldFields)): ?>
     <div class="form-group hold-comment">
       <label class="form-label"><?=$this->transEsc('Comments')?>:</label>
@@ -52,7 +54,7 @@
             $selected = $this->defaultRequestGroup;
         }
      ?>
-      <label class="form-label"><?=$this->transEsc('hold_request_group')?>:</label>
+      <label class="form-label font-weight-semibold font-size-md"><?=$this->transEsc('hold_request_group')?>:</label>
       <select id="requestGroupId" name="gatheredDetails[requestGroupId]" class="form-select">
         <?php if ($selected === false): ?>
           <option value="" selected="selected">
@@ -112,7 +114,7 @@
       </div>
     <?php elseif ($this->pickup): ?>
       <div class="form-group hold-pickup-location">
-        <label class="form-label"><?=$this->transEsc('pick_up_location')?>:</label>
+        <label class="form-label font-weight-semibold font-size-md mt-3"><?=$this->transEsc('pick_up_location')?>:</label>
         <select id="pickUpLocation" name="gatheredDetails[pickUpLocation]" class="form-select">
           <?php if ($selected === false && count($this->pickup) > 1): ?>
             <option value="" selected="selected">
@@ -121,7 +123,7 @@
           <?php endif; ?>
           <?php foreach ($this->pickup as $lib): ?>
             <option value="<?=$this->escapeHtmlAttr($lib['locationID'])?>"<?=($selected == $lib['locationID']) ? ' selected="selected"' : ''?>>
-              <?=$this->transEscWithPrefix('location_', $lib['locationDisplay'])?>
+              <?=$this->transEscWithPrefix('location_', $lib['locationDisplay'])?> <?=$this->transEscWithPrefix('location_', $lib['locationID'])?>
             </option>
           <?php endforeach; ?>
         </select>
