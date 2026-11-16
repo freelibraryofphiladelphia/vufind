@@ -13,8 +13,8 @@ class Symphony extends \VuFind\ILS\Driver\Symphony
      */
     public function getMyTransactions($patron)
     {
-        $transList = [];
         try {
+            $transList = [];
             $options   = ['includePatronCheckoutInfo' => 'ALLEXCEPTCLAIMEDRETURNED'];
 
             $result = $this->makeRequest(
