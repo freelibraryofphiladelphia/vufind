@@ -37,6 +37,15 @@ See our [developers handbook](https://vufind.org/wiki/development) for more info
 - Start the SOLR instance: `$ ./solr.sh start`
 - Navigate to http://127.0.0.1:4567/vufind/
 
+## Running Vufind Locally using Docker
+
+```powershell
+docker compose -f docker/docker-compose.yml build
+docker compose -f docker/docker-compose.yml up --watch
+```
+Docker usage [docs](docker/README-DOCKER.md).
+
+
 ### Update Windows Host File
 
 - Using a text editor with administrative rights, open `C:\Windows\System32\drivers\etc\hosts`

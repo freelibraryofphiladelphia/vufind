@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://app.vagrantup.com/boxes/search
-  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.box = "bento/ubuntu-26.04"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -20,8 +20,8 @@ Vagrant.configure("2") do |config|
     vb.gui = true
 
     # Customize the amount of resources on the VM:
-    vb.cpus = 2
-    vb.memory = "6144"
+    vb.cpus = 4
+    vb.memory = "8102"
 
     # Disable vagrant-vbguest for this VM
     if Vagrant.has_plugin?("vagrant-vbguest")
@@ -35,23 +35,18 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 8983, host: 4568, auto_correct: true
   config.vm.network "private_network", ip: "172.30.41.66"
 
-  config.vm.synced_folder ".", "/vagrant", :owner => 'vagrant'
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/var/www/vufind", owner: "vagrant"
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
 
-    # Configure mysql-server package credential values.
-    # NOTE: Please don't use these default values in any situation where security is a concern.
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-
     # Install package dependencies.
     export DEBIAN_FRONTEND=noninteractive
-    apt-get update
-    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof dos2unix \
-    libapache2-mod-php php-pear php php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml
+    apt-get update 
+    apt-get install -y git zip unzip apache2 lsof dos2unix libapache2-mod-php php-pear php php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml 
 
     # Install composer.
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -63,17 +58,23 @@ Vagrant.configure("2") do |config|
     # Check out and set up VuFind.
     mkdir -p /vufindlocal/cache/cli /vufindlocal/config/vufind
     chown -R vagrant:vagrant /vufindlocal
-    su - vagrant -c 'cd /vagrant && composer install && php install.php --non-interactive --overridedir=/vufindlocal'
-    ln -s /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf
-    a2enmod rewrite
+    su - vagrant -c 'cd /var/www/vufind && composer install && php install.php --non-interactive --overridedir=/vufindlocal --basepath=/' 
+    ln -sfn /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf 
+    printf '%s\n' '<VirtualHost *:80>' \
+      '    DocumentRoot /var/www/vufind/public' \
+      '    ErrorLog ${APACHE_LOG_DIR}/error.log' \
+      '    CustomLog ${APACHE_LOG_DIR}/access.log combined' \
+      '</VirtualHost>' > /etc/apache2/sites-available/vufind.conf 
+    a2dissite 000-default 
+    a2ensite vufind 
+    a2enmod rewrite headers
+    apache2ctl configtest 
 
-    # Restart Apache (and MySQL to be sure it's running).
+    # Restart Apache
     if [[ -d /run/systemd/system ]]; then
       systemctl restart apache2
-      systemctl restart mysql
     else
       service apache2 restart
-      service mysql restart
     fi
 
     # Set up cache and config permissions.
@@ -81,7 +82,7 @@ Vagrant.configure("2") do |config|
     chmod 777 /vufindlocal/cache/cli
 
     # Set up profile for command line.
-    echo export VUFIND_HOME=/vagrant > /etc/profile.d/vufind.sh
+    echo export VUFIND_HOME=/var/www/vufind > /etc/profile.d/vufind.sh
     echo export VUFIND_LOCAL_DIR=/vufindlocal >> /etc/profile.d/vufind.sh
   SHELL
 end

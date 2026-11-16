@@ -1,0 +1,52 @@
+name: vufind11
+
+# Run from the repository root:
+#   docker compose -f docker/docker-compose.yml build
+#   docker compose -f docker/docker-compose.yml up --watch
+#
+# Paths below are relative to this file (docker/). The build context is the
+# repository root so the image gets the whole tree.
+#
+# The app uses the team MySQL and Solr servers (see docker/configs/config.ini),
+# so only the app runs here.
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: vf11_app
+    ports:
+      - "127.0.0.1:8081:80"
+    volumes:
+      # Generated local state (cache, logs) persists here
+      - vufind_local:/var/www/vufind/local
+      # Host config files, read live by the app (read-only)
+      - ./configs:/var/www/vufind/local/config/vufind:ro
+    environment:
+      - VUFIND_HOME=/var/www/vufind
+      - VUFIND_LOCAL_DIR=/var/www/vufind/local
+      - VUFIND_ENV=production
+    restart: unless-stopped
+    develop:
+      watch:
+        - action: sync+exec
+          path: ../module
+          target: /var/www/vufind/module
+          exec:
+            command: ["sh", "-c", "rm -rf /var/www/vufind/local/cache/*"]
+        - action: sync+exec
+          path: ../themes
+          target: /var/www/vufind/themes
+          exec:
+            command: ["sh", "-c", "rm -rf /var/www/vufind/local/cache/*"]
+        - action: rebuild
+          path: ../composer.json
+        - action: sync+exec
+          path: ./configs
+          target: /tmp/config-watch
+          exec:
+            command: ["sh", "-c", "rm -rf /var/www/vufind/local/cache/*"]
+
+volumes:
+  vufind_local:
