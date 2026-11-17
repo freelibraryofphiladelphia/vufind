@@ -67,6 +67,13 @@ Vagrant.configure("2") do |config|
     ln -s /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf
     a2enmod rewrite
 
+    # Copy custom Vagrant Apache configuration after installation
+    cp /vagrant/local/httpd-vufind-vagrant.conf /vufindlocal/httpd-vufind.conf
+
+    # Enable VuFind Apache configuration
+    ln -sfn /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf
+    a2enmod rewrite
+
     # Restart Apache (and MySQL to be sure it's running).
     if [[ -d /run/systemd/system ]]; then
       systemctl restart apache2
