@@ -147,7 +147,16 @@
     setTimeout(removeGoogleVotingPane, 200);
   }
 
-  removeGoogleVotingPane();
+    function removeGoogleRatingPane() {
+    const rating = document.getElementById("goog-gt-tt");
+    if (rating) {
+      rating.remove();
+      return;
+    }
+    setTimeout(removeGoogleRatingPane, 200);
+  }
+
+  removeGoogleRatingPane();
 
   // remove google top header
   function removeGoogleTopHeader() {
