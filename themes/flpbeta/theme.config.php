@@ -5,6 +5,9 @@ return [
         'custom.scss',
         'footer.scss',
     ],
+    'css' => [
+        'brands.css',
+    ],
     'js' => [
         /**
          * Entries in this section can either be specified as array or as string.
@@ -68,4 +71,48 @@ return [
             'sizes' => '48x48',
         ],
     ],
+    // Override preset icons here
+    'icons' => [
+        'sets' => [
+            // Add in a Font Awesome Brand Set - this is not included in the bootstrap5 by default.
+            'FontAwesomeBrands' => [
+                'template' => 'font',
+                'prefix' => 'fa-brands fa-',
+                'src' => 'brands.css',
+            ],
+        ],
+        'aliases' => [
+            /**
+             * Icons can be assigned or overridden here
+             *
+             * Format: 'icon' => [set:]icon[:extra_classes]
+             * Icons assigned without set will use the defaultSet.
+             * In order to specify extra CSS classes, you must also specify a set.
+             *
+             * All of the items below have been specified with FontAwesome to allow
+             * for a strong inheritance safety net but this is not required.
+             */
+            // to override an icon, go to the bootstrap5 theme and select the icon you would like to change and add here
+            'social-facebook' => 'FontAwesomeBrands:facebook-square',
+            'social-instagram' => 'FontAwesomeBrands:instagram',
+            'social-youtube' => 'FontAwesomeBrands:youtube',
+            'social-linkedin' => 'FontAwesomeBrands:linkedin',
+
+
+            ],
+    ],
+
+
+    /**
+     * The following is all custom attributes for this theme
+     * in order to demonstrate the themeConfig view helper.
+     */
+    'home-content' => [
+        'links' => [
+            'Setup' => 'install-home',
+            'Dev Tools' => 'devtools-home',
+        ],
+    ],
+
+    'header-nav' => parse_ini_file(__DIR__ . '/templates/header-nav.ini', true),
 ];
