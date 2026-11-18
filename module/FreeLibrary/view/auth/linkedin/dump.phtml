@@ -1,4 +1,14 @@
-<h1>Dump Test</h1>
-
-<p>Authentication Type: <?= $this->escapeHtml($type) ?></p>
-<p>Patron ID: <?= $this->escapeHtml($id) ?></p>
+<?php if (!empty($this->patron['barcode'])): ?>
+<HTML>
+<BODY>
+P BARCODE[pb]=<?= $this->escapeHtml($this->patron['barcode']) ?><BR>
+</BODY>
+</HTML>
+<?php else: ?>
+<HTML>
+<BODY>
+ERRNUM=1<BR>
+ERRMSG=Requested record not found<BR>
+</BODY>
+</HTML>
+<?php endif; ?>

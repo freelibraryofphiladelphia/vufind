@@ -15,10 +15,10 @@ class AuthController extends \VuFind\Controller\AbstractBase
 
         try {
             $patron = $this->getILS()->patronLogin($id, $pin);
-
             $valid = !empty($patron);
 
             // TODO: check if card has expired or not (for internet patrons)
+
         } catch (\Exception $e) {
             $valid = false;
         }
@@ -43,18 +43,20 @@ class AuthController extends \VuFind\Controller\AbstractBase
         $type = $this->params()->fromRoute('type');
         $this->access($type);
 
-        $id = $this->params()->fromRoute('id');
-        $pin = $this->params()->fromRoute('pin', null);
+        $barcode = trim((string) $this->params('id'));
+
+        $patron = $this->getILS()->lookupPatronByBarcode($barcode);
 
         $view = $this->createViewModel(
             [
-                'type'  => $type,
-                'id'    => $id,
-                'pin'   => $pin,
+                'patron' => $patron,
             ]
         );
 
         $view->setTemplate("auth/{$type}/dump");
+
+        // Disable the VuFind layout
+        $view->setTerminal(true);
 
         return $view;
     }

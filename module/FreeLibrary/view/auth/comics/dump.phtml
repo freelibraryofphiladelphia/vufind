@@ -1,4 +1,16 @@
-<h1>Dump Test</h1>
-
-<p>Authentication Type: <?= $this->escapeHtml($type) ?></p>
-<p>Patron ID: <?= $this->escapeHtml($id) ?></p>
+<?php if ($this->valid) : ?>
+<HTML>
+<BODY>
+HOME LIBR[p53]=222<BR>
+P BARCODE[pb]=<?= $this->id ?><BR>
+PROFILE=<?= $this->profile ?><BR>
+</BODY>
+</HTML>
+<?php else : ?>
+<HTML>
+<BODY>
+ERRNUM=1<BR>
+ERRMSG=Invalid<BR>
+</BODY>
+</HTML>
+<?php endif ?>
