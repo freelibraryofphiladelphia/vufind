@@ -1,8 +1,7 @@
-FROM php:8.5-apache
-
+FROM php:8.4-apache
 WORKDIR /var/www/vufind
 
-# Install system dependencies, libraries, netcat, and JRE (for SolrMarc indexing)
+# Install system dependencies, libraries, netcat
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     unzip \
@@ -14,7 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxml2-dev \
     libxslt1-dev \
     libldap2-dev \
-    default-jre-headless \
     default-mysql-client \
     netcat-openbsd \
     curl \
