@@ -4,6 +4,11 @@ namespace FreeLibrary\Controller;
 
 class AuthController extends \VuFind\Controller\AbstractBase
 {
+    /**
+     * Test a patron PIN.
+     *
+     * @return \Laminas\View\Model\ViewModel
+     */
     public function pintestAction()
     {
         // check if request is coming from approved IPs
@@ -37,6 +42,11 @@ class AuthController extends \VuFind\Controller\AbstractBase
         return $view;
     }
 
+    /**
+     * Dump patron or PIN authentication information.
+     *
+     * @return \Laminas\View\Model\ViewModel
+     */
     public function dumpAction()
     {
         // check if request is coming from approved IPs
@@ -86,6 +96,13 @@ class AuthController extends \VuFind\Controller\AbstractBase
         return $view;
     }
 
+    /**
+     * Verify that the request comes from an approved IP address.
+     *
+     * @param string $type Authentication configuration type
+     *
+     * @return mixed
+     */
     protected function access(string $type)
     {
         $config = $this->getAuthConfig();
@@ -107,6 +124,13 @@ class AuthController extends \VuFind\Controller\AbstractBase
         }
     }
 
+    /**
+     * Get authentication configuration.
+     *
+     * @return array
+     *
+     * @throws \RuntimeException If the configuration file is missing or invalid
+     */
     protected function getAuthConfig(): array
     {
         $configFile = dirname(__DIR__, 3) . '/config/auth.ini';
@@ -132,6 +156,13 @@ class AuthController extends \VuFind\Controller\AbstractBase
         return $config;
     }
 
+    /**
+     * Get the policy number for a patron profile group.
+     *
+     * @param ?string $profileGroup Patron profile group
+     *
+     * @return int Policy number, or 0 for an unknown profile group
+     */
     protected function getProfileInteger(?string $profileGroup): int
     {
         switch ($profileGroup) {
