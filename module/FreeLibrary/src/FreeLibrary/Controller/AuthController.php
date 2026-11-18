@@ -10,11 +10,11 @@ class AuthController extends \VuFind\Controller\AbstractBase
         $type = $this->params()->fromRoute('type');
         $this->access($type);
 
-        $id = $this->params()->fromRoute('id');
+        $barcode = $this->params()->fromRoute('id');
         $pin = $this->params()->fromRoute('pin');
 
         try {
-            $patron = $this->getILS()->patronLogin($id, $pin);
+            $patron = $this->getILS()->patronLogin($barcode, $pin);
             $valid = !empty($patron);
 
             // TODO: check if card has expired or not (for internet patrons)
@@ -43,15 +43,40 @@ class AuthController extends \VuFind\Controller\AbstractBase
         $type = $this->params()->fromRoute('type');
         $this->access($type);
 
-        $barcode = trim((string) $this->params('id'));
+        $barcode = $this->params()->fromRoute('id');
+        $pin = $this->params()->fromRoute('pin');
 
-        $patron = $this->getILS()->lookupPatronByBarcode($barcode);
+        if ($pin) {
 
-        $view = $this->createViewModel(
-            [
-                'patron' => $patron,
-            ]
-        );
+            $profileInteger = 0;
+            $valid = false;
+            $patron = $this->getILS()->patronLogin($barcode, $pin);
+
+            if ($patron !== null) {
+
+                $profile = $this->getILS()->getMyProfile($patron);
+                $valid = $profile ?? false;
+                $profileInteger = $this->getProfileInteger($profile['group'] ?? null);
+            }
+
+            $view = $this->createViewModel(
+                [
+                    'valid' => $valid,
+                    'id' => $barcode,
+                    'profile' => $profileInteger,
+                ]
+            );
+
+        } else {
+
+            $patron = $this->getILS()->lookupPatronByBarcode($barcode);
+
+            $view = $this->createViewModel(
+                [
+                    'patron' => $patron,
+                ]
+            );
+        }
 
         $view->setTemplate("auth/{$type}/dump");
 
@@ -61,7 +86,7 @@ class AuthController extends \VuFind\Controller\AbstractBase
         return $view;
     }
 
-    protected function access(String $type)
+    protected function access(string $type)
     {
         $config = $this->getAuthConfig();
 
@@ -105,5 +130,46 @@ class AuthController extends \VuFind\Controller\AbstractBase
         }
 
         return $config;
+    }
+
+    protected function getProfileInteger(?string $profileGroup): int
+    {
+        switch ($profileGroup) {
+            // adults (age 18 and above)
+            case 'A':
+            case 'EDUCATOR':
+            case 'G':
+            case 'H':
+            case 'P':
+            case 'TEM':
+            case 'TEMW':
+            case 'W':
+            case 'VIRTUAL':
+                return 1;
+
+            // teens (ages 12-17)
+            case 'TA':
+            case 'TAVR':
+            case 'TN':
+            case 'TVR':
+                return 2;
+
+            // children (ages 0-11)
+            case 'CAOA':
+            case 'CAOAVR':
+            case 'COA':
+            case 'COAVR':
+                return 3;
+
+            // children (ages 0-11) with restriction
+            case 'C':
+            case 'CA':
+            case 'CAVR':
+            case 'CVR':
+                return 4;
+
+            default:
+                return 0;
+        }
     }
 }
