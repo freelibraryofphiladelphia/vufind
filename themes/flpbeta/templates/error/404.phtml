@@ -1,40 +1,22 @@
 <?php
   $this->headTitle($this->translate('Page not found.'));
+  $this->breadcrumbs()->disable();
 ?>
-<style>
-  body:has(.flp-404) nav.breadcrumbs {
-    display: none !important;
-  }
-</style>
 
-<div class="error-page py-5">
-  <div class="row justify-content-center text-center">
+<div class="py-5 text-center">
 
-  
-    <div class="flp-404">
-        <img
-            src="<?=$this->imageLink('404-error.png')?>" alt=""
-        class="img-responsive" style="max-width: 200px;"
-    
-    </div>
+  <img src="<?= $this->imageLink('error/404.png') ?>" alt="" width="200" />
 
-      
-    
-        <h1 class="font-weight-bold font-serif font-size-2xl">
-          <?=$this->transEsc('Sorry, this page isn’t available.')?>
-        </h1>
+  <h1 class="font-weight-bold font-size-2xl">
+    <?= $this->transEsc("Sorry, this page isn't available.") ?>
+  </h1>
 
-        <p class="font-weight-regular font-serif font-size-lg">
-          <?=$this->transEsc('If you need further assistance, please use our')?>
-          <a href="https://libwww.freelibrary.org/contact/">
-            <?=$this->transEsc('contact a librarian form.')?>
-          </a>
-        </p>
+  <p class="font-serif font-size-lg">
+    <?= $this->transEsc('If you need further assistance, please use our') ?>
+    <a href="https://libwww.freelibrary.org/contact/">
+      <?= $this->transEsc('contact a librarian form') ?>
+    </a>.
+    <?php if (isset($this->reason) && $this->reason): ?><b><?= $this->transEsc('Message') ?>:</b> <?= $this->transEsc($this->reason) ?><?php endif; ?>
+  </p>
 
-      
-
-    
-  </div>
 </div>
-
-<?php if (isset($this->reason) && $this->reason): ?><b><?=$this->transEsc('Message')?>:</b> <?=$this->transEsc($this->reason)?><?php endif; ?>
