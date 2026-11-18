@@ -5,6 +5,13 @@ namespace FreeLibrary\ILS\Driver;
 class Symphony extends \VuFind\ILS\Driver\Symphony
 {
 
+    /**
+     * Look up a patron by barcode.
+     *
+     * @param string $barcode Patron barcode
+     *
+     * @return ?array Patron data containing the barcode, or null if unavailable
+     */
     public function lookupPatronByBarcode(string $barcode): ?array
     {
         $barcode = trim($barcode);
