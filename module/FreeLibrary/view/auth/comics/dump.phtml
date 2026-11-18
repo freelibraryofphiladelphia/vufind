@@ -1,0 +1,16 @@
+<?php if ($this->valid) : ?>
+<HTML>
+<BODY>
+HOME LIBR[p53]=222<BR>
+P BARCODE[pb]=<?= $this->id ?><BR>
+PROFILE=<?= $this->profile ?><BR>
+</BODY>
+</HTML>
+<?php else : ?>
+<HTML>
+<BODY>
+ERRNUM=1<BR>
+ERRMSG=Invalid<BR>
+</BODY>
+</HTML>
+<?php endif ?>
