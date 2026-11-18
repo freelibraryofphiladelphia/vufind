@@ -26,9 +26,9 @@ a {
 }
 
 a.title.getFull {
-    text-decoration: none !important;
-    color: $primary;
-  }
+  text-decoration: none !important;
+  color: $primary;
+}
 
 .bg-primary-red {
   background-color: $primary-red-300;
@@ -43,7 +43,8 @@ a.title.getFull {
 @import "partials/_typography";
 
 /* You can organize these styles in separate files and @import them */
-@import "bootstrap"; /* Include bootstrap theme's scss base */
+@import "bootstrap";
+/* Include bootstrap theme's scss base */
 @import "components/sidebar";
 @import "partials/_buttons";
 @import "partials/_header";
@@ -52,85 +53,78 @@ a.title.getFull {
 @import "components/search";
 @import "components/advanced-search";
 
-
-
-/* Remove the top offset Google adds to the page */
-body {
-    top: 0 !important;
-}
-
-/* Sometimes Google applies the offset to html as well */
-html {
-    top: 0 !important;
-}
-
 // Remove the google trasnlate loading spinner
 .VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
   display: none !important;
 }
+
 /* Change specific styles below */
 html {
   font-size: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-font-family: $font-family-serif;
-color: $text-heading-dark;
-};
-
-// Basic Header Sizes updated because Zilla Slab is quite small
-  h1,
-  .h1 {
-    font-size: $type-scale-4xl;
-  }
-
-  h2,
-  .h2 {
-    font-size: $type-scale-3xl;
-  }
-
-  h3,
-  .h3 {
-    font-size: $type-scale-2xl;
-  }
-
-  h4,
-  .h4 {
-    font-size: $type-scale-lg;
-  }
-    h5,
-  .h5 {
-    font-size: $type-scale-md;
-  }
 body {
-  font-size: 1rem;
+  display: flex;
+  min-height: 100vh !important;
+  flex-direction: column;
+
+  top: 0 !important;
   color: #333;
   background-color: #5ab48a;
   font-family: $font-family-sans-serif;
-  a #content {
-    color: $primary !important;
-  }
 }
+
+.main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-serif;
+  color: $text-heading-dark;
+}
+
+// Basic Header Sizes updated because Zilla Slab is quite small
+h1,
+.h1 {
+  font-size: $type-scale-4xl;
+}
+
+h2,
+.h2 {
+  font-size: $type-scale-3xl;
+}
+
+h3,
+.h3 {
+  font-size: $type-scale-2xl;
+}
+
+h4,
+.h4 {
+  font-size: $type-scale-lg;
+}
+
+h5,
+.h5 {
+  font-size: $type-scale-md;
+}
+
 header {
   a.main-nav {
-  font-size: 1rem;
-  color: $primary-gray-300 !important;
-  max-width: 100%;
+    font-size: 1rem;
+    color: $primary-gray-300 !important;
+    max-width: 100%;
   }
 
-#highlight-link {
-    position: absolute !important;
-    bottom: 0;
-    left: 0;
-    padding: 5px;
-    text-decoration: none;
-    border-left: 3px solid $primary-red-300;
-}
   .banner {
     padding: 0;
   }
 }
-
 
 .container {
   border-radius: 0;
@@ -149,32 +143,20 @@ header {
 }
 
 .searchForm .searchForm-query #searchForm-reset {
-  // aspect-ratio: 1;
-  // margin-inline-end: 0.125rem;
   line-height: 1;
-margin-bottom: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 #searchForm_lookfor {
-margin-bottom: 10px !important;
+  margin-bottom: 10px !important;
 }
 
-
 #searchForm_type {
-margin-bottom: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .get-library-card {
   font-weight: 500;
-  color: $primary-gray-400 !important;
-  text-decoration: none !important;
+  color: $primary-gray-400;
+  text-decoration: none;
 }
-
-.face-title {
-  font-size: $type-scale-sm !important;
-  font-family: $font-family-sans-serif !important;
-  color: $primary-gray-400 !important;
-}
-
-
-
