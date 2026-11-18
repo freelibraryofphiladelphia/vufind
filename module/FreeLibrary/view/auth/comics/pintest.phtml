@@ -1,4 +1,14 @@
-<h1>PIN Test</h1>
-
-<p>Authentication Type: <?= $this->escapeHtml($type) ?></p>
-<p>Patron ID: <?= $this->escapeHtml($id) ?></p>
+<?php if ($this->valid) : ?>
+<HTML>
+<BODY>
+RETCOD=0<BR>
+</BODY>
+</HTML>
+<?php else : ?>
+<HTML>
+<BODY>
+RETCOD=1<BR>
+ERRMSG=Invalid<BR>
+</BODY>
+</HTML>
+<?php endif; ?>
