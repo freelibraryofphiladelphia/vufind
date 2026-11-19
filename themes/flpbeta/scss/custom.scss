@@ -1,18 +1,3 @@
-// Set Font Awesome font path
-@use "@fortawesome/fontawesome-pro/scss/variables" with (
-  $font-path: "../../flpbeta/css/fonts/fontawesome-pro"
-);
-
-// Include Font Awesome
-@use "@fortawesome/fontawesome-pro/scss/fontawesome";
-@use "@fortawesome/fontawesome-pro/scss/brands";
-@use "@fortawesome/fontawesome-pro/scss/solid";
-@use "@fortawesome/fontawesome-pro/scss/regular";
-@use "@fortawesome/fontawesome-pro/scss/light";
-@use "@fortawesome/fontawesome-pro/scss/thin";
-@use "@fortawesome/fontawesome-pro/scss/duotone";
-@use "@fortawesome/fontawesome-pro/scss/sharp-duotone-solid";
-
 @use "sass:color";
 
 
@@ -41,6 +26,33 @@ $font-family-serif: Zilla Slab, serif;
 .fa, .fa-classic, .fa-regular, .fa-solid, .fab, .far, .fas, a[href$=".doc"]:after, a[href$=".docx"]:after, a[href$=".m4a"]:after, a[href$=".pdf"]:after, a[href$=".pps"]:after, a[href$=".ppt"]:after, a[href$=".pptx"]:after, a[href$=".xls"]:after, a[href$=".xlsx"]:after, a[rel=external]:after {
   font-family: "Font Awesome 7 Pro";
 }
+
+.fas,
+.fa-solid {
+  font-family: "Font Awesome 7 Pro" !important;
+}
+
+.far,
+.fa-regular {
+  font-family: "Font Awesome 7 Pro" !important;
+}
+
+.fab,
+.fa-brands {
+  font-family: "Font Awesome 7 Brands" !important;
+}
+/* Reduce animation duration to below 5 seconds to pass WCAG AA requirements*/
+.fa-a11y-animation {
+  --fa-animation-duration: 0.5s; --fa-animation-iteration-count: 1;
+}
+/* Tone down the animation to avoid vestibular motion triggers. */
+@media (prefers-reduced-motion: reduce) {
+  .fa-a11y-animation {
+    animation: none;
+  }
+}
+
+
 a {
   color: $primary;
 }

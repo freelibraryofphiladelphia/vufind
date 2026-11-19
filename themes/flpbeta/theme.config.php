@@ -229,7 +229,7 @@ return [
             'my-account' => 'FontAwesome:circle-user fa-regular',
             'my-account-notification' => 'Alias:notification',
             'my-account-warning' => 'Alias:warning',
-            'notification' => 'FontAwesome:circle-user-circle-exclamation fa-regular fa-xl',
+            'notification' => 'FontAwesome:bell fa-solid fa-shake fa-xl fa-a11y-animation',
             'offcanvas-hide-left' => 'FontAwesome:angle-right',
             'offcanvas-hide-right' => 'FontAwesome:angle-left',
             'offcanvas-show-left' => 'FontAwesome:angle-double-left',
