@@ -33,3 +33,4 @@ local/config/vufind.bak
 local/config/vufind/*
 !local/config/vufind/README.txt
 .npmrc
+fontawesome.npmrc
