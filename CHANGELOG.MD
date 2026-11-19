@@ -1,6 +1,23 @@
 ﻿# CHANGELOG
 
-## v11.1.0-flp.3
+## v11.1.0-flp.6 (2026-11-19)
+
+- Track English language file updates
+
+## v11.1.0-flp.5 (2026-11-19)
+
+- Add custom 404 error page
+- Display Place Hold button prominently on individual record pages and search
+- Correct location button URL on mobile screen views
+- Hide Google Translate Rating Pop Up
+
+## v11.1.0-flp.4 (2026-11-18)
+
+- Add legacy redirects to Get a Card pages in Apache config
+- Adjust footer placement on screens with little content and search home
+- Add AuthController for LinkedIn Learning and Comics Plus authentication
+
+## v11.1.0-flp.3 (2026-11-17)
 
 - Add custom FreeLibrary module
 - Display ALLEXCEPTCLAIMEDRETURNED instead of ALL for patron check outs

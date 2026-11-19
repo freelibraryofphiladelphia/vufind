@@ -47,6 +47,62 @@ use function is_array;
  */
 class Symphony extends \VuFind\ILS\Driver\Symphony
 {
+
+    /**
+     * Look up a patron by barcode.
+     *
+     * @param string $barcode Patron barcode
+     *
+     * @return ?array Patron data containing the barcode, or null if unavailable
+     */
+    public function lookupPatronByBarcode(string $barcode): ?array
+    {
+        $barcode = trim($barcode);
+
+        if ($barcode === '') {
+            return null;
+        }
+
+        try {
+            $result = $this->makeRequest(
+                'patron',
+                'lookupPatronInfo',
+                [
+                    'userID' => $barcode,
+                    'includePatronInfo' => true,
+                    'includePatronStatusInfo' => true,
+                ],
+                [
+                    'login' => $this->config['WebServices']['user'],
+                    'password' => $this->config['WebServices']['password'] ?? null,
+                ]
+            );
+
+            if (empty($result->patronInfo->userID)) {
+                return null;
+            }
+
+            $expiration = $result->patronStatusInfo->datePrivilegeExpires ?? null;
+
+            // Preserve the original expiration behavior.
+            if ($expiration !== null && $expiration !== '') {
+
+                $expires = new \DateTimeImmutable($expiration);
+
+                if (time() >= $expires->getTimestamp()) {
+                    return null;
+                }
+            }
+
+            return [
+                'barcode' => (string) $result->patronInfo->userID,
+            ];
+
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
     /**
      * Constructor.
      *
