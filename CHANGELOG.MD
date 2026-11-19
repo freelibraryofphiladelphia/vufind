@@ -1,5 +1,9 @@
 ﻿# CHANGELOG
 
+## v11.1.0-flp.6 (2026-11-19)
+
+- Track English language file updates
+
 ## v11.1.0-flp.5 (2026-11-19)
 
 - Add custom 404 error page
