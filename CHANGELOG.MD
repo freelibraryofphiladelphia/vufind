@@ -1,5 +1,12 @@
 ﻿# CHANGELOG
 
+## v11.1.0-flp.5 (2026-11-19)
+
+- Add custom 404 error page
+- Display Place Hold button prominently on individual record pages and search
+- Correct location button URL on mobile screen views
+- Hide Google Translate Rating Pop Up
+
 ## v11.1.0-flp.4 (2026-11-18)
 
 - Add legacy redirects to Get a Card pages in Apache config
