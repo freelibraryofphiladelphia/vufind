@@ -8,7 +8,7 @@
       <!-- mobile buttons -->
       <div class="d-flex gap-0 align-items-center">
         <div class="btn navbar-toggle d-block d-md-none">
-                <?=$this->context($this)->renderInContext('Section/HeaderBar/HeaderBar-account-mobile.phtml', ['focusOnLoad' => false])?>
+          <?= $this->context($this)->renderInContext('Section/HeaderBar/HeaderBar-account-mobile.phtml', ['focusOnLoad' => false]) ?>
         </div>
         <a href="https://libwww.freelibrary.org/locations" class="btn navbar-toggle d-block d-md-none">
           <span class="visually-hidden">Toggle Locations</span> <span class="fa fa-map-marker font-size-2xl" aria-hidden="true"></span>
@@ -61,7 +61,7 @@
           <!--- Donate, Library card and login button --->
           <div class="flex-column flex-md-row">
             <ul class="list-inline d-flex flex-wrap gap-2">
-                    <?=$this->context($this)->renderInContext('Section/HeaderBar/HeaderBar-account.phtml', ['focusOnLoad' => false])?>
+              <?= $this->context($this)->renderInContext('Section/HeaderBar/HeaderBar-account.phtml', ['focusOnLoad' => false]) ?>
               <li>
                 <a href="https://www.freelibrary.org/donate/" class="btn btn-danger">
                   Donate <i class="margin-left-05 fa fa-heart" aria-hidden="true"></i>
@@ -103,7 +103,6 @@
 </div>
 
 <script>
-
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       // pageLanguage: 'en',
@@ -133,7 +132,6 @@
 
     setTimeout(addIdToGoogleTranslate, 200);
   }
-
   addIdToGoogleTranslate();
 
   // Remove the Google Translate Vote form to avoid WAVE errors
@@ -145,8 +143,17 @@
     }
     setTimeout(removeGoogleVotingPane, 200);
   }
-
   removeGoogleVotingPane();
+
+  function removeGoogleRatingPane() {
+    const rating = document.getElementById("goog-gt-tt");
+    if (rating) {
+      rating.remove();
+      return;
+    }
+    setTimeout(removeGoogleRatingPane, 200);
+  }
+  removeGoogleRatingPane();
 
   // remove google top header
   function removeGoogleTopHeader() {
@@ -157,7 +164,6 @@
     }
     setTimeout(removeGoogleVotingPane, 200);
   }
-
   removeGoogleTopHeader();
 
   $(function() {
@@ -172,7 +178,6 @@
       e.preventDefault();
     });
   });
-
 </script>
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
