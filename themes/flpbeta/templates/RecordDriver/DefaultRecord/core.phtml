@@ -1,9 +1,6 @@
 <?php
   $this->metadata()->generateMetatags($this->driver);
 ?>
-<!-- Display title above the content and image -->
-<h1<?=$this->schemaOrg()->getAttributes(['property' => 'name'])?>><?=$this->escapeOrCleanHtml($this->driver->getShortTitle(), 'title', renderingContext: 'heading') . ' ' . $this->escapeOrCleanHtml($this->driver->getSubtitle(), 'title', renderingContext: 'heading') . ' ' . $this->escapeOrCleanHtml($this->driver->getTitleSection(), 'title', renderingContext: 'heading')?></h1>
-<!-- Display the thumbnail and the details side-by-side in desktop and stacked on mobile -->
 <div class="media"<?=$this->schemaOrg()->getAttributes(['vocab' => 'http://schema.org/', 'resource' => '#record', 'typeof' => $this->schemaOrg()->getRecordTypes($this->driver)])?>>
   <?php
     $recordHelper = $this->record($this->driver);
@@ -17,7 +14,7 @@
     $rating = $this->driver->isRatingAllowed();
   ?>
   <?php if ($QRCode || $cover || $preview || $rating): ?>
-    <div class="media-left <?=$this->escapeHtmlAttr($coverDetails['size'])?> img-col d-flex flex-column">
+    <div class="media-left <?=$this->escapeHtmlAttr($coverDetails['size'])?> img-col flex-column">
       <?php /* Display thumbnail if appropriate: */ ?>
       <?php if ($cover): ?>
         <?=$cover?>
@@ -27,11 +24,10 @@
       <?php $holdingTitleHold = $this->driver->tryMethod('getRealTimeTitleHold'); ?>
       <?php if (!empty($holdingTitleHold)): ?>
         <a class="btn btn-info text-center my-2 placehold hidden-print" data-lightbox title="<?=$this->transEscAttr('request_place_text')?>" href="<?=$this->escapeHtmlAttr($this->recordLinker()->getRequestUrl($holdingTitleHold))?>">
-        <?=$this->icon('user-holds', 'icon-link__icon') ?>
-        <?=$this->transEsc('title_hold_place')?>
+          <?=$this->icon('user-holds', 'icon-link__icon') ?>
+          <?=$this->transEsc('title_hold_place')?>
         </a>
       <?php endif; ?>
-
 
       <?php /* Display qrcode if appropriate: */ ?>
       <?php if ($QRCode): ?>
@@ -57,6 +53,9 @@
     </div>
   <?php endif; ?>
   <div class="media-body">
+
+    <h1<?=$this->schemaOrg()->getAttributes(['property' => 'name'])?>><?=$this->escapeOrCleanHtml($this->driver->getShortTitle(), 'title', renderingContext: 'heading') . ' ' . $this->escapeOrCleanHtml($this->driver->getSubtitle(), 'title', renderingContext: 'heading') . ' ' . $this->escapeOrCleanHtml($this->driver->getTitleSection(), 'title', renderingContext: 'heading')?></h1>
+
     <?php if ($this->driver->getExtraDetail('cached_record') && !$this->translationEmpty('cached_record_warning')): ?>
       <div class="alert alert-warning">
         <?=$this->transEsc('cached_record_warning')?>
