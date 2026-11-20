@@ -24,17 +24,17 @@ $font-family-sans-serif: Figtree, sans-serif;
 $font-family-serif: Zilla Slab, serif;
 // Override FontAwesome Free from the parent theme
 .fa, .fa-classic, .fa-regular, .fa-solid, .fab, .far, .fas, a[href$=".doc"]:after, a[href$=".docx"]:after, a[href$=".m4a"]:after, a[href$=".pdf"]:after, a[href$=".pps"]:after, a[href$=".ppt"]:after, a[href$=".pptx"]:after, a[href$=".xls"]:after, a[href$=".xlsx"]:after, a[rel=external]:after {
-  font-family: "Font Awesome 7 Pro";
+  font-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro")) !important;
 }
 
 .fas,
 .fa-solid {
-  font-family: "Font Awesome 7 Pro" !important;
+  font-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro")) !important;
 }
 
 .far,
 .fa-regular {
-  font-family: "Font Awesome 7 Pro" !important;
+  font-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro")) !important;
 }
 
 .fab,
@@ -49,6 +49,7 @@ $font-family-serif: Zilla Slab, serif;
 @media (prefers-reduced-motion: reduce) {
   .fa-a11y-animation {
     animation: none;
+    font-family:  var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro"));
   }
 }
 
