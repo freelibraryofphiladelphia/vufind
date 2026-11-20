@@ -109,14 +109,14 @@ return [
              * All of the items below have been specified with FontAwesome to allow
              * for a strong inheritance safety net but this is not required.
              */
-            // to override an icon, go to the bootstrap5 theme and select the icon you would like to change and add here
             'social-facebook' => 'FontAwesomeBrands:facebook-square',
             'social-instagram' => 'FontAwesomeBrands:instagram',
             'social-youtube' => 'FontAwesomeBrands:youtube',
             'social-linkedin' => 'FontAwesomeBrands:linkedin',
-            'test-cat' => 'FontAwesome:cat',
 
             // Begin Bootstrap5 Default Icon Overrides
+            // To override an icon defined in the parent bootstrap5 theme, copy the
+            // entry from themes\bootstrap5\theme.config.php and add it here with needed updates
             'my-account' => 'FontAwesome:circle-user fa-regular',
             'my-account-notification' => 'Alias:notification',
             'notification' => 'FontAwesome:bell fa-solid fa-shake fa-xl fa-a11y-animation',
@@ -126,22 +126,6 @@ return [
             'spinner' => 'FontAwesome:spinner-scale fa-solid fa-spin-pulse',
             'user-favorites' => 'FontAwesome:hearts fa-sharp-duotone',
             'user-holds' => 'FontAwesome:flag-swallowtail fa-sharp-duotone',
-
-
-            ],
-    ],
-
-
-    /**
-     * The following is all custom attributes for this theme
-     * in order to demonstrate the themeConfig view helper.
-     */
-    'home-content' => [
-        'links' => [
-            'Setup' => 'install-home',
-            'Dev Tools' => 'devtools-home',
         ],
     ],
-
-    'header-nav' => parse_ini_file(__DIR__ . '/templates/header-nav.ini', true),
 ];
