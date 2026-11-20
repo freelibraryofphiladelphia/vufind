@@ -5,6 +5,7 @@
 # Vim temporary files
 .*.sw[po]
 
+.npmrc
 .php_cs_cache
 .phpmd.result-cache.php
 .phpstan_cache
