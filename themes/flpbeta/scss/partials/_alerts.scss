@@ -9,15 +9,6 @@
     margin-bottom: 0;
   }
 
-  // alert variants
-  &-default {
-    @include alert-variant($gray-lighter, darken($gray-lighter, 10%), $text-body-dark);
-  }
-
-  &-white {
-    @include alert-variant($brand-light, $gray-lighter, $text-body-dark);
-  }
-
   // alert modifiers
   &-flat {
     border: none;
@@ -45,7 +36,10 @@
         position: relative;
 
         &::before {
-          font-family: "FontAwesome";
+          font-family: var(--fa-family, var(--fa-style-family, 'Font Awesome 7 Free'));
+          display: var(--fa-display, inline-block);
+          font-weight: var(--fa-style, 900);
+          width: var(--fa-width, 1.25em);
           font-size: 1.875rem;
           position: absolute;
           left: 0;
@@ -85,6 +79,7 @@
     }
 
     &.alert-notice {
+      color: $info-400;
       .container-fluid div:first-child::before {
         content: "\f05a";
       }
@@ -113,6 +108,7 @@
     }
 
     &.alert-notice {
+      color: $primary-navy-400;
       &::before {
         content: "\f05a";
       }
