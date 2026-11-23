@@ -10,7 +10,7 @@ VuFind.register('siteBanners', function SiteBanners() {
    * @returns {string} Current UTC timestamp.
    */
   function getCurrentTimestamp() {
-    return new Date().toISOString().replace('T', ' ').replace('Z', '.000');
+    return new Date().toISOString().replace('T', ' ').replace('Z', '');
   }
 
   /**
@@ -52,22 +52,37 @@ VuFind.register('siteBanners', function SiteBanners() {
 
     var id = String(announcement.id);
     var alert = document.createElement('div');
-    alert.className = 'alert alert-' + getAlertType(announcement) + ' alert-dismissible fade show';
+    var bannerType = getAlertType(announcement);
+    alert.className = 'alert alert-' + bannerType + ' alert-global alert-notice header-notices';
+    if (bannerType === 'danger') {
+      alert.classList.remove('alert-notice');
+      alert.classList.add('alert-attention');
+    }
+    alert.id = 'alertBlock-' + id;
     alert.setAttribute('role', 'alert');
 
-    var content = document.createElement('div');
-    content.innerHTML = announcement.announcement_text || '';
-    alert.appendChild(content);
+    var wrapper = document.createElement('div');
+    wrapper.className = 'container-fluid';
+    var message = document.createElement('div');
+    message.innerHTML = announcement.announcement_text || '';
+    wrapper.appendChild(message);
+    alert.appendChild(wrapper);
 
     var close = document.createElement('button');
     close.type = 'button';
-    close.className = 'btn-close';
+    close.className = 'close';
+    close.id = 'alertMsg-' + id;
     close.setAttribute('aria-label', 'Close');
+
+    var closeIcon = document.createElement('span');
+    closeIcon.setAttribute('aria-hidden', 'true');
+    closeIcon.textContent = '\u00d7';
+    close.appendChild(closeIcon);
     close.addEventListener('click', function dismissBanner() {
       setDismissalCookie(id);
       alert.remove();
     });
-    alert.appendChild(close);
+    message.insertBefore(close, message.firstChild);
     return alert;
   }
 
