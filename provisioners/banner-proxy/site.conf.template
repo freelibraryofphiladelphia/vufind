@@ -1,0 +1,23 @@
+<IfModule mod_ssl.c>
+    SSLProxyEngine On
+</IfModule>
+
+<IfModule mod_headers.c>
+    <Location "/assets/json/banner.json">
+        Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header always set Pragma "no-cache"
+        Header always set Expires "0"
+    </Location>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{QUERY_STRING} (?:^|&)expired_after=([^&]+)
+    RewriteRule ^/assets/json/banner\.json$ - [E=BANNER_EA:%1]
+
+    RewriteCond %{QUERY_STRING} (?:^|&)published_before=([^&]+)
+    RewriteRule ^/assets/json/banner\.json$ - [E=BANNER_PB:%1]
+
+    RewriteRule ^/assets/json/banner\.json$ __API_BASE__/announcements?types=2,3&sort=publish_at&direction=asc&expired_after=%{ENV:BANNER_EA}&published_before=%{ENV:BANNER_PB} [P,L,QSD]
+</IfModule>
