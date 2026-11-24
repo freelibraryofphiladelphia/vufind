@@ -21,7 +21,9 @@ ChangeLog
 /TAGS
 composer.phar
 env.bat
+env.bat.bak.*
 env.sh
+env.sh.bak.*
 import/solrmarc.log*
 lessphp_*.list
 module/VuFind/tests/.phpunit*

@@ -1,0 +1,20 @@
+<?php
+
+// Retrieve the requested list.
+$list = $this->results->getListObject();
+
+// Retrieve the currently authenticated user.
+$user = $this->auth()->getUserObject();
+
+// Determine whether the current user owns the list.
+$isOwner = $list
+    && $user
+    && $list->getUser()->getId() === $user->getId();
+
+// Preserve the original interface for list owners
+// and requests without a specific list.
+if (!$list || $isOwner) {
+    echo $this->render('myresearch/mylist-owner.phtml');
+} else {
+    echo $this->render('myresearch/mylist-public.phtml');
+}
