@@ -1,5 +1,13 @@
 ﻿# CHANGELOG
 
+## v11.1.0-flp.7 (2026-11-24)
+
+- Update language file to remove references to "Recalls"
+- Add Periodical format
+- Remove trailing slash from titles
+- Update Pill Active State Text Color
+- Handle SYMWS exceptions being throw when attempting to log in
+
 ## v11.1.0-flp.6 (2026-11-19)
 
 - Track English language file updates
