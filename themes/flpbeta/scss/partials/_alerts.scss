@@ -1,0 +1,123 @@
+.alert {
+
+  a {
+    text-decoration: underline;
+  }
+
+  ul:last-child li:last-of-type,
+  ol:last-child li:last-of-type {
+    margin-bottom: 0;
+  }
+
+  // alert modifiers
+  &-flat {
+    border: none;
+    border-radius: 0;
+  }
+
+  &-square {
+    border-radius: 0;
+  }
+
+  // custom alerts
+  &-global {
+    @extend .alert-square;
+    margin-bottom: 5px;
+    font-weight: 500;
+    border-left-width: 10px;
+    padding: 0.625rem 0;
+
+    .container-fluid div {
+
+      padding-left: 2.625rem;
+      padding-right: 2.75rem;
+
+      &:first-child {
+        position: relative;
+
+        &::before {
+          font-family: var(--fa-family, var(--fa-style-family, 'Font Awesome 7 Free'));
+          display: var(--fa-display, inline-block);
+          font-weight: var(--fa-style, 900);
+          width: var(--fa-width, 1.25em);
+          font-size: 1.875rem;
+          position: absolute;
+          left: 0;
+          line-height: 1;
+          width: 2rem;
+          height: 2.125rem;
+          padding-top: 0.125rem;
+          text-align: center;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        p:last-of-type {
+          margin: 0;
+        }
+      }
+    }
+
+    .close {
+      color: inherit;
+      opacity: 0.7;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1.5rem;
+
+      &:focus,
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.alert-attention {
+      .container-fluid div:first-child::before {
+        content: "\f06a";
+      }
+    }
+
+    &.alert-notice {
+      color: $info-400;
+      .container-fluid div:first-child::before {
+        content: "\f05a";
+      }
+    }
+
+  }
+
+  &-icon {
+    position: relative;
+    padding-left: 3rem;
+
+    &::before {
+      font-family: "FontAwesome";
+      width: 1.5rem;
+      text-align: center;
+      font-size: 1.5rem;
+      line-height: 1;
+      position: absolute;
+      left: 0.75rem;
+    }
+
+    &.alert-attention {
+      &::before {
+        content: "\f06a";
+      }
+    }
+
+    &.alert-notice {
+      color: $primary-navy-400;
+      &::before {
+        content: "\f05a";
+      }
+    }
+
+    &.alert-phone {
+      &::before {
+        content: "\f098";
+      }
+    }
+  }
+}

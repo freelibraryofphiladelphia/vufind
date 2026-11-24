@@ -62,6 +62,7 @@ return [
         ['file' => 'config.js', 'priority' => 320],
         ['file' => 'lightbox.js', 'priority' => 330],
         ['file' => 'cookie.js', 'priority' => 340],
+        ['file' => 'site_banners.js', 'priority' => 345],
         ['file' => 'searchbox_controls.js', 'priority' => 350],
         ['file' => 'truncate.js', 'priority' => 360],
         ['file' => 'trigger_print.js', 'priority' => 370],
