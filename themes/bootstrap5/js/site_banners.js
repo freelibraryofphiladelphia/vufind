@@ -70,7 +70,7 @@ VuFind.register('siteBanners', function SiteBanners() {
 
     var close = document.createElement('button');
     close.type = 'button';
-    close.className = 'close';
+    close.className = 'close btn-close';
     close.id = 'alertMsg-' + id;
     close.setAttribute('aria-label', 'Close');
 
