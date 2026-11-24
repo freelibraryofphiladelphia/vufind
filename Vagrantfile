@@ -9,7 +9,14 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://app.vagrantup.com/boxes/search
-  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.box = "bento/ubuntu-26.04"
+  
+  # Set a long boot timeout to allow for slow VM startups (during ssh timeout).
+  config.vm.boot_timeout = 600
+
+  # Set a long SSH connection timeout to allow for slow VM startups.
+  # the initial boot rides the line for timing out
+  config.ssh.connect_timeout = 300
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -20,7 +27,7 @@ Vagrant.configure("2") do |config|
     vb.gui = true
 
     # Customize the amount of resources on the VM:
-    vb.cpus = 2
+    vb.cpus = 4
     vb.memory = "6144"
 
     # Disable vagrant-vbguest for this VM
@@ -32,7 +39,6 @@ Vagrant.configure("2") do |config|
 
   # Network configuration to forward ports.
   config.vm.network :forwarded_port, guest: 80, host: 4567, auto_correct: true
-  config.vm.network :forwarded_port, guest: 8983, host: 4568, auto_correct: true
   config.vm.network "private_network", ip: "172.30.41.66"
 
   config.vm.synced_folder ".", "/vagrant", :owner => 'vagrant'
@@ -42,17 +48,13 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
 
-    # Configure mysql-server package credential values.
-    # NOTE: Please don't use these default values in any situation where security is a concern.
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-
     # Install package dependencies.
     export DEBIAN_FRONTEND=noninteractive
     apt-get update
-    apt-get install -y git zip unzip apache2 default-jdk mysql-server lsof dos2unix \
+    apt-get install -y --no-install-recommends git zip unzip apache2 lsof dos2unix \
     libapache2-mod-php php-pear php php-curl php-dev php-gd php-intl php-json php-ldap php-mbstring php-mysql php-soap php-xml
-
+    apt autoremove --purge -y
+    
     # Install composer.
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
     php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -68,19 +70,24 @@ Vagrant.configure("2") do |config|
     a2enmod rewrite
 
     # Copy custom Vagrant Apache configuration after installation
-    cp /vagrant/local/httpd-vufind-vagrant.conf /vufindlocal/httpd-vufind.conf
+    sed \
+      -e 's#^RedirectMatch 301 \^/vufind/register#RedirectMatch 301 ^/register#' \
+      -e 's#^AliasMatch \^/vufind/themes#AliasMatch ^/themes#' \
+      -e 's#^AliasMatch \^/vufind/cache#AliasMatch ^/cache#' \
+      -e 's#^Alias /vufind /vagrant/public#DocumentRoot /vagrant/public/#' \
+      -e 's#^<Location /vufind>#<Location />#' \
+      /vagrant/local/httpd-vufind-vagrant.conf > /vufindlocal/httpd-vufind.conf
 
     # Enable VuFind Apache configuration
     ln -sfn /vufindlocal/httpd-vufind.conf /etc/apache2/conf-enabled/vufind.conf
+    a2dissite 000-default
     a2enmod rewrite
 
-    # Restart Apache (and MySQL to be sure it's running).
+    # Restart Apache
     if [[ -d /run/systemd/system ]]; then
       systemctl restart apache2
-      systemctl restart mysql
     else
       service apache2 restart
-      service mysql restart
     fi
 
     # Set up cache and config permissions.
