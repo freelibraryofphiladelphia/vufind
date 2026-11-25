@@ -119,13 +119,14 @@ return [
             // entry from themes\bootstrap5\theme.config.php and add it here with needed updates
             'my-account' => 'FontAwesome:circle-user fa-regular',
             'my-account-notification' => 'Alias:notification',
-            'notification' => 'FontAwesome:bell fa-solid fa-shake fa-xl fa-a11y-animation',
-            'place-hold' => 'FontAwesome:flag-swallowtail fa-sharp-duotone',
+            'my-account-warning' => 'FontAwesome:circle-exclamation fa-regular fa-duotone fa-a11y-animation fa-shake fa-xl',
+            'notification' => 'FontAwesome:bell fa-solid fa-a11y-animation fa-shake fa-xl',
+            'place-hold' => 'FontAwesome:flag-swallowtail',
             'sign-in' => 'FontAwesome:right-to-bracket',
             'sign-out' => 'FontAwesome:right-from-bracket',
             'spinner' => 'FontAwesome:spinner-scale fa-solid fa-spin-pulse',
-            'user-favorites' => 'FontAwesome:hearts fa-sharp-duotone',
-            'user-holds' => 'FontAwesome:flag-swallowtail fa-sharp-duotone',
+            'user-favorites' => 'FontAwesome:heart fa-solid',
+            'user-holds' => 'FontAwesome:flag-swallowtail',
         ],
     ],
 ];
