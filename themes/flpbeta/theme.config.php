@@ -5,6 +5,9 @@ return [
         'custom.scss',
         'footer.scss',
     ],
+    'css' => [
+        'brands.css',
+    ],
     'js' => [
         /**
          * Entries in this section can either be specified as array or as string.
@@ -66,6 +69,64 @@ return [
             'rel' => 'icon',
             'type' => 'image/x-icon',
             'sizes' => '48x48',
+        ],
+    ],
+    // Override preset icons here
+    'icons' => [
+        'sets' => [
+            /**
+             * Define icon sets here.
+             *
+             * All sets need:
+             * - 'template': which template the icon renders with
+             * - 'src': the location of the relevant resource (font, css, images)
+             * - 'prefix': prefix to place before each icon name for convenience
+             *             (ie. fa- for FontAwesome, default "")
+             * If you want to add various styles, make sure they are first imported through the custom.scss
+             * Then just add ,'fa-thin' after the the token name of the icon within the template. See the footer for examples
+             */
+            'FontAwesome' => [
+                // Font Awesome Pro 7
+                'template' => 'font',
+                'prefix' => 'fa fa-',
+                'src' => 'custom.scss',
+            ],
+            'FontAwesomeBrands' => [
+                // Font Awesome Pro 7
+                'template' => 'font',
+                'prefix' => 'fa-brands fa-',
+                'src' => 'custom.scss',
+            ],
+        ],
+        'aliases' => [
+            /**
+             * Icons can be assigned or overridden here
+             *
+             * Format: 'icon' => [set:]icon[:extra_classes]
+             * Icons assigned without set will use the defaultSet.
+             * In order to specify extra CSS classes, you must also specify a set.
+             *
+             * All of the items below have been specified with FontAwesome to allow
+             * for a strong inheritance safety net but this is not required.
+             */
+            'social-facebook' => 'FontAwesomeBrands:facebook-square',
+            'social-instagram' => 'FontAwesomeBrands:instagram',
+            'social-youtube' => 'FontAwesomeBrands:youtube',
+            'social-linkedin' => 'FontAwesomeBrands:linkedin',
+
+            // Begin Bootstrap5 Default Icon Overrides
+            // To override an icon defined in the parent bootstrap5 theme, copy the
+            // entry from themes\bootstrap5\theme.config.php and add it here with needed updates
+            'my-account' => 'FontAwesome:circle-user fa-regular',
+            'my-account-notification' => 'Alias:notification',
+            'my-account-warning' => 'FontAwesome:circle-exclamation fa-regular fa-duotone fa-a11y-animation fa-shake fa-xl',
+            'notification' => 'FontAwesome:bell fa-solid fa-a11y-animation fa-shake fa-xl',
+            'place-hold' => 'FontAwesome:flag-swallowtail',
+            'sign-in' => 'FontAwesome:right-to-bracket',
+            'sign-out' => 'FontAwesome:right-from-bracket',
+            'spinner' => 'FontAwesome:spinner-scale fa-solid fa-spin-pulse',
+            'user-favorites' => 'FontAwesome:heart fa-solid',
+            'user-holds' => 'FontAwesome:flag-swallowtail',
         ],
     ],
 ];

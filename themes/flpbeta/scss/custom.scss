@@ -1,4 +1,6 @@
 @use "sass:color";
+
+
 @import "variables";
 
 /* Change variables to change colors and values through-out the theme */
@@ -20,6 +22,37 @@ $grid-gutter-width: 20px;
 // Font Families
 $font-family-sans-serif: Figtree, sans-serif;
 $font-family-serif: Zilla Slab, serif;
+// Override FontAwesome Free from the parent theme
+.fa, .fa-classic, .fa-regular, .fa-solid, .fab, .far, .fas, a[href$=".doc"]:after, a[href$=".docx"]:after, a[href$=".m4a"]:after, a[href$=".pdf"]:after, a[href$=".pps"]:after, a[href$=".ppt"]:after, a[href$=".pptx"]:after, a[href$=".xls"]:after, a[href$=".xlsx"]:after, a[rel=external]:after {
+  font-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro")) !important;
+}
+
+.fas,
+.fa-solid {
+  font-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro")) !important;
+}
+
+.far,
+.fa-regular {
+  font-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro")) !important;
+}
+
+.fab,
+.fa-brands {
+  font-family: "Font Awesome 7 Brands" !important;
+}
+/* Reduce animation duration to below 5 seconds to pass WCAG AA requirements*/
+.fa-a11y-animation {
+  --fa-animation-duration: 0.5s; --fa-animation-iteration-count: 1;
+}
+/* Tone down the animation to avoid vestibular motion triggers. */
+@media (prefers-reduced-motion: reduce) {
+  .fa-a11y-animation {
+    animation: none;
+    font-family:  var(--fa-family, var(--fa-style-family, "Font Awesome 7 Pro"));
+  }
+}
+
 
 a {
   color: $primary;
