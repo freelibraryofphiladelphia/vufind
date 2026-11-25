@@ -83,6 +83,10 @@ Vagrant.configure("2") do |config|
     a2dissite 000-default
     a2enmod rewrite
 
+    # Ubuntu waits 120 seconds for the private Vagrant interface to satisfy
+    # network-online.target, even though networking is already usable.
+    systemctl mask --now systemd-networkd-wait-online.service
+
     # Restart Apache
     if [[ -d /run/systemd/system ]]; then
       systemctl restart apache2
